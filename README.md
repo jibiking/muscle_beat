@@ -67,18 +67,21 @@
 
 12/14〆切：画面遷移図
 
-12/20〆切：ER図
+1/7〆切：ER図
 
-12/24〆切：rails new
+1/10〆切：rails new
 
-1月中：メイン機能実装
+1月下旬：メイン機能実装
 
-1月下旬：RUNTEQ内でリリース予定
+2月中旬：RUNTEQ内でリリース予定
 
-2月中旬：正式リリース予定
+2月下旬：正式リリース予定
 
 <br>
 
 ### 画面遷移図
----
 https://www.figma.com/file/BYFZyGFnnNjPcxwamTbhjr/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0%3A1
+
+
+### ER図
+https://drive.google.com/file/d/1nbisohsbQI_OQHzcapK2aEdPWwCk-KQe/view
