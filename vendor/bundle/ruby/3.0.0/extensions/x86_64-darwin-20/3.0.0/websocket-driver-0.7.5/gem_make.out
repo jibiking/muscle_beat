@@ -1,0 +1,15 @@
+current directory: /Users/apple/workspace/runteq/muscle_beat/vendor/bundle/ruby/3.0.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+/Users/apple/.rbenv/versions/3.0.2/bin/ruby -I /Users/apple/.rbenv/versions/3.0.2/lib/ruby/3.0.0 -r ./siteconf20220110-49043-38qmm4.rb extconf.rb
+creating Makefile
+
+current directory: /Users/apple/workspace/runteq/muscle_beat/vendor/bundle/ruby/3.0.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\= clean
+
+current directory: /Users/apple/workspace/runteq/muscle_beat/vendor/bundle/ruby/3.0.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\=
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+
+current directory: /Users/apple/workspace/runteq/muscle_beat/vendor/bundle/ruby/3.0.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20220110-49043-jiymxy
