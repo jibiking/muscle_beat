@@ -16,12 +16,13 @@ class BeatsController < ApplicationController
   end
 
   def create
-    @beat = Beat.new(beat_params)
+    @beat = current_user.beats.build(beat_params)
 
     if @beat.save
-      redirect_to beat_url(@beat), notice: "Beat was successfully created."
+      redirect_to(:beats, success: 'ビートを追加しました！')
     else
-      render :new
+      flash.now[:danger] = 'ビートを追加できませんでした…。'
+      render 'new'
     end
   end
 

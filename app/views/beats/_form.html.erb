@@ -28,12 +28,7 @@
 
   <div class="field">
     <%= form.label :level %>
-    <%= form.number_field :level %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.select :level, [ ["nomal"], ["hard"]] %>
   </div>
 
   <div class="actions">

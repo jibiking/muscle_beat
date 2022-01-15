@@ -21,4 +21,6 @@
 #
 class Beat < ApplicationRecord
   belongs_to :user
+
+  enum level: { nomal: 0, hard: 1 }
 end
