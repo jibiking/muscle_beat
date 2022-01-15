@@ -4,7 +4,7 @@
 #
 #  id               :bigint           not null, primary key
 #  crypted_password :string
-#  role             :integer          default(0), not null
+#  role             :integer          default("general"), not null
 #  salt             :string
 #  user_name        :string           not null
 #  created_at       :datetime         not null
