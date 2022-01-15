@@ -15,6 +15,9 @@
 
   <div id="nav" class="mt-5">
     <% if current_user %>
+      <%= link_to "トップ", root_path %>
+      <%= link_to "ユーザー一覧", users_path %>
+      <%= link_to "ビート一覧", beats_path %>
       <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
       <%= link_to "Logout", :logout, method: :post %>
     <% else %>
@@ -24,7 +27,6 @@
   </div>
   <div>
     <p id="notice"><%= flash[:notice] %></p>
-    <p id="alert"><%= flash[:alert] %></p>
   </div>
 
     <%= yield %>

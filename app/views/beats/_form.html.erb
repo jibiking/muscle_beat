@@ -1,0 +1,37 @@
+<%= form_with(model: beat) do |form| %>
+  <% if beat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(beat.errors.count, "error") %> prohibited this beat from being saved:</h2>
+
+      <ul>
+        <% beat.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :training_muscle %>
+    <%= form.text_field :training_muscle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :level %>
+    <%= form.select :level, [ ["nomal"], ["hard"]] %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

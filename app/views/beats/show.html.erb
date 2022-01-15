@@ -1,0 +1,27 @@
+<p>
+  <strong>Title:</strong>
+  <%= @beat.title %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @beat.url %>
+</p>
+
+<p>
+  <strong>Training muscle:</strong>
+  <%= @beat.training_muscle %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @beat.level %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @beat.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_beat_path(@beat) %> |
+<%= link_to 'Back', beats_path %>
