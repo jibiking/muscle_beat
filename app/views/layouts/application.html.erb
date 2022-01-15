@@ -13,7 +13,7 @@
 
   <body>
 
-  <div id="nav">
+  <div id="nav" class="mt-5">
     <% if current_user %>
       <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
       <%= link_to "Logout", :logout, method: :post %>

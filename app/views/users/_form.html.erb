@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :role %>
-    <%= form.number_field :role %>
+    <%= form.select :role, [ ["general"], ["admin"] ] %>
   </div>
 
   <div class="field">
