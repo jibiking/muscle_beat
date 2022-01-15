@@ -25,3 +25,8 @@
 
 <%= link_to 'Edit', edit_beat_path(@beat) %> |
 <%= link_to 'Back', beats_path %>
+
+<br>
+
+<iframe id="ytplayer" type="text/html" width="640" height="360"
+  src="https://www.youtube.com/embed/<%= @beat.url %>?autoplay=1&playsinline=1&controls=0"></iframe>
