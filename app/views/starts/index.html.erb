@@ -1,2 +1,33 @@
 <h1 class="text-center m-5">Muscle Beat</h1>
 <p class="text-danger text-center">トップページ</p>
+
+
+    <div>
+      <button onClick="deviceMotionRequest()">Click</button>
+      <span id="x">0</span>
+      <span id="y">0</span>
+      <span id="z">0</span>
+    </div>
+    <script>
+      function deviceMotionRequest () {
+        if (DeviceMotionEvent.requestPermission) {
+          DeviceMotionEvent.requestPermission()
+            .then(permissionState => {
+              if (permissionState === 'granted') {
+                window.addEventListener("devicemotion", function (event) {
+                  if (!event.accelerationIncludingGravity) {
+                    alert('event.accelerationIncludingGravity is null');
+                    return;
+                  }
+                  document.getElementById('x').innerHTML = Math.floor(100 * event.accelerationIncludingGravity.x);
+                  document.getElementById('y').innerHTML = Math.floor(100 * event.accelerationIncludingGravity.y);
+                  document.getElementById('z').innerHTML = Math.floor(100 * event.accelerationIncludingGravity.z);
+                })
+              }
+            })
+            .catch(console.error);
+        } else {
+          alert('DeviceMotionEvent.requestPermission is not found')
+        }
+      }
+    </script>
