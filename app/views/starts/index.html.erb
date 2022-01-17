@@ -8,20 +8,70 @@
       <span id="y">0</span>
       <span id="z">0</span>
     </div>
+
+    <div class="tilt">
+      <span>右</span>
+      <span>左</span>
+    </div>
+
+    <div class="ud">
+      <span>上</span>
+      <span>下</span>
+    </div>
+
+    <div class="depth">
+      <span>手前</span>
+      <span>奥</span>
+    </div>
+
     <script>
       function deviceMotionRequest () {
         if (DeviceMotionEvent.requestPermission) {
+          // DMイベントの許可を求める
           DeviceMotionEvent.requestPermission()
             .then(permissionState => {
+              // リクエストが許可されたら
               if (permissionState === 'granted') {
                 window.addEventListener("devicemotion", function (event) {
+                  // 許可されなかった時の表示
                   if (!event.accelerationIncludingGravity) {
                     alert('event.accelerationIncludingGravity is null');
                     return;
                   }
-                  document.getElementById('x').innerHTML = Math.floor(100 * event.accelerationIncludingGravity.x);
-                  document.getElementById('y').innerHTML = Math.floor(100 * event.accelerationIncludingGravity.y);
-                  document.getElementById('z').innerHTML = Math.floor(100 * event.accelerationIncludingGravity.z);
+                  // 加速度センサーの値を変数に格納
+                  var x = Math.floor(event.accelerationIncludingGravity.x)
+                  var y = Math.floor(event.accelerationIncludingGravity.y)
+                  var z = Math.floor(event.accelerationIncludingGravity.z)
+
+                  // 加速度センサーの値の表示
+                  document.getElementById('x').innerHTML = x;
+                  document.getElementById('y').innerHTML = y;
+                  document.getElementById('z').innerHTML = z;
+
+                  // 右・左の判定
+                  if(x < 0) {
+                    $(".tilt span").removeClass("color");
+                    $(".tilt span").eq(0).addClass("color");
+                  }else{
+                    $(".tilt span").removeClass("color");
+                    $(".tilt span").eq(1).addClass("color");
+                  }
+                  // 上・下の判定
+                  if(y < 0) {
+                    $(".ud span").removeClass("color");
+                    $(".ud span").eq(0).addClass("color");
+                  }else{
+                    $(".ud span").removeClass("color");
+                    $(".ud span").eq(1).addClass("color");
+                  }
+                  // 手前・奥の判定
+                  if(z < 0) {
+                    $(".depth span").removeClass("color");
+                    $(".depth span").eq(1).addClass("color");
+                  }else{
+                    $(".depth span").removeClass("color");
+                    $(".depth span").eq(0).addClass("color");
+                  }
                 })
               }
             })
