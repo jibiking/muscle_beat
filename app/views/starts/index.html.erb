@@ -1,7 +1,7 @@
 <h1 class="text-center m-5">Muscle Beat</h1>
 <p class="text-danger text-center">トップページ</p>
 
-
+<h3 id="count">0</h3>
     <div>
       <button onClick="deviceMotionRequest()">Click</button>
       <span id="x">0</span>
@@ -71,6 +71,15 @@
                   }else{
                     $(".depth span").removeClass("color");
                     $(".depth span").eq(0).addClass("color");
+                  }
+
+                  if (Math.abs(x) > 15 || Math.abs(y) > 15 || Math.abs(z) > 15) {
+                  // ここに振っているときの動作を入れる
+                    // alert("振ってるよ");
+                    var thisCount = $("#count").html();
+                    thisCount = Number(thisCount);
+                    thisCount = thisCount + 1;
+                    $("#count").html(thisCount);
                   }
                 })
               }
