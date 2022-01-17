@@ -75,10 +75,11 @@
 
                   if (Math.abs(x) > 15 || Math.abs(y) > 15 || Math.abs(z) > 15) {
                   // ここに振っているときの動作を入れる
+                  // とりあえず１振り＝ +0.1で定めておく
                     // alert("振ってるよ");
                     var thisCount = $("#count").html();
                     thisCount = Number(thisCount);
-                    thisCount = thisCount + 1;
+                    thisCount = thisCount + 0.1;
                     $("#count").html(thisCount);
                   }
                 })
