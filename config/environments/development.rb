@@ -82,4 +82,7 @@ Rails.application.configure do
     Bullet.rails_logger = true
     Bullet.add_footer = true
   end
+
+  # ホワイトリストに許可したいhostを追加
+  config.hosts << "3680-240b-11-c1a3-ee00-c8ee-7635-cee9-c266.ngrok.io"
 end

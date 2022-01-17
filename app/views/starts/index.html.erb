@@ -1,2 +1,93 @@
 <h1 class="text-center m-5">Muscle Beat</h1>
 <p class="text-danger text-center">トップページ</p>
+
+<h3 id="count">0</h3>
+    <div>
+      <button onClick="deviceMotionRequest()">Click</button>
+      <span id="x">0</span>
+      <span id="y">0</span>
+      <span id="z">0</span>
+    </div>
+
+    <div class="tilt">
+      <span>右</span>
+      <span>左</span>
+    </div>
+
+    <div class="ud">
+      <span>上</span>
+      <span>下</span>
+    </div>
+
+    <div class="depth">
+      <span>手前</span>
+      <span>奥</span>
+    </div>
+
+    <script>
+      function deviceMotionRequest () {
+        if (DeviceMotionEvent.requestPermission) {
+          // DMイベントの許可を求める
+          DeviceMotionEvent.requestPermission()
+            .then(permissionState => {
+              // リクエストが許可されたら
+              if (permissionState === 'granted') {
+                window.addEventListener("devicemotion", function (event) {
+                  // 許可されなかった時の表示
+                  if (!event.accelerationIncludingGravity) {
+                    alert('event.accelerationIncludingGravity is null');
+                    return;
+                  }
+                  // 加速度センサーの値を変数に格納
+                  var x = Math.floor(event.accelerationIncludingGravity.x)
+                  var y = Math.floor(event.accelerationIncludingGravity.y)
+                  var z = Math.floor(event.accelerationIncludingGravity.z)
+
+                  // 加速度センサーの値の表示
+                  document.getElementById('x').innerHTML = x;
+                  document.getElementById('y').innerHTML = y;
+                  document.getElementById('z').innerHTML = z;
+
+                  // 右・左の判定
+                  if(x < 0) {
+                    $(".tilt span").removeClass("color");
+                    $(".tilt span").eq(0).addClass("color");
+                  }else{
+                    $(".tilt span").removeClass("color");
+                    $(".tilt span").eq(1).addClass("color");
+                  }
+                  // 上・下の判定
+                  if(y < 0) {
+                    $(".ud span").removeClass("color");
+                    $(".ud span").eq(0).addClass("color");
+                  }else{
+                    $(".ud span").removeClass("color");
+                    $(".ud span").eq(1).addClass("color");
+                  }
+                  // 手前・奥の判定
+                  if(z < 0) {
+                    $(".depth span").removeClass("color");
+                    $(".depth span").eq(1).addClass("color");
+                  }else{
+                    $(".depth span").removeClass("color");
+                    $(".depth span").eq(0).addClass("color");
+                  }
+
+                  if (Math.abs(x) > 15 || Math.abs(y) > 15 || Math.abs(z) > 15) {
+                  // ここに振っているときの動作を入れる
+                  // とりあえず１振り＝ +0.1で定めておく
+                    // alert("振ってるよ");
+                    var thisCount = $("#count").html();
+                    thisCount = Number(thisCount);
+                    thisCount = thisCount + 0.1;
+                    $("#count").html(thisCount);
+                  }
+                })
+              }
+            })
+            .catch(console.error);
+        } else {
+          alert('DeviceMotionEvent.requestPermission is not found')
+        }
+      }
+    </script>
