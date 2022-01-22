@@ -7,10 +7,16 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+
 // bootstrap追加
 import "bootstrap";
+
+// css読み込み
 import "../stylesheets/application.scss";
 import "../stylesheets/common.scss";
+
+// js読み込み
+// import "./common/youtube"
 
 Rails.start()
 Turbolinks.start()
