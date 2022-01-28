@@ -15,9 +15,6 @@ import "bootstrap";
 import "../stylesheets/application.scss";
 import "../stylesheets/common.scss";
 
-// js読み込み
-// import "./common/youtube"
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
