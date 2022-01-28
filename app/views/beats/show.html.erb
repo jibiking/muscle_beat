@@ -27,3 +27,37 @@
 <%= link_to 'Back', beats_path %>
 
 <br>
+
+<canvas id="mycanvas"></canvas>
+
+<script src="https://cdn.jsdelivr.net/gh/phinajs/phina.js@v0.2.3/build/phina.js"></script>
+
+<script type="text/javascript">
+  'use strict';
+
+  if (!phina.util.Support.webAudio) {
+    alert('webAudioに対応していません！最新のブラウザを使って下さい！');
+  }
+
+  phina.globalize();
+</script>
+
+<script type="text/javascript">
+  phina.main(function() {
+    var app = GameApp({
+      assets: ASSETS,
+      width: SCREEN_WIDTH,
+      height: 300,
+      startLabel: 'title',
+      backgroundColor: 'navy',
+      title: 'サンプル',
+      fps: 60,
+      query: '#mycanvas',
+      // fit: false,
+    });
+
+    app.run();
+  });
+
+</script>
+

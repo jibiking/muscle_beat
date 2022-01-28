@@ -15,6 +15,12 @@ import "bootstrap";
 import "../stylesheets/application.scss";
 import "../stylesheets/common.scss";
 
+// js commonフォルダ読み込み
+// import "./common/config"
+// import "./common/components"
+// import "./common/mainscene"
+// import "./common/titlescene"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
