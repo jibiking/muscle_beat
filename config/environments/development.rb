@@ -84,5 +84,5 @@ Rails.application.configure do
   end
 
   # ホワイトリストに許可したいhostを追加
-  config.hosts << "3680-240b-11-c1a3-ee00-c8ee-7635-cee9-c266.ngrok.io"
+  config.hosts << "002f-240b-11-c1a3-ee00-c50e-1713-70a5-cd68.ngrok.io"
 end
