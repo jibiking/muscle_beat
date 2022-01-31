@@ -78,14 +78,14 @@ var RATING_TABLE = {
 
 var ASSETS = {
   sound: {
-    music: "../../assets/music/energy.mp3",
-    ring: "../../assets/music/tamborine.mp3",
+    music: "<%= asset_path("energy.mp3") %>",
+    ring: "<%= asset_path("tamborine.mp3") %>",
   },
   json: {
-    beatmap: "../../assets/json/notes.json"
+    beatmap: "<%= asset_path("notes.json") %>"
   },
   image: {
-    'bg': "../../assets/images/club.jpg"
+    'bg': "<%= asset_path("club.jpg") %>"
   }
 };
 
