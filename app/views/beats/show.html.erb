@@ -446,6 +446,12 @@ phina.define('MainScene', {
       this.flare('musicstart');
     }
 
+    // ゲーム終了（Scoreページ）
+    if (this.elapsedTime > "<%= @beat.url%>") {
+      SoundManager.stopMusic();
+      self.exit({score:this.totalScore,message:'いいビートだっ！！！'});
+    };
+
     // ノーツ描画
     var markers = this.markerGroup.children;
     markers.forEach(function(m) {
