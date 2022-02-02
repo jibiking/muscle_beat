@@ -31,5 +31,9 @@
 #mycanvas {
   display: block;
   position: relative!important;
-  margin-top: 50px!important;
+  top: 0px;
+  // left: 30px; //デバッグ用
+  left: -145px; //スマホ画面に対応
+  transform:rotate(90deg); //スマホ画面に対応
+  margin-top: 290px!important;
 }

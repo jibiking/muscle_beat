@@ -1,34 +1,6 @@
-<p>
-  <strong>Title:</strong>
-  <%= @beat.title %>
-</p>
-
-<p>
-  <strong>Url:</strong>
-  <%= @beat.url %>
-</p>
-
-<p>
-  <strong>Training muscle:</strong>
-  <%= @beat.training_muscle %>
-</p>
-
-<p>
-  <strong>Level:</strong>
-  <%= @beat.level %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @beat.user_id %>
-</p>
-
-<%= image_tag 'club.jpg', size: '300x200' %>
 
 <%= link_to 'Edit', edit_beat_path(@beat) %> |
 <%= link_to 'Back', beats_path %>
-
-<br>
 
 <canvas id="mycanvas"></canvas>
 
@@ -46,15 +18,16 @@
 
 var SCREEN_WIDTH = 1024;
 var SCREEN_HEIGHT = 768;
-var MARKER_RADIUS = 70;
-var MARKER_STROKE_WIDTH = 8;
+var MARKER_RADIUS = 30; //ノーツの大きさ
+var MARKER_STROKE_WIDTH = 5; //ノーツの幅
 
-var TRACK_NUM = 9;
-var ICON_INTERVAL_DEGREE = 180 / (TRACK_NUM - 1); // 22.5
-
-var MARKER_APPEARANCE_DELTA = 2000; // ノーツ出現時間(ms): 大きくするほど低速
-var UNIT_ARRANGE_RADIUS = SCREEN_WIDTH * 0.41 | 0;
+var MARKER_APPEARANCE_DELTA = 3000; // ノーツ出現時間(ms): 大きくするほど低速
 var MUSIC_START_DELAY = 2000;
+
+// var TRACK_NUM = 9;
+// var ICON_INTERVAL_DEGREE = 180 / (TRACK_NUM - 1); // 22.5
+// var UNIT_ARRANGE_RADIUS = SCREEN_WIDTH * 0.41 | 0;
+
 
 var RATING_TABLE = {
   perfect: {
@@ -85,77 +58,10 @@ var ASSETS = {
     beatmap: "<%= asset_path("notes.json") %>"
   },
   image: {
-    'bg': "<%= asset_path("club.jpg") %>"
+    'bg': "<%= asset_path("club.png") %>"
   }
 };
 
-
-// devicemotionの導入
-function deviceMotionRequest () {
-  if (DeviceMotionEvent.requestPermission) {
-    // DMイベントの許可を求める
-    DeviceMotionEvent.requestPermission()
-      .then(permissionState => {
-        // リクエストが許可されたら
-        if (permissionState === 'granted') {
-          window.addEventListener("devicemotion", function (event) {
-            // 許可されなかった時の表示
-            if (!event.accelerationIncludingGravity) {
-              alert('event.accelerationIncludingGravity is null');
-              return;
-            }
-            // 加速度センサーの値を変数に格納
-            var x = Math.floor(event.accelerationIncludingGravity.x)
-            var y = Math.floor(event.accelerationIncludingGravity.y)
-            var z = Math.floor(event.accelerationIncludingGravity.z)
-
-            // 加速度センサーの値の表示
-            document.getElementById('x').innerHTML = x;
-            document.getElementById('y').innerHTML = y;
-            document.getElementById('z').innerHTML = z;
-
-            // 右・左の判定
-            if(x < 0) {
-              $(".tilt span").removeClass("color");
-              $(".tilt span").eq(0).addClass("color");
-            }else{
-              $(".tilt span").removeClass("color");
-              $(".tilt span").eq(1).addClass("color");
-            }
-            // 上・下の判定
-            if(y < 0) {
-              $(".ud span").removeClass("color");
-              $(".ud span").eq(0).addClass("color");
-            }else{
-              $(".ud span").removeClass("color");
-              $(".ud span").eq(1).addClass("color");
-            }
-            // 手前・奥の判定
-            if(z < 0) {
-              $(".depth span").removeClass("color");
-              $(".depth span").eq(1).addClass("color");
-            }else{
-              $(".depth span").removeClass("color");
-              $(".depth span").eq(0).addClass("color");
-            }
-
-            if (Math.abs(x) > 15 || Math.abs(y) > 15 || Math.abs(z) > 15) {
-            // ここに振っているときの動作を入れる
-            // とりあえず１振り＝ +0.1で定めておく
-              // alert("振ってるよ");
-              var thisCount = $("#count").html();
-              thisCount = Number(thisCount);
-              thisCount = thisCount + 0.1;
-              $("#count").html(thisCount);
-            }
-          })
-        }
-      })
-      .catch(console.error);
-  } else {
-    alert('DeviceMotionEvent.requestPermission is not found')
-  }
-}
 
 
 /**
@@ -170,7 +76,7 @@ phina.define('TitleScene', {
 
     // タイトルラベル
     Label({
-      text: "太鼓の達人風音ゲー",
+      text: "<%= @beat.title %>",
       fill: "white",
       stroke: "#2F3CEC",
       strokeWidth: 6,
@@ -359,7 +265,7 @@ phina.define('MainScene', {
 
     // ユニットアイコンの配置（ノーツの出発地点）
     var iconGroup = DisplayElement()
-    .setPosition(gx.center(6), gy.span(12))
+    .setPosition(gx.center(12), gy.span(12))
     .addChildTo(this);
 
     // タップアイコンの配置（９個）→１個に変更
@@ -368,7 +274,7 @@ phina.define('MainScene', {
       // var rad = (i * ICON_INTERVAL_DEGREE).toRadian(); // 度数をラジアン変換
       var icon = UnitIcon(0)
       .setPosition(
-        gx.center(-20),
+        gx.center(-26),
         gy.center(-8),
       )
       .addChildTo(iconGroup);
@@ -542,14 +448,15 @@ phina.define('MainScene', {
   phina.main(function() {
     var app = GameApp({
       assets: ASSETS,
-      width: SCREEN_WIDTH,
-      height: 300,
+      width: 667, //スマホの縦
+      // width: 1024, //デバッグ用
+      height: 375, //スマホの横
       startLabel: 'title',
       backgroundColor: 'navy',
       title: 'サンプル',
       fps: 60,
       query: '#mycanvas',
-      // fit: false,
+      fit: false,
     });
 
     app.run();
