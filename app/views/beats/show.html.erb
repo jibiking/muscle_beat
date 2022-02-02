@@ -199,7 +199,7 @@ phina.define('EffectWave', {
     });
 
     this.tweener
-    .to({scaleX:1.7, scaleY:1.7, alpha:0}, 250)
+    .to({scaleX:2, scaleY:2, alpha:0}, 250)
     .call(function() {
       this.remove();
     }, this);
@@ -215,9 +215,9 @@ phina.define('RateLabel', {
   init: function(textParam) {
     this.superInit({
       text: textParam.text,
-      fontSize: 60,
-      strokeWidth: 8,
-      fill: "pink",
+      fontSize: 40,
+      strokeWidth: 6,
+      fill: "blue",
       stroke: "white",
     });
 
@@ -315,7 +315,7 @@ phina.define('MainScene', {
       stroke: "magenta",
       fill: "white",
       strokeWidth: 2,
-      fontSize: 50,
+      fontSize: 30,
     })
     .setPosition(gx.center(), gy.span(3))
     .addChildTo(this)
@@ -324,17 +324,17 @@ phina.define('MainScene', {
     });
 
     // リセットボタン
-    Button({
-      text: 'RESET',
-      fill: "#F539B9",
-    })
-    .setOrigin(1, 0)
-    .setPosition(this.width, 0)
-    .addChildTo(this)
-    .on('push', function() {
-      SoundManager.stopMusic();
-      self.exit('main')
-    });
+    // Button({
+    //   text: 'RESET',
+    //   fill: "#F539B9",
+    // })
+    // .setOrigin(1, 0)
+    // .setPosition(this.width, 0)
+    // .addChildTo(this)
+    // .on('push', function() {
+    //   SoundManager.stopMusic();
+    //   self.exit('main')
+    // });
 
   },
 
