@@ -1,34 +1,12 @@
-<p>
-  <strong>Title:</strong>
-  <%= @beat.title %>
-</p>
-
-<p>
-  <strong>Url:</strong>
-  <%= @beat.url %>
-</p>
-
-<p>
-  <strong>Training muscle:</strong>
-  <%= @beat.training_muscle %>
-</p>
-
-<p>
-  <strong>Level:</strong>
-  <%= @beat.level %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @beat.user_id %>
-</p>
-
-<%= image_tag 'club.jpg', size: '300x200' %>
 
 <%= link_to 'Edit', edit_beat_path(@beat) %> |
 <%= link_to 'Back', beats_path %>
 
-<br>
+<canvas id="display"></canvas>
+<label id="open-file">
+    音楽ファイルを開く
+    <input id="file-input" type="file" accept="audio/*">
+  </label>
 
 <canvas id="mycanvas"></canvas>
 
@@ -46,15 +24,16 @@
 
 var SCREEN_WIDTH = 1024;
 var SCREEN_HEIGHT = 768;
-var MARKER_RADIUS = 70;
-var MARKER_STROKE_WIDTH = 8;
+var MARKER_RADIUS = 30; //ノーツの大きさ
+var MARKER_STROKE_WIDTH = 5; //ノーツの幅
 
-var TRACK_NUM = 9;
-var ICON_INTERVAL_DEGREE = 180 / (TRACK_NUM - 1); // 22.5
-
-var MARKER_APPEARANCE_DELTA = 2000; // ノーツ出現時間(ms): 大きくするほど低速
-var UNIT_ARRANGE_RADIUS = SCREEN_WIDTH * 0.41 | 0;
+var MARKER_APPEARANCE_DELTA = 3000; // ノーツ出現時間(ms): 大きくするほど低速
 var MUSIC_START_DELAY = 2000;
+
+// var TRACK_NUM = 9;
+// var ICON_INTERVAL_DEGREE = 180 / (TRACK_NUM - 1); // 22.5
+// var UNIT_ARRANGE_RADIUS = SCREEN_WIDTH * 0.41 | 0;
+
 
 var RATING_TABLE = {
   perfect: {
@@ -85,77 +64,10 @@ var ASSETS = {
     beatmap: "<%= asset_path("notes.json") %>"
   },
   image: {
-    'bg': "<%= asset_path("club.jpg") %>"
+    'bg': "<%= asset_path("club.png") %>"
   }
 };
 
-
-// devicemotionの導入
-function deviceMotionRequest () {
-  if (DeviceMotionEvent.requestPermission) {
-    // DMイベントの許可を求める
-    DeviceMotionEvent.requestPermission()
-      .then(permissionState => {
-        // リクエストが許可されたら
-        if (permissionState === 'granted') {
-          window.addEventListener("devicemotion", function (event) {
-            // 許可されなかった時の表示
-            if (!event.accelerationIncludingGravity) {
-              alert('event.accelerationIncludingGravity is null');
-              return;
-            }
-            // 加速度センサーの値を変数に格納
-            var x = Math.floor(event.accelerationIncludingGravity.x)
-            var y = Math.floor(event.accelerationIncludingGravity.y)
-            var z = Math.floor(event.accelerationIncludingGravity.z)
-
-            // 加速度センサーの値の表示
-            document.getElementById('x').innerHTML = x;
-            document.getElementById('y').innerHTML = y;
-            document.getElementById('z').innerHTML = z;
-
-            // 右・左の判定
-            if(x < 0) {
-              $(".tilt span").removeClass("color");
-              $(".tilt span").eq(0).addClass("color");
-            }else{
-              $(".tilt span").removeClass("color");
-              $(".tilt span").eq(1).addClass("color");
-            }
-            // 上・下の判定
-            if(y < 0) {
-              $(".ud span").removeClass("color");
-              $(".ud span").eq(0).addClass("color");
-            }else{
-              $(".ud span").removeClass("color");
-              $(".ud span").eq(1).addClass("color");
-            }
-            // 手前・奥の判定
-            if(z < 0) {
-              $(".depth span").removeClass("color");
-              $(".depth span").eq(1).addClass("color");
-            }else{
-              $(".depth span").removeClass("color");
-              $(".depth span").eq(0).addClass("color");
-            }
-
-            if (Math.abs(x) > 15 || Math.abs(y) > 15 || Math.abs(z) > 15) {
-            // ここに振っているときの動作を入れる
-            // とりあえず１振り＝ +0.1で定めておく
-              // alert("振ってるよ");
-              var thisCount = $("#count").html();
-              thisCount = Number(thisCount);
-              thisCount = thisCount + 0.1;
-              $("#count").html(thisCount);
-            }
-          })
-        }
-      })
-      .catch(console.error);
-  } else {
-    alert('DeviceMotionEvent.requestPermission is not found')
-  }
-}
 
 
 /**
@@ -167,14 +79,17 @@ phina.define('TitleScene', {
   init: function(params) {
     this.superInit(params);
     this.backgroundColor = params.backgroundColor;
+    Sprite('bg').addChildTo(this)
+            .setPosition(this.gridX.center(), this.gridY.center());
+
 
     // タイトルラベル
     Label({
-      text: "太鼓の達人風音ゲー",
+      text: "<%= @beat.title %>",
       fill: "white",
       stroke: "#2F3CEC",
       strokeWidth: 6,
-      fontSize: 100,
+      fontSize: 80,
     })
     .setPosition(this.gridX.center(), this.gridY.span(6))
     .addChildTo(this)
@@ -184,7 +99,7 @@ phina.define('TitleScene', {
       fill: "white",
       stroke: "#2F3CEC",
       strokeWidth: 6,
-      fontSize: 64,
+      fontSize: 44,
     })
     .setPosition(this.gridX.center(), this.gridY.span(12))
     .addChildTo(this);
@@ -233,8 +148,8 @@ phina.define('UnitIcon', {
     this.superInit({
       radius: MARKER_RADIUS,
       strokeWidth: MARKER_STROKE_WIDTH,
-      stroke: "magenta",
-      fill: "pink",
+      stroke: "rgba(127, 255, 255, 1)",
+      fill: "rgba(127, 255, 255, 0.4)",
     });
     this.setInteractive(true);
     this.id = id;
@@ -257,7 +172,7 @@ phina.define('TargetMarker', {
     this.superInit({
       radius: MARKER_RADIUS,
       strokeWidth: MARKER_STROKE_WIDTH,
-      stroke: "red",
+      stroke: "magenta",
       fill: false,
     });
 
@@ -277,8 +192,6 @@ phina.define('TargetMarker', {
 });
 
 
-// 以下そのままでOK
-
 /**
  * エフェクト：白フェードアウト円
  */
@@ -293,7 +206,7 @@ phina.define('EffectWave', {
     });
 
     this.tweener
-    .to({scaleX:1.7, scaleY:1.7, alpha:0}, 250)
+    .to({scaleX:2, scaleY:2, alpha:0}, 250)
     .call(function() {
       this.remove();
     }, this);
@@ -309,9 +222,9 @@ phina.define('RateLabel', {
   init: function(textParam) {
     this.superInit({
       text: textParam.text,
-      fontSize: 60,
-      strokeWidth: 8,
-      fill: "pink",
+      fontSize: 40,
+      strokeWidth: 4,
+      fill: "magenta",
       stroke: "white",
     });
 
@@ -359,7 +272,7 @@ phina.define('MainScene', {
 
     // ユニットアイコンの配置（ノーツの出発地点）
     var iconGroup = DisplayElement()
-    .setPosition(gx.center(6), gy.span(12))
+    .setPosition(gx.center(12), gy.span(12))
     .addChildTo(this);
 
     // タップアイコンの配置（９個）→１個に変更
@@ -368,7 +281,7 @@ phina.define('MainScene', {
       // var rad = (i * ICON_INTERVAL_DEGREE).toRadian(); // 度数をラジアン変換
       var icon = UnitIcon(0)
       .setPosition(
-        gx.center(-20),
+        gx.center(-26),
         gy.center(-8),
       )
       .addChildTo(iconGroup);
@@ -409,7 +322,7 @@ phina.define('MainScene', {
       stroke: "magenta",
       fill: "white",
       strokeWidth: 2,
-      fontSize: 50,
+      fontSize: 30,
     })
     .setPosition(gx.center(), gy.span(3))
     .addChildTo(this)
@@ -418,17 +331,17 @@ phina.define('MainScene', {
     });
 
     // リセットボタン
-    Button({
-      text: 'RESET',
-      fill: "#F539B9",
-    })
-    .setOrigin(1, 0)
-    .setPosition(this.width, 0)
-    .addChildTo(this)
-    .on('push', function() {
-      SoundManager.stopMusic();
-      self.exit('main')
-    });
+    // Button({
+    //   text: 'RESET',
+    //   fill: "#F539B9",
+    // })
+    // .setOrigin(1, 0)
+    // .setPosition(this.width, 0)
+    // .addChildTo(this)
+    // .on('push', function() {
+    //   SoundManager.stopMusic();
+    //   self.exit('main')
+    // });
 
   },
 
@@ -542,18 +455,168 @@ phina.define('MainScene', {
   phina.main(function() {
     var app = GameApp({
       assets: ASSETS,
-      width: SCREEN_WIDTH,
-      height: 300,
+      width: 667, //スマホの縦
+      // width: 1024, //デバッグ用
+      height: 375, //スマホの横
       startLabel: 'title',
       backgroundColor: 'navy',
       title: 'サンプル',
       fps: 60,
       query: '#mycanvas',
-      // fit: false,
+      fit: false,
     });
 
     app.run();
   });
+
+
+
+// オーディオスペクトラム
+  const canvas = document.querySelector('#display');
+const canvasContext = canvas.getContext('2d');
+canvas.width = 500;
+canvas.height = 500;
+
+// 音楽ファイルをdataURLに変換する
+// Promiseを返す
+async function convertAudioFileToDataUrl(file) {
+  const reader = new FileReader();
+
+  const loadPromise = new Promise((resolve, reject) => {
+    reader.onload = (event) => {
+      resolve(event.target.result);
+    };
+  });
+
+  reader.readAsDataURL(file);
+
+  return loadPromise;
+}
+
+// canvasにスペクトラムを描画する
+function render(spectrum) {
+  // canvasの中心座標
+  const center = { x: Math.round(canvas.width / 2), y: Math.round(canvas.height/2) };
+
+  // canvasの幅を均等に割り振る
+  // 円なので360度（2π）を分割する
+  const barRad = 2 * Math.PI / spectrum.length;
+
+  // 円の半径
+  const innerRadius = 60;
+  const outerRadius = 250;
+  const diffRadius = outerRadius - innerRadius;
+
+  // 前の描画を消す
+  canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+
+  for(let i = 0; i < spectrum.length; i++) {
+    // 色相を回転
+    const barDegree = barRad * i * 180 / Math.PI;
+    canvasContext.fillStyle = `hsl(${barDegree}, 80%, 60%)`;
+
+    // バーの開始角度・終了角度を計算
+    const startRad = barRad * i;
+    const endRad = barRad * (i + 1);
+
+    // バーの開始点・終了点を計算
+    const startX = center.x + innerRadius * Math.cos(startRad);
+    const startY = center.y + innerRadius * Math.sin(startRad);
+    const endX = center.x + innerRadius * Math.cos(endRad);
+    const endY = center.y + innerRadius * Math.sin(endRad);
+
+    // 値からバーの長さを計算
+    const normalizedSpectrum = spectrum[i] / 255; // 0.0から1.0までの値に変換する。最大255なので255で割ればいい
+    const barRadius = normalizedSpectrum * diffRadius + innerRadius;
+
+    // 描画開始
+    canvasContext.beginPath();
+
+    // まず円弧を描く
+    canvasContext.arc(center.x, center.y, innerRadius, startRad, endRad);
+
+    // 次にバーを描く
+    // バーの半径から外円上の点を割り出し、
+    // 内円から外円へ四角形を描く
+    canvasContext.moveTo(startX, startY);
+    canvasContext.lineTo(barRadius * Math.cos(startRad) + center.x, barRadius * Math.sin(startRad) + center.y);
+    canvasContext.lineTo(barRadius * Math.cos(endRad) + center.x, barRadius * Math.sin(endRad) + center.y);
+    canvasContext.lineTo(endX, endY);
+
+    // 塗る
+    canvasContext.fill();
+  }
+}
+
+// ファイルが選択されたら
+const fileInput = document.querySelector('#file-input');
+// const fileInput.value = ASSETS.sound.music;
+// function butotnClick(){
+//     fileInput = ASSETS.sound.music;
+// }
+// let button = document.getElementById('display');
+// button.addEventListener('click', butotnClick);
+
+let audio = null;
+let audioSource = null;
+let intervalId = null;
+
+
+fileInput.addEventListener('change', async (event) => {
+  // Web Audio API周りの準備
+  const audioContext = new AudioContext();
+  const analyzerNode = audioContext.createAnalyser(); // 音分析ノード
+
+  // 2回目以降のときは、前のオーディとタイマーを破棄してから処理にうつる
+  if(audio) {
+    audio.pause();
+    audio.src = '';
+  }
+
+  if(audioSource) {
+    audioSource.disconnect();
+  }
+
+  if(intervalId) {
+    clearInterval(intervalId);
+  }
+
+  // FFTのウィンドウサイズ
+  // 値は2の累乗（2, 4, 8, 16, 32, ...）
+  analyzerNode.fftSize = 128;
+
+  const file = fileInput.files[0];
+  if(file) {
+    // スペクトラムを保持するUint8Arrayを用意
+    // サイズはfftSizeの半分（＝frequencyBinCount）
+    const spectrumArray = new Uint8Array(analyzerNode.frequencyBinCount);
+
+    // 選択されたファイルをdataURLにしてaudio要素に突っ込む
+    audio = new Audio();
+    audio.src = await convertAudioFileToDataUrl(file);
+
+    // 選択ファイル -> 分析ノード -> 出力（スピーカー）
+    // の順でつなぐ
+    audioSource = audioContext.createMediaElementSource(audio);
+    audioSource.connect(analyzerNode);
+    analyzerNode.connect(audioContext.destination);
+
+    // 定期的に値を見て描画する
+    // requestAnimationFrameでもok
+    intervalId = setInterval((event) => {
+      // ノードから周波数データを取り出す
+      analyzerNode.getByteFrequencyData(spectrumArray);
+
+      // 描画する
+      render(spectrumArray);
+    }, 1/60);
+
+    // 再生開始
+    audio.play();
+  }
+});
+
+
 
 </script>
 
