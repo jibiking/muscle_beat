@@ -2,12 +2,6 @@
 <%= link_to 'Edit', edit_beat_path(@beat) %> |
 <%= link_to 'Back', beats_path %>
 
-<canvas id="display"></canvas>
-<label id="open-file">
-    音楽ファイルを開く
-    <input id="file-input" type="file" accept="audio/*">
-  </label>
-
 <canvas id="mycanvas"></canvas>
 
 <script src="https://cdn.jsdelivr.net/gh/phinajs/phina.js@v0.2.3/build/phina.js"></script>
@@ -137,6 +131,60 @@ phina.define('TitleScene', {
   },
 
 });
+
+
+/**
+ * スコアページ
+ */
+phina.define('ScoreScene', {
+  superClass: 'phina.display.DisplayScene',
+
+  init: function(params) {
+    this.superInit(params);
+    this.backgroundColor = params.backgroundColor;
+    // Sprite('bg').addChildTo(this)
+    //         .setPosition(this.gridX.center(), this.gridY.center());
+
+
+    // タイトルラベル
+      // var score = this.totalScore;
+      // this.text = self.totalScore
+    Label({
+      text: params.score,
+      fill: "white",
+      stroke: "#2F3CEC",
+      strokeWidth: 6,
+      fontSize: 80,
+    })
+    .setPosition(this.gridX.center(), this.gridY.span(6))
+    .addChildTo(this)
+
+    var touchLabel = Label({
+      text: "タップで終了",
+      fill: "white",
+      stroke: "#2F3CEC",
+      strokeWidth: 6,
+      fontSize: 44,
+    })
+    .setPosition(this.gridX.center(), this.gridY.span(12))
+    .addChildTo(this);
+
+    // 明滅させる
+    touchLabel.tweener.clear()
+    .setLoop(true)
+    .to({alpha: 0}, 700)
+    .to({alpha: 1}, 700)
+    ;
+
+    // シーン遷移（ビート一覧へ遷移）
+    this.on('pointend', function() {
+      // this.exit();
+      window.location.href = '/beats';
+    });
+  },
+});
+
+
 
 /*
  * ユニット表示アイコン
@@ -359,10 +407,10 @@ phina.define('MainScene', {
       this.flare('musicstart');
     }
 
-    // ゲーム終了（Scoreページ）
+    // ゲーム終了（Scoreページへ）
     if (this.elapsedTime > "<%= @beat.url%>") {
       SoundManager.stopMusic();
-      self.exit({score:this.totalScore,message:'いいビートだっ！！！'});
+      self.exit({score: this.totalScore,});
     };
 
     // ノーツ描画
@@ -458,164 +506,34 @@ phina.define('MainScene', {
       width: 667, //スマホの縦
       // width: 1024, //デバッグ用
       height: 375, //スマホの横
-      startLabel: 'title',
+      startLabel: 'TitleScene',
       backgroundColor: 'navy',
       title: 'サンプル',
       fps: 60,
       query: '#mycanvas',
       fit: false,
+
+      scenes: [
+        {
+          className: 'TitleScene',
+          label: 'TitleScene',
+          nextLabel: 'MainScene',
+        },
+        {
+          className: 'MainScene',
+          label: 'MainScene',
+          nextLabel: 'ScoreScene',
+        },
+        {
+          className: 'ScoreScene',
+          label: 'ScoreScene',
+          nextLabel: 'TitleScene',
+        },
+      ]
     });
 
     app.run();
   });
-
-
-
-// オーディオスペクトラム
-  const canvas = document.querySelector('#display');
-const canvasContext = canvas.getContext('2d');
-canvas.width = 500;
-canvas.height = 500;
-
-// 音楽ファイルをdataURLに変換する
-// Promiseを返す
-async function convertAudioFileToDataUrl(file) {
-  const reader = new FileReader();
-
-  const loadPromise = new Promise((resolve, reject) => {
-    reader.onload = (event) => {
-      resolve(event.target.result);
-    };
-  });
-
-  reader.readAsDataURL(file);
-
-  return loadPromise;
-}
-
-// canvasにスペクトラムを描画する
-function render(spectrum) {
-  // canvasの中心座標
-  const center = { x: Math.round(canvas.width / 2), y: Math.round(canvas.height/2) };
-
-  // canvasの幅を均等に割り振る
-  // 円なので360度（2π）を分割する
-  const barRad = 2 * Math.PI / spectrum.length;
-
-  // 円の半径
-  const innerRadius = 60;
-  const outerRadius = 250;
-  const diffRadius = outerRadius - innerRadius;
-
-  // 前の描画を消す
-  canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-
-  for(let i = 0; i < spectrum.length; i++) {
-    // 色相を回転
-    const barDegree = barRad * i * 180 / Math.PI;
-    canvasContext.fillStyle = `hsl(${barDegree}, 80%, 60%)`;
-
-    // バーの開始角度・終了角度を計算
-    const startRad = barRad * i;
-    const endRad = barRad * (i + 1);
-
-    // バーの開始点・終了点を計算
-    const startX = center.x + innerRadius * Math.cos(startRad);
-    const startY = center.y + innerRadius * Math.sin(startRad);
-    const endX = center.x + innerRadius * Math.cos(endRad);
-    const endY = center.y + innerRadius * Math.sin(endRad);
-
-    // 値からバーの長さを計算
-    const normalizedSpectrum = spectrum[i] / 255; // 0.0から1.0までの値に変換する。最大255なので255で割ればいい
-    const barRadius = normalizedSpectrum * diffRadius + innerRadius;
-
-    // 描画開始
-    canvasContext.beginPath();
-
-    // まず円弧を描く
-    canvasContext.arc(center.x, center.y, innerRadius, startRad, endRad);
-
-    // 次にバーを描く
-    // バーの半径から外円上の点を割り出し、
-    // 内円から外円へ四角形を描く
-    canvasContext.moveTo(startX, startY);
-    canvasContext.lineTo(barRadius * Math.cos(startRad) + center.x, barRadius * Math.sin(startRad) + center.y);
-    canvasContext.lineTo(barRadius * Math.cos(endRad) + center.x, barRadius * Math.sin(endRad) + center.y);
-    canvasContext.lineTo(endX, endY);
-
-    // 塗る
-    canvasContext.fill();
-  }
-}
-
-// ファイルが選択されたら
-const fileInput = document.querySelector('#file-input');
-// const fileInput.value = ASSETS.sound.music;
-// function butotnClick(){
-//     fileInput = ASSETS.sound.music;
-// }
-// let button = document.getElementById('display');
-// button.addEventListener('click', butotnClick);
-
-let audio = null;
-let audioSource = null;
-let intervalId = null;
-
-
-fileInput.addEventListener('change', async (event) => {
-  // Web Audio API周りの準備
-  const audioContext = new AudioContext();
-  const analyzerNode = audioContext.createAnalyser(); // 音分析ノード
-
-  // 2回目以降のときは、前のオーディとタイマーを破棄してから処理にうつる
-  if(audio) {
-    audio.pause();
-    audio.src = '';
-  }
-
-  if(audioSource) {
-    audioSource.disconnect();
-  }
-
-  if(intervalId) {
-    clearInterval(intervalId);
-  }
-
-  // FFTのウィンドウサイズ
-  // 値は2の累乗（2, 4, 8, 16, 32, ...）
-  analyzerNode.fftSize = 128;
-
-  const file = fileInput.files[0];
-  if(file) {
-    // スペクトラムを保持するUint8Arrayを用意
-    // サイズはfftSizeの半分（＝frequencyBinCount）
-    const spectrumArray = new Uint8Array(analyzerNode.frequencyBinCount);
-
-    // 選択されたファイルをdataURLにしてaudio要素に突っ込む
-    audio = new Audio();
-    audio.src = await convertAudioFileToDataUrl(file);
-
-    // 選択ファイル -> 分析ノード -> 出力（スピーカー）
-    // の順でつなぐ
-    audioSource = audioContext.createMediaElementSource(audio);
-    audioSource.connect(analyzerNode);
-    analyzerNode.connect(audioContext.destination);
-
-    // 定期的に値を見て描画する
-    // requestAnimationFrameでもok
-    intervalId = setInterval((event) => {
-      // ノードから周波数データを取り出す
-      analyzerNode.getByteFrequencyData(spectrumArray);
-
-      // 描画する
-      render(spectrumArray);
-    }, 1/60);
-
-    // 再生開始
-    audio.play();
-  }
-});
-
 
 
 </script>
