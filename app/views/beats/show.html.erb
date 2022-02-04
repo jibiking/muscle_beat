@@ -350,8 +350,12 @@ phina.define('MainScene', {
       // タップ・クリック判定
       icon.onpointstart = function() {
         self.judge(this); // 自分を渡す
-        this.flare('dm'); //dm発火
       };
+
+    // 画面をタップ・クリックで判定
+    this.on('pointend', function() {
+      self.judge(icon);
+    });
 
 
     // 譜面の展開
