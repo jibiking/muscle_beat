@@ -1,6 +1,6 @@
 
-<%= link_to 'Edit', edit_beat_path(@beat) %> |
-<%= link_to 'Back', beats_path %>
+<%# link_to 'Edit', edit_beat_path(@beat) %>
+<%# link_to 'Back', beats_path %>
 
 <canvas id="mycanvas"></canvas>
 
@@ -58,6 +58,8 @@ var ASSETS = {
     beatmap: "<%= asset_path("notes.json") %>"
   },
   image: {
+    // 'bg': "<%= asset_path("club3.png") %>"
+    // 'bg': "<%= asset_path("club.jpg") %>"
     'bg': "<%= asset_path("club.png") %>"
   }
 };
@@ -376,6 +378,21 @@ phina.define('MainScene', {
       this.text = self.totalScore;
     });
 
+
+    // 筋トレ説明文の表示
+    // this.descriptionLabel = Label({
+    //   text: ["筋トレ説明文 \nスクワットのやり方\n腰は90度まで下ろします！\nスマホは地面と水平に！"],
+    //   textAlign: "center",
+    //   stroke: "magenta",
+    //   fill: "white",
+    //   strokeWidth: 2,
+    //   fontSize: 30,
+    // })
+    // .setPosition(gx.center(3), gy.span(3))
+    // .addChildTo(this)
+
+
+
     // リセットボタン
     // Button({
     //   text: 'RESET',
@@ -501,9 +518,10 @@ phina.define('MainScene', {
   phina.main(function() {
     var app = GameApp({
       assets: ASSETS,
-      width: 667, //スマホの縦
+      width: 655, //スマホの縦
+      height: 380, //スマホの横
       // width: 1024, //デバッグ用
-      height: 375, //スマホの横
+      // height: 768, //デバッグ用
       startLabel: 'TitleScene',
       backgroundColor: 'navy',
       title: 'サンプル',
@@ -536,3 +554,9 @@ phina.define('MainScene', {
 
 </script>
 
+<style>
+#nav {
+  display: none;
+}
+
+</style>
