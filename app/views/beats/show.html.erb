@@ -142,13 +142,11 @@ phina.define('ScoreScene', {
   init: function(params) {
     this.superInit(params);
     this.backgroundColor = params.backgroundColor;
-    // Sprite('bg').addChildTo(this)
-    //         .setPosition(this.gridX.center(), this.gridY.center());
+    Sprite('bg').addChildTo(this)
+            .setPosition(this.gridX.center(), this.gridY.center());
 
 
     // タイトルラベル
-      // var score = this.totalScore;
-      // this.text = self.totalScore
     Label({
       text: params.score,
       fill: "white",
@@ -178,8 +176,8 @@ phina.define('ScoreScene', {
 
     // シーン遷移（ビート一覧へ遷移）
     this.on('pointend', function() {
-      // this.exit();
-      window.location.href = '/beats';
+      this.exit(); //デバッグ用
+      // window.location.href = '/beats';
     });
   },
 });
