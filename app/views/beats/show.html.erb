@@ -380,16 +380,16 @@ phina.define('MainScene', {
 
 
     // 筋トレ説明文の表示
-    // this.descriptionLabel = Label({
-    //   text: ["筋トレ説明文 \nスクワットのやり方\n腰は90度まで下ろします！\nスマホは地面と水平に！"],
-    //   textAlign: "center",
-    //   stroke: "magenta",
-    //   fill: "white",
-    //   strokeWidth: 2,
-    //   fontSize: 30,
-    // })
-    // .setPosition(gx.center(3), gy.span(3))
-    // .addChildTo(this)
+    this.descriptionLabel = Label({
+      text: ["〜スクワット〜 \nスマホを両手で握り\n地面と水平に持つ！\nノーツのタイミングで\n腰を落としてスクワット！"],
+      textAlign: "center",
+      fill: "white",
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      strokeWidth: 2,
+      fontSize: 20,
+    })
+    .setPosition(gx.center(4.5), gy.span(4))
+    .addChildTo(this)
 
 
 
