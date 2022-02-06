@@ -1,93 +1,44 @@
-<h1 class="text-center m-5">Muscle Beat</h1>
-<p class="text-danger text-center">トップページ</p>
+<div class="top-wrapper">
+  <h1 class="text-center m-5 ttl">Muscle Beat</h1>
 
-<h3 id="count">0</h3>
-    <div>
-      <button onClick="deviceMotionRequest()">Click</button>
-      <span id="x">0</span>
-      <span id="y">0</span>
-      <span id="z">0</span>
-    </div>
+  <%= link_to beats_path do %>
+    <div class="btn btn-primary start-btn">START</div>
+  <% end %>
+</div>
 
-    <div class="tilt">
-      <span>右</span>
-      <span>左</span>
-    </div>
 
-    <div class="ud">
-      <span>上</span>
-      <span>下</span>
-    </div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap');
 
-    <div class="depth">
-      <span>手前</span>
-      <span>奥</span>
-    </div>
+  body {
+    background-image: url(<%= asset_path("top.png") %>);
+    background-size: cover;
+    font-family: 'Rowdies', cursive;
+  }
 
-    <script>
-      function deviceMotionRequest () {
-        if (DeviceMotionEvent.requestPermission) {
-          // DMイベントの許可を求める
-          DeviceMotionEvent.requestPermission()
-            .then(permissionState => {
-              // リクエストが許可されたら
-              if (permissionState === 'granted') {
-                window.addEventListener("devicemotion", function (event) {
-                  // 許可されなかった時の表示
-                  if (!event.accelerationIncludingGravity) {
-                    alert('event.accelerationIncludingGravity is null');
-                    return;
-                  }
-                  // 加速度センサーの値を変数に格納
-                  var x = Math.floor(event.accelerationIncludingGravity.x)
-                  var y = Math.floor(event.accelerationIncludingGravity.y)
-                  var z = Math.floor(event.accelerationIncludingGravity.z)
+  .top-wrapper {
+    text-align: center;
+  }
 
-                  // 加速度センサーの値の表示
-                  document.getElementById('x').innerHTML = x;
-                  document.getElementById('y').innerHTML = y;
-                  document.getElementById('z').innerHTML = z;
+  .ttl {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+    color: #ff00de;
+    font-size: 44px;
+  }
 
-                  // 右・左の判定
-                  if(x < 0) {
-                    $(".tilt span").removeClass("color");
-                    $(".tilt span").eq(0).addClass("color");
-                  }else{
-                    $(".tilt span").removeClass("color");
-                    $(".tilt span").eq(1).addClass("color");
-                  }
-                  // 上・下の判定
-                  if(y < 0) {
-                    $(".ud span").removeClass("color");
-                    $(".ud span").eq(0).addClass("color");
-                  }else{
-                    $(".ud span").removeClass("color");
-                    $(".ud span").eq(1).addClass("color");
-                  }
-                  // 手前・奥の判定
-                  if(z < 0) {
-                    $(".depth span").removeClass("color");
-                    $(".depth span").eq(1).addClass("color");
-                  }else{
-                    $(".depth span").removeClass("color");
-                    $(".depth span").eq(0).addClass("color");
-                  }
+  .start-btn {
+    background-color: #ff00de;
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 5px #ff00de, 0 0 20px #ff00de, 0 0 25px #ff00de, 0 0 35px #ff00de, 0 0 60px #ff00de;
+    border: none;
+    width: 50%;
+    margin-top: 300px;
+  }
+  .start-btn a {
+    color: #fff;
+    text-decoration: none;
+  }
+  .start-btn:hover {
+    background-color: #ff0080;
+  }
 
-                  if (Math.abs(x) > 15 || Math.abs(y) > 15 || Math.abs(z) > 15) {
-                  // ここに振っているときの動作を入れる
-                  // とりあえず１振り＝ +0.1で定めておく
-                    // alert("振ってるよ");
-                    var thisCount = $("#count").html();
-                    thisCount = Number(thisCount);
-                    thisCount = thisCount + 0.1;
-                    $("#count").html(thisCount);
-                  }
-                })
-              }
-            })
-            .catch(console.error);
-        } else {
-          alert('DeviceMotionEvent.requestPermission is not found')
-        }
-      }
-    </script>
+</style>
