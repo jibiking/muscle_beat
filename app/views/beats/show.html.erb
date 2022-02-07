@@ -1,6 +1,6 @@
 
-<%= link_to 'Edit', edit_beat_path(@beat) %> |
-<%= link_to 'Back', beats_path %>
+<%# link_to 'Edit', edit_beat_path(@beat) %>
+<%# link_to 'Back', beats_path %>
 
 <canvas id="mycanvas"></canvas>
 
@@ -58,6 +58,8 @@ var ASSETS = {
     beatmap: "<%= asset_path("notes.json") %>"
   },
   image: {
+    // 'bg': "<%= asset_path("club3.png") %>"
+    // 'bg': "<%= asset_path("club.jpg") %>"
     'bg': "<%= asset_path("club.png") %>"
   }
 };
@@ -176,8 +178,8 @@ phina.define('ScoreScene', {
 
     // シーン遷移（ビート一覧へ遷移）
     this.on('pointend', function() {
-      this.exit(); //デバッグ用
-      // window.location.href = '/beats';
+      // this.exit(); //デバッグ用
+      window.location.href = '/beats';
     });
   },
 });
@@ -252,7 +254,7 @@ phina.define('EffectWave', {
     });
 
     this.tweener
-    .to({scaleX:2, scaleY:2, alpha:0}, 250)
+    .to({scaleX:2.3, scaleY:2.3, alpha:0}, 250)
     .call(function() {
       this.remove();
     }, this);
@@ -348,8 +350,12 @@ phina.define('MainScene', {
       // タップ・クリック判定
       icon.onpointstart = function() {
         self.judge(this); // 自分を渡す
-        this.flare('dm'); //dm発火
       };
+
+    // 画面をタップ・クリックで判定
+    this.on('pointend', function() {
+      self.judge(icon);
+    });
 
 
     // 譜面の展開
@@ -375,6 +381,21 @@ phina.define('MainScene', {
     .on('enterframe', function() {
       this.text = self.totalScore;
     });
+
+
+    // 筋トレ説明文の表示
+    this.descriptionLabel = Label({
+      text: ["〜スクワット〜 \nスマホを両手で握り\n地面と水平に持つ！\nノーツのタイミングで\n腰を落としてスクワット！"],
+      textAlign: "center",
+      fill: "white",
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      strokeWidth: 2,
+      fontSize: 20,
+    })
+    .setPosition(gx.center(4.5), gy.span(4))
+    .addChildTo(this)
+
+
 
     // リセットボタン
     // Button({
@@ -501,9 +522,10 @@ phina.define('MainScene', {
   phina.main(function() {
     var app = GameApp({
       assets: ASSETS,
-      width: 667, //スマホの縦
+      width: 655, //スマホの縦
+      height: 380, //スマホの横
       // width: 1024, //デバッグ用
-      height: 375, //スマホの横
+      // height: 768, //デバッグ用
       startLabel: 'TitleScene',
       backgroundColor: 'navy',
       title: 'サンプル',
@@ -536,3 +558,9 @@ phina.define('MainScene', {
 
 </script>
 
+<style>
+#nav {
+  display: none;
+}
+
+</style>
