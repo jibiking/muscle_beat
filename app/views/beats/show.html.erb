@@ -2,7 +2,7 @@
 <%# link_to 'Edit', edit_beat_path(@beat) %>
 <%# link_to 'Back', beats_path %>
 
-<canvas id="mycanvas"></canvas>
+<%# <canvas id="mycanvas"></canvas> %>
 
 <script src="https://cdn.jsdelivr.net/gh/phinajs/phina.js@v0.2.3/build/phina.js"></script>
 
@@ -58,8 +58,6 @@ var ASSETS = {
     beatmap: "<%= asset_path("notes.json") %>"
   },
   image: {
-    // 'bg': "<%= asset_path("club3.png") %>"
-    // 'bg': "<%= asset_path("club.jpg") %>"
     'bg': "<%= asset_path("club.png") %>"
   }
 };
@@ -87,7 +85,8 @@ phina.define('TitleScene', {
       strokeWidth: 6,
       fontSize: 80,
     })
-    .setPosition(this.gridX.center(), this.gridY.span(6))
+    .setPosition(this.gridX.span(12), this.gridY.center())
+    .setRotation(90)
     .addChildTo(this)
 
     var touchLabel = Label({
@@ -97,7 +96,8 @@ phina.define('TitleScene', {
       strokeWidth: 6,
       fontSize: 44,
     })
-    .setPosition(this.gridX.center(), this.gridY.span(12))
+    .setPosition(this.gridX.span(6), this.gridY.center())
+    .setRotation(90)
     .addChildTo(this);
 
     // 明滅させる
@@ -156,7 +156,8 @@ phina.define('ScoreScene', {
       strokeWidth: 6,
       fontSize: 80,
     })
-    .setPosition(this.gridX.center(), this.gridY.span(6))
+    .setPosition(this.gridX.span(12), this.gridY.center())
+    .setRotation(90)
     .addChildTo(this)
 
     var touchLabel = Label({
@@ -166,7 +167,8 @@ phina.define('ScoreScene', {
       strokeWidth: 6,
       fontSize: 44,
     })
-    .setPosition(this.gridX.center(), this.gridY.span(12))
+    .setPosition(this.gridX.span(6), this.gridY.center())
+    .setRotation(90)
     .addChildTo(this);
 
     // 明滅させる
@@ -178,8 +180,8 @@ phina.define('ScoreScene', {
 
     // シーン遷移（ビート一覧へ遷移）
     this.on('pointend', function() {
-      // this.exit(); //デバッグ用
-      window.location.href = '/beats';
+      this.exit(); //デバッグ用
+      // window.location.href = '/beats';
     });
   },
 });
@@ -522,16 +524,18 @@ phina.define('MainScene', {
   phina.main(function() {
     var app = GameApp({
       assets: ASSETS,
-      width: 655, //スマホの縦
-      height: 380, //スマホの横
-      // width: 1024, //デバッグ用
-      // height: 768, //デバッグ用
+      // width: 655, //スマホの縦
+      // height: 380, //スマホの横
+      // width: SCREEN_WIDTH, //デバッグ用
+      // height: SCREEN_HEIGHT, //デバッグ用
+      width: 1024, //デバッグ用
+      height: 1500, //デバッグ用
       startLabel: 'TitleScene',
       backgroundColor: 'navy',
       title: 'サンプル',
       fps: 60,
-      query: '#mycanvas',
-      fit: false,
+      // query: '#mycanvas',
+      // fit: false,
 
       scenes: [
         {
