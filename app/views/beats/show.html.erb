@@ -272,8 +272,8 @@ phina.define('RateLabel', {
   init: function(textParam) {
     this.superInit({
       text: textParam.text,
-      fontSize: 40,
-      strokeWidth: 4,
+      fontSize: 90,
+      strokeWidth: 6,
       fill: "magenta",
       stroke: "white",
     });
@@ -375,8 +375,8 @@ phina.define('MainScene', {
       textAlign: "center",
       stroke: "magenta",
       fill: "white",
-      strokeWidth: 2,
-      fontSize: 30,
+      strokeWidth: 4,
+      fontSize: 60,
     })
     .setPosition(gx.span(13), gy.center())
     .setRotation(90)
@@ -393,9 +393,9 @@ phina.define('MainScene', {
       fill: "white",
       backgroundColor: "rgba(0, 0, 0, 0.5)",
       strokeWidth: 2,
-      fontSize: 20,
+      fontSize: 42,
     })
-    .setPosition(gx.span(13), gy.center(4.5))
+    .setPosition(gx.span(12), gy.center(4.5))
     .setRotation(90)
     .addChildTo(this)
 
