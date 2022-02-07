@@ -233,10 +233,10 @@ phina.define('TargetMarker', {
     this.targetTime = targetTime;
     this.trackId = trackId;
 
-    // 進行方向 右→左
+    // 進行方向 下→上
     this.vector = phina.geom.Vector2(
-      Math.cos((180).toRadian()),
-      Math.sin((180).toRadian())
+      Math.cos((270).toRadian()),
+      Math.sin((270).toRadian())
     );
   },
 });
@@ -322,7 +322,7 @@ phina.define('MainScene', {
 
     // ユニットアイコンの配置（ノーツの出発地点）
     var iconGroup = DisplayElement()
-    .setPosition(gx.center(12), gy.span(12))
+    .setPosition(gx.center(-5), gy.span(16))
     .addChildTo(this);
 
     // タップアイコンの配置（９個）→１個に変更
@@ -331,8 +331,8 @@ phina.define('MainScene', {
       // var rad = (i * ICON_INTERVAL_DEGREE).toRadian(); // 度数をラジアン変換
       var icon = UnitIcon(0)
       .setPosition(
-        gx.center(-26),
-        gy.center(-8),
+        gx.center(-8),
+        gy.span(-13),
       )
       .addChildTo(iconGroup);
 
@@ -378,7 +378,8 @@ phina.define('MainScene', {
       strokeWidth: 2,
       fontSize: 30,
     })
-    .setPosition(gx.center(), gy.span(3))
+    .setPosition(gx.span(13), gy.center())
+    .setRotation(90)
     .addChildTo(this)
     .on('enterframe', function() {
       this.text = self.totalScore;
@@ -394,7 +395,8 @@ phina.define('MainScene', {
       strokeWidth: 2,
       fontSize: 20,
     })
-    .setPosition(gx.center(4.5), gy.span(4))
+    .setPosition(gx.span(13), gy.center(4.5))
+    .setRotation(90)
     .addChildTo(this)
 
 
@@ -510,6 +512,7 @@ phina.define('MainScene', {
 
     RateLabel({text: rating.toUpperCase()})
     .setPosition(this.gridX.center(), this.gridY.center())
+    .setRotation(90)
     .addChildTo(this);
 
     this.totalScore += RATING_TABLE[rating].score;
