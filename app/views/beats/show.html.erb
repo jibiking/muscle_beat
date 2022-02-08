@@ -18,10 +18,10 @@
 
 var SCREEN_WIDTH = 1024;
 var SCREEN_HEIGHT = 768;
-var MARKER_RADIUS = 30; //ノーツの大きさ
-var MARKER_STROKE_WIDTH = 5; //ノーツの幅
+var MARKER_RADIUS = 80; //ノーツの大きさ
+var MARKER_STROKE_WIDTH = 8; //ノーツの幅
 
-var MARKER_APPEARANCE_DELTA = 3000; // ノーツ出現時間(ms): 大きくするほど低速
+var MARKER_APPEARANCE_DELTA = 4000; // ノーツ出現時間(ms): 大きくするほど低速
 var MUSIC_START_DELAY = 2000;
 
 // var TRACK_NUM = 9;
@@ -322,7 +322,7 @@ phina.define('MainScene', {
 
     // ユニットアイコンの配置（ノーツの出発地点）
     var iconGroup = DisplayElement()
-    .setPosition(gx.center(-5), gy.span(16))
+    .setPosition(gx.center(-5), gy.span(16.5))
     .addChildTo(this);
 
     // タップアイコンの配置（９個）→１個に変更
@@ -332,7 +332,7 @@ phina.define('MainScene', {
       var icon = UnitIcon(0)
       .setPosition(
         gx.center(-8),
-        gy.span(-13),
+        gy.span(-14.5),
       )
       .addChildTo(iconGroup);
 
@@ -448,7 +448,7 @@ phina.define('MainScene', {
         // ノーツの位置比率や縮小率（倍率）を計算する
         // ratioはアイコンに近いほど1.0に近づく
         var ratio = (time - (m.targetTime - MARKER_APPEARANCE_DELTA)) / MARKER_APPEARANCE_DELTA;
-        var distance = 750 * ratio; // ノーツのストローク
+        var distance = 1360 * ratio; // ノーツのストローク
 
         m.setVisible(true)
         .setPosition(
@@ -527,11 +527,11 @@ phina.define('MainScene', {
   phina.main(function() {
     var app = GameApp({
       assets: ASSETS,
-      // width: 655, //スマホの縦
-      // height: 380, //スマホの横
+      // width: 380, //スマホの縦
+      // height: 655, //スマホの横
       // width: SCREEN_WIDTH, //デバッグ用
       // height: SCREEN_HEIGHT, //デバッグ用
-      width: 1024, //デバッグ用
+      width: 1030, //デバッグ用
       height: 1500, //デバッグ用
       startLabel: 'TitleScene',
       backgroundColor: 'navy',
@@ -568,6 +568,11 @@ phina.define('MainScene', {
 <style>
 #nav {
   display: none;
+}
+
+html {
+    background-image: url(<%= asset_path("index.png") %>);
+    background-size: cover;
 }
 
 </style>
