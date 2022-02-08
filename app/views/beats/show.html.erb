@@ -58,7 +58,8 @@ var ASSETS = {
     beatmap: "<%= asset_path("notes.json") %>"
   },
   image: {
-    'bg': "<%= asset_path("club.png") %>"
+    'bg': "<%= asset_path("club.png") %>",
+    'muscle': "<%= asset_path("muscle.PNG") %>",
   }
 };
 
@@ -396,6 +397,13 @@ phina.define('MainScene', {
       fontSize: 42,
     })
     .setPosition(gx.span(12), gy.center(4.5))
+    .setRotation(90)
+    .addChildTo(this)
+
+    // 筋トレ動作画像の表示
+    Sprite('muscle')
+    .setPosition(gx.span(12), gy.center(-4.5))
+    .setScale(0.35, 0.35)
     .setRotation(90)
     .addChildTo(this)
 
