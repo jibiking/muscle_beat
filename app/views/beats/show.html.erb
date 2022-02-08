@@ -2,7 +2,7 @@
 <%# link_to 'Edit', edit_beat_path(@beat) %>
 <%# link_to 'Back', beats_path %>
 
-<canvas id="mycanvas"></canvas>
+<%# <canvas id="mycanvas"></canvas> %>
 
 <script src="https://cdn.jsdelivr.net/gh/phinajs/phina.js@v0.2.3/build/phina.js"></script>
 
@@ -18,10 +18,10 @@
 
 var SCREEN_WIDTH = 1024;
 var SCREEN_HEIGHT = 768;
-var MARKER_RADIUS = 30; //ノーツの大きさ
-var MARKER_STROKE_WIDTH = 5; //ノーツの幅
+var MARKER_RADIUS = 80; //ノーツの大きさ
+var MARKER_STROKE_WIDTH = 8; //ノーツの幅
 
-var MARKER_APPEARANCE_DELTA = 3000; // ノーツ出現時間(ms): 大きくするほど低速
+var MARKER_APPEARANCE_DELTA = 4000; // ノーツ出現時間(ms): 大きくするほど低速
 var MUSIC_START_DELAY = 2000;
 
 // var TRACK_NUM = 9;
@@ -58,9 +58,8 @@ var ASSETS = {
     beatmap: "<%= asset_path("notes.json") %>"
   },
   image: {
-    // 'bg': "<%= asset_path("club3.png") %>"
-    // 'bg': "<%= asset_path("club.jpg") %>"
-    'bg': "<%= asset_path("club.png") %>"
+    'bg': "<%= asset_path("club.png") %>",
+    'muscle': "<%= asset_path("muscle.PNG") %>",
   }
 };
 
@@ -85,9 +84,10 @@ phina.define('TitleScene', {
       fill: "white",
       stroke: "#2F3CEC",
       strokeWidth: 6,
-      fontSize: 80,
+      fontSize: 140,
     })
-    .setPosition(this.gridX.center(), this.gridY.span(6))
+    .setPosition(this.gridX.span(10), this.gridY.center())
+    .setRotation(90)
     .addChildTo(this)
 
     var touchLabel = Label({
@@ -95,9 +95,10 @@ phina.define('TitleScene', {
       fill: "white",
       stroke: "#2F3CEC",
       strokeWidth: 6,
-      fontSize: 44,
+      fontSize: 84,
     })
-    .setPosition(this.gridX.center(), this.gridY.span(12))
+    .setPosition(this.gridX.span(4), this.gridY.center())
+    .setRotation(90)
     .addChildTo(this);
 
     // 明滅させる
@@ -154,9 +155,10 @@ phina.define('ScoreScene', {
       fill: "white",
       stroke: "#2F3CEC",
       strokeWidth: 6,
-      fontSize: 80,
+      fontSize: 160,
     })
-    .setPosition(this.gridX.center(), this.gridY.span(6))
+    .setPosition(this.gridX.span(10), this.gridY.center())
+    .setRotation(90)
     .addChildTo(this)
 
     var touchLabel = Label({
@@ -164,9 +166,10 @@ phina.define('ScoreScene', {
       fill: "white",
       stroke: "#2F3CEC",
       strokeWidth: 6,
-      fontSize: 44,
+      fontSize: 84,
     })
-    .setPosition(this.gridX.center(), this.gridY.span(12))
+    .setPosition(this.gridX.span(4), this.gridY.center())
+    .setRotation(90)
     .addChildTo(this);
 
     // 明滅させる
@@ -178,8 +181,8 @@ phina.define('ScoreScene', {
 
     // シーン遷移（ビート一覧へ遷移）
     this.on('pointend', function() {
-      // this.exit(); //デバッグ用
-      window.location.href = '/beats';
+      this.exit(); //デバッグ用
+      // window.location.href = '/beats';
     });
   },
 });
@@ -231,10 +234,10 @@ phina.define('TargetMarker', {
     this.targetTime = targetTime;
     this.trackId = trackId;
 
-    // 進行方向 右→左
+    // 進行方向 下→上
     this.vector = phina.geom.Vector2(
-      Math.cos((180).toRadian()),
-      Math.sin((180).toRadian())
+      Math.cos((270).toRadian()),
+      Math.sin((270).toRadian())
     );
   },
 });
@@ -270,8 +273,8 @@ phina.define('RateLabel', {
   init: function(textParam) {
     this.superInit({
       text: textParam.text,
-      fontSize: 40,
-      strokeWidth: 4,
+      fontSize: 90,
+      strokeWidth: 6,
       fill: "magenta",
       stroke: "white",
     });
@@ -320,7 +323,7 @@ phina.define('MainScene', {
 
     // ユニットアイコンの配置（ノーツの出発地点）
     var iconGroup = DisplayElement()
-    .setPosition(gx.center(12), gy.span(12))
+    .setPosition(gx.center(-5), gy.span(16.5))
     .addChildTo(this);
 
     // タップアイコンの配置（９個）→１個に変更
@@ -329,8 +332,8 @@ phina.define('MainScene', {
       // var rad = (i * ICON_INTERVAL_DEGREE).toRadian(); // 度数をラジアン変換
       var icon = UnitIcon(0)
       .setPosition(
-        gx.center(-26),
-        gy.center(-8),
+        gx.center(-8),
+        gy.span(-14.5),
       )
       .addChildTo(iconGroup);
 
@@ -373,10 +376,11 @@ phina.define('MainScene', {
       textAlign: "center",
       stroke: "magenta",
       fill: "white",
-      strokeWidth: 2,
-      fontSize: 30,
+      strokeWidth: 4,
+      fontSize: 60,
     })
-    .setPosition(gx.center(), gy.span(3))
+    .setPosition(gx.span(13), gy.center())
+    .setRotation(90)
     .addChildTo(this)
     .on('enterframe', function() {
       this.text = self.totalScore;
@@ -390,9 +394,17 @@ phina.define('MainScene', {
       fill: "white",
       backgroundColor: "rgba(0, 0, 0, 0.5)",
       strokeWidth: 2,
-      fontSize: 20,
+      fontSize: 42,
     })
-    .setPosition(gx.center(4.5), gy.span(4))
+    .setPosition(gx.span(12), gy.center(4.5))
+    .setRotation(90)
+    .addChildTo(this)
+
+    // 筋トレ動作画像の表示
+    Sprite('muscle')
+    .setPosition(gx.span(12), gy.center(-4.5))
+    .setScale(0.35, 0.35)
+    .setRotation(90)
     .addChildTo(this)
 
 
@@ -444,7 +456,7 @@ phina.define('MainScene', {
         // ノーツの位置比率や縮小率（倍率）を計算する
         // ratioはアイコンに近いほど1.0に近づく
         var ratio = (time - (m.targetTime - MARKER_APPEARANCE_DELTA)) / MARKER_APPEARANCE_DELTA;
-        var distance = 750 * ratio; // ノーツのストローク
+        var distance = 1360 * ratio; // ノーツのストローク
 
         m.setVisible(true)
         .setPosition(
@@ -508,6 +520,7 @@ phina.define('MainScene', {
 
     RateLabel({text: rating.toUpperCase()})
     .setPosition(this.gridX.center(), this.gridY.center())
+    .setRotation(90)
     .addChildTo(this);
 
     this.totalScore += RATING_TABLE[rating].score;
@@ -522,16 +535,18 @@ phina.define('MainScene', {
   phina.main(function() {
     var app = GameApp({
       assets: ASSETS,
-      width: 655, //スマホの縦
-      height: 380, //スマホの横
-      // width: 1024, //デバッグ用
-      // height: 768, //デバッグ用
+      // width: 380, //スマホの縦
+      // height: 655, //スマホの横
+      // width: SCREEN_WIDTH, //デバッグ用
+      // height: SCREEN_HEIGHT, //デバッグ用
+      width: 1030, //デバッグ用
+      height: 1500, //デバッグ用
       startLabel: 'TitleScene',
       backgroundColor: 'navy',
       title: 'サンプル',
       fps: 60,
-      query: '#mycanvas',
-      fit: false,
+      // query: '#mycanvas',
+      // fit: false,
 
       scenes: [
         {
@@ -561,6 +576,11 @@ phina.define('MainScene', {
 <style>
 #nav {
   display: none;
+}
+
+html {
+    background-image: url(<%= asset_path("index.png") %>);
+    background-size: cover;
 }
 
 </style>
