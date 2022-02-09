@@ -7,7 +7,8 @@
         <div class="card-body">
           <h5 class="card-title">始める前に…</h5>
           <p class="card-text">1. イヤホンを着けてプレイしてください！！</p>
-          <p class="card-text">2. 下ボタンをクリックして「動作と方向へのアクセス」を許可してください！</p>
+          <p class="card-text">2. 画面の自動回転をオフにしてください！！</p>
+          <p class="card-text">3. 下ボタンをクリックして「動作と方向へのアクセス」を許可してください！</p>
           <div class="btn btn-index" onClick="deviceMotionRequest()">クリック</div>
         </div>
       </div>
@@ -16,7 +17,8 @@
 
   <div class="beats-wrapper">
     <% @beats.each do |beat| %>
-      <%= link_to beat, class: 'beat-link' do %>
+      <%# ↓turbolinkを無効にして画面遷移時にJSを読み込ませる↓ %>
+      <%= link_to beat, class: 'beat-link', data: {"turbolinks" => false} do %>
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
             <div class="col-md-4">
