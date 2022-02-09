@@ -59,7 +59,28 @@ var ASSETS = {
   },
   image: {
     'bg': "<%= asset_path("club.png") %>",
-    'muscle': "<%= asset_path("muscle.PNG") %>",
+    'sprite': "<%= asset_path("sample.png") %>",
+  },
+    // スプライトシート
+  spritesheet: {
+    "sprite_ss":
+    {
+      // フレーム情報
+      "frame": {
+        "width": 750, // 1フレームの画像サイズ（横）
+        "height": 1334, // 1フレームの画像サイズ（縦）
+        "cols": 1, // フレーム数（横）
+        "rows": 28, // フレーム数（縦）
+      },
+      // アニメーション情報
+      "animations" : {
+        "squat": { // アニメーション名
+          "frames": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27], // フレーム番号範囲
+          "next": "squat", // 次のアニメーション
+          "frequency": 6, // アニメーション間隔
+        },
+      }
+    },
   }
 };
 
@@ -400,12 +421,17 @@ phina.define('MainScene', {
     .setRotation(90)
     .addChildTo(this)
 
-    // 筋トレ動作画像の表示
-    Sprite('muscle')
-    .setPosition(gx.span(12), gy.center(-4.5))
-    .setScale(0.35, 0.35)
+
+    // スプライト画像作成
+    var sprite = Sprite('sprite', 750, 1334)
+    .setPosition(gx.span(11.5), gy.center(-4.5))
+    .setScale(0.5, 0.5)
     .setRotation(90)
-    .addChildTo(this)
+    .addChildTo(this);
+    // スプライトにフレームアニメーションをアタッチ
+    var anim = FrameAnimation('sprite_ss').attachTo(sprite);
+    // アニメーションを指定する
+    anim.gotoAndPlay('squat');
 
 
 
