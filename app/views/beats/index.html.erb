@@ -17,7 +17,8 @@
 
   <div class="beats-wrapper">
     <% @beats.each do |beat| %>
-      <%= link_to beat, class: 'beat-link' do %>
+      <%# ↓turbolinkを無効にして画面遷移時にJSを読み込ませる↓ %>
+      <%= link_to beat, class: 'beat-link', data: {"turbolinks" => false} do %>
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
             <div class="col-md-4">
