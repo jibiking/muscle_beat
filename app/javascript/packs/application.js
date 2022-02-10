@@ -12,6 +12,7 @@ import "channels"
 import "bootstrap";
 import "../stylesheets/application.scss";
 
+// JavaScript追加
 import "../packs/common/common";
 
 
