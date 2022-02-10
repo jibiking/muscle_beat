@@ -2,43 +2,8 @@
   <h1 class="text-center m-5 ttl">Muscle Beat</h1>
 
   <%= link_to beats_path do %>
-    <div class="btn btn-primary start-btn">START</div>
+    <div class="btn start-btn">START</div>
   <% end %>
 </div>
 
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap');
-
-  body {
-    background-image: url(<%= asset_path("top.png") %>);
-    background-size: cover;
-    font-family: 'Rowdies', cursive;
-  }
-
-  .top-wrapper {
-    text-align: center;
-  }
-
-  .ttl {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
-    color: #ff00de;
-    font-size: 44px;
-  }
-
-  .start-btn {
-    background-color: #ff00de;
-    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 5px #ff00de, 0 0 20px #ff00de, 0 0 25px #ff00de, 0 0 35px #ff00de, 0 0 60px #ff00de;
-    border: none;
-    width: 50%;
-    margin-top: 300px;
-  }
-  .start-btn a {
-    color: #fff;
-    text-decoration: none;
-  }
-  .start-btn:hover {
-    background-color: #ff0080;
-  }
-
-</style>
