@@ -1,8 +1,9 @@
 // topページ
 
-body {
+.starts {
   background-image: image-url('top.png');
   background-size: cover;
+  padding-top: 50px;
 }
 
 .top-wrapper {

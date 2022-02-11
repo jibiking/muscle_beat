@@ -1,5 +1,12 @@
 // beats#index
+
+// フォント
 @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap');
+
+.beats {
+  background-image: image-url('index.png');
+  background-size: cover;
+}
 
 .index-wrapper {
   background-image: image-url('index.png');
