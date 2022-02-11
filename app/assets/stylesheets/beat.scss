@@ -1,0 +1,61 @@
+// beats#index
+
+// フォント
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap');
+
+.beats {
+  background-image: image-url('index.png');
+  background-size: cover;
+}
+
+.index-wrapper {
+  background-image: image-url('index.png');
+  background-size: cover;
+  text-align: center;
+}
+
+.ttl {
+text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+color: #ff00de;
+font-size: 44px;
+padding-top: 30px;
+}
+
+.before-wrapper {
+  margin-top: 30px !important;
+}
+.btn-index {
+  color: #fff !important;
+  background-color: #ff00de !important;
+  box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 2px #ff00de, 0 0 5px #ff00de, 0 0 6px #ff00de, 0 0 8px #ff00de, 0 0 15px #ff00de;
+  margin-top: 10px;
+}
+.btn-index:hover {
+  background-color: #ff0080 !important;
+}
+
+.beats-wrapper {
+  margin-top: 20px;
+}
+
+.card {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  color: #fff;
+  box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 1px #ff00de, 0 0 2px #ff00de, 0 0 3px #ff00de, 0 0 4px #ff00de, 0 0 3px #ff00de;
+
+  border: none;
+  width: 95%;
+  margin: 0 auto;
+}
+.card-text {
+  margin-bottom: 0;
+}
+
+.beat-link {
+  color: #fff;
+  text-decoration: none;
+}
+.beat-link:hover {
+  color: #ff0080;
+  text-decoration: none;
+}

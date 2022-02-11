@@ -6,12 +6,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <% stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="<%= controller.controller_name %>">
 
   <%# <div id="nav" class="mt-5"> %>
     <%# if current_user %>
@@ -27,9 +27,9 @@
       <%# link_to "Login", :login %>
     <%# end %>
   <%# </div> %>
-  <div>
-    <p id="notice"><%= flash[:notice] %></p>
-  </div>
+  <%# <div> %>
+    <%# <p id="notice"><%= flash[:notice] %><%# </p>
+  </div>%>
 
     <%= yield %>
 

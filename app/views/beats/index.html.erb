@@ -6,8 +6,8 @@
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title">始める前に…</h5>
-          <p class="card-text">1. イヤホンを着けてプレイしてください！！</p>
-          <p class="card-text">2. 画面の自動回転をオフにしてください！！</p>
+          <p class="card-text">1. イヤホンを着けてプレイしてください！</p>
+          <p class="card-text">2. 画面の自動回転をオフにしてください！</p>
           <p class="card-text">3. 下ボタンをクリックして「動作と方向へのアクセス」を許可してください！</p>
           <div class="btn btn-index" onClick="deviceMotionRequest()">クリック</div>
         </div>
@@ -26,8 +26,8 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title"><%= beat.title %></h5>
-                <p class="card-text">トレーニング部位：<%= beat.training_muscle %></p>
+                <h5 class="card-title">曲名：<%= beat.title %></h5>
+                <p class="card-text">筋トレ部位：<%= beat.training_muscle %></p>
                 <p class="card-text">レベル：<%= beat.level %></p>
               </div>
             </div>
@@ -37,92 +37,5 @@
     <% end %>
   </div>
 
-
   <%# link_to 'New Beat', new_beat_path %>
 </div>
-
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap');
-
-  body {
-    background-image: url(<%= asset_path("index.png") %>);
-    background-size: cover;
-    font-family: 'Rowdies', cursive;
-    color: #fff;
-  }
-
-  .index-wrapper {
-    text-align: center;
-  }
-
-  .ttl {
-  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
-  color: #ff00de;
-  font-size: 44px;
-  }
-
-  .before-wrapper {
-    margin-top: 30px !important;
-  }
-  .btn-index {
-    color: #fff;
-    background-color: #ff00de;
-    box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 2px #ff00de, 0 0 5px #ff00de, 0 0 6px #ff00de, 0 0 8px #ff00de, 0 0 15px #ff00de;
-    margin-top: 10px;
-  }
-
-  .beats-wrapper {
-    margin-top: 20px;
-  }
-
-  .card {
-    background-color: rgba(0, 0, 0, 0.7);
-    border: none;
-    width: 95%;
-    margin: 0 auto;
-  }
-  .card-text {
-    margin-bottom: 0;
-  }
-
-  .beat-link {
-    color: #fff;
-    text-decoration: none;
-  }
-  .beat-link:hover {
-    color: #ff0080;
-    text-decoration: none;
-  }
-
-
-</style>
-
-
-<script>
-  function deviceMotionRequest () {
-    if (DeviceMotionEvent.requestPermission) {
-      // DMイベントの許可を求める
-      DeviceMotionEvent.requestPermission()
-        .then(permissionState => {
-          // リクエストが許可されたら
-          if (permissionState === 'granted') {
-            window.addEventListener("devicemotion", function (event) {
-              // 許可されなかった時の表示
-              if (!event.accelerationIncludingGravity) {
-                alert('event.accelerationIncludingGravity is null');
-                return;
-              }
-              // 加速度センサーの値を変数に格納
-              var x = Math.floor(event.accelerationIncludingGravity.x)
-              var y = Math.floor(event.accelerationIncludingGravity.y)
-              var z = Math.floor(event.accelerationIncludingGravity.z)
-            })
-          }
-        })
-        .catch(console.error);
-    } else {
-      alert('DeviceMotionEvent.requestPermission is not found')
-    }
-  }
-</script>

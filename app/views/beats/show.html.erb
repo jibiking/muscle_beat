@@ -1,10 +1,7 @@
 
-<%# link_to 'Edit', edit_beat_path(@beat) %>
-<%# link_to 'Back', beats_path %>
-
-<%# <canvas id="mycanvas"></canvas> %>
-
 <script src="https://cdn.jsdelivr.net/gh/phinajs/phina.js@v0.2.3/build/phina.js"></script>
+<%# 下記は技術面談で対応を確認する。notionに詳細あり。 %>
+<%# javascript_pack_tag 'phina', 'data-turbolinks-track': 'reload' %>
 
 <script>
   if (!phina.util.Support.webAudio) {
@@ -593,15 +590,3 @@ phina.define('MainScene', {
 
 
 </script>
-
-<style>
-#nav {
-  display: none;
-}
-
-html {
-    background-image: url(<%= asset_path("index.png") %>);
-    background-size: cover;
-}
-
-</style>
