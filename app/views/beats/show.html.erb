@@ -55,7 +55,6 @@ var ASSETS = {
   image: {
     'bg': "<%= asset_path("club.png") %>",
     'sprite': "<%= asset_path("sample.png") %>",
-    logo: 'http://cdn.rawgit.com/phi-jp/phina.js/develop/logo.png',
   },
     // スプライトシート
   spritesheet: {
@@ -87,7 +86,6 @@ phina.define('LoadingScene', {
   init: function(options) {
     this.superInit(options);
     var self = this;
-    // this.backgroundColor = "#F1E6EF";
 
     // view
     var baseLayer = DisplayElement(options).addChildTo(this);
@@ -95,15 +93,17 @@ phina.define('LoadingScene', {
     // ラベル
     var label = Label({
       text: "NOW LOADING...",
+      fill: "#fff",
     })
     .addChildTo(baseLayer)
-    .setPosition(this.width*0.5, this.height*0.2)
+    .setPosition(this.width*0.7, this.height*0.5)
+    .setRotation(90)
     label.tweener.clear()
     .setLoop(1)
     .to({alpha:0}, 500)
     .to({alpha:1}, 500)
     ;
-    
+
     // くるくるまわる円
     var circle = phina.display.CircleShape({
       stroke: "#ff00de",
@@ -112,19 +112,21 @@ phina.define('LoadingScene', {
       strokeWidth: 10,
     })
     .addChildTo(baseLayer)
-    .setPosition(this.width*0.5, this.height*0.4)
+    .setPosition(this.width*0.5, this.height*0.5)
+    .setRotation(90)
     circle.tweener.clear()
     .setLoop(1)
     .to({scaleX: -1}, 900, "easeInOutCubic")
     .to({scaleX: 1}, 900, "easeInOutCubic")
     ;
-    
+
     // ゲージ
     var gauge = phina.ui.Gauge({
       value: 0,
       gaugeColor: "#41E564",
     })
-    .setPosition(this.width*0.5, this.height*0.75)
+    .setPosition(this.width*0.3, this.height*0.5)
+    .setRotation(90)
     .addChildTo(baseLayer);
     gauge.animationTime = 5000;
 
@@ -138,8 +140,8 @@ phina.define('LoadingScene', {
 
       // 進行
       loader.onprogress = function(e) {
-       console.log(e)
-       gauge.value = e.progress * 80;
+        console.log(e)
+        gauge.value = e.progress * 80;
       };
 
       // ロード完了
@@ -181,7 +183,7 @@ phina.define('LoadingScene', {
       .wait(750)
       .call(function() {
         baseLayer.tweener.clear()
-        .by({alpha: -1, y:-70}, 300, 'easeInQuad')
+        .by({alpha: -1, x:70}, 300, 'easeInQuad')
         .wait(300)
         .call(function() {
           // self.replaceScene(scene);
