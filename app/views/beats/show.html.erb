@@ -10,15 +10,10 @@
 
   phina.globalize();
 
-
-var SCREEN_WIDTH = 1024;
-var SCREEN_HEIGHT = 768;
 var MARKER_RADIUS = 80; //ノーツの大きさ
 var MARKER_STROKE_WIDTH = 8; //ノーツの幅
-
 var MARKER_APPEARANCE_DELTA = 4000; // ノーツ出現時間(ms): 大きくするほど低速
-var MUSIC_START_DELAY = 3000;
-
+var MUSIC_START_DELAY = 3000; // 開始〜秒後に音楽スタート
 
 var RATING_TABLE = {
   perfect: {
@@ -182,16 +177,12 @@ phina.define('LoadingScene', {
         .by({alpha: -1, x:70}, 300, 'easeInQuad')
         .wait(300)
         .call(function() {
-          // self.replaceScene(scene);
-          // self.app.popScene();
           self.flare('loaded');
         })
       })
       ;
     });
-
   },
-
 });
 
 
@@ -260,9 +251,7 @@ phina.define('TitleScene', {
         this.exit();
       });
     });
-
   },
-
 });
 
 
@@ -277,7 +266,6 @@ phina.define('ScoreScene', {
     this.backgroundColor = params.backgroundColor;
     Sprite('bg').addChildTo(this)
             .setPosition(this.gridX.center(), this.gridY.center());
-
 
     // タイトルラベル
     Label({
@@ -311,12 +299,11 @@ phina.define('ScoreScene', {
 
     // シーン遷移（ビート一覧へ遷移）
     this.on('pointend', function() {
-      this.exit(); //デバッグ用
-      // window.location.href = '/beats';
+      // this.exit(); //デバッグ用
+      window.location.href = '/beats';
     });
   },
 });
-
 
 
 /*
@@ -457,33 +444,30 @@ phina.define('MainScene', {
     .addChildTo(this);
 
     // タップアイコンの配置（９個）→１個に変更
-    // for (var i = 0; i < 1; i++) {
-      // var label = INDEX_TO_KEY_MAP[i].toUpperCase(); // 対応キーを表示
-      // var rad = (i * ICON_INTERVAL_DEGREE).toRadian(); // 度数をラジアン変換
-      var icon = UnitIcon(0)
-      .setPosition(
-        gx.center(-8),
-        gy.span(-14.5),
-      )
-      .addChildTo(iconGroup);
+    var icon = UnitIcon(0)
+    .setPosition(
+      gx.center(-8),
+      gy.span(-14.5),
+    )
+    .addChildTo(iconGroup);
 
-      // 加速度センサーを利用した判定機能
-      window.addEventListener("devicemotion", function (event) {
-        // 加速度センサーの値を変数に格納
-        var x = Math.floor(event.accelerationIncludingGravity.x)
-        var y = Math.floor(event.accelerationIncludingGravity.y)
-        var z = Math.floor(event.accelerationIncludingGravity.z)
+    // 加速度センサーを利用した判定機能
+    window.addEventListener("devicemotion", function (event) {
+      // 加速度センサーの値を変数に格納
+      var x = Math.floor(event.accelerationIncludingGravity.x)
+      var y = Math.floor(event.accelerationIncludingGravity.y)
+      var z = Math.floor(event.accelerationIncludingGravity.z)
 
-        if (Math.abs(x) > 15 || Math.abs(y) > 15 || Math.abs(z) > 15) {
-          self.judge(icon);
-        }
-      })
+      if (Math.abs(x) > 15 || Math.abs(y) > 15 || Math.abs(z) > 15) {
+        self.judge(icon);
+      }
+    })
 
 
-      // タップ・クリック判定
-      icon.onpointstart = function() {
-        self.judge(this); // 自分を渡す
-      };
+    // タップ・クリック判定
+    icon.onpointstart = function() {
+      self.judge(this); // 自分を渡す
+    };
 
     // 画面をタップ・クリックで判定
     this.on('pointend', function() {
@@ -543,7 +527,6 @@ phina.define('MainScene', {
     anim.gotoAndPlay('squat');
 
 
-
     // リセットボタン
     // Button({
     //   text: 'RESET',
@@ -556,7 +539,6 @@ phina.define('MainScene', {
     //   SoundManager.stopMusic();
     //   self.exit('main')
     // });
-
   },
 
   update: function(app) {
@@ -567,18 +549,6 @@ phina.define('MainScene', {
     // タイマー加算
     this.elapsedTime += app.deltaTime;
     this.gameTime += app.deltaTime;
-
-    // デバッグ用ゲームタイマー
-    // Label({
-    //   text: this.elapsedTime,
-    //   textAlign: "center",
-    //   fill: "white",
-    //   backgroundColor: "rgba(0, 0, 0, 0.5)",
-    //   strokeWidth: 2,
-    //   fontSize: 72,
-    // })
-    // .setPosition(400, 240)
-    // .addChildTo(this)
 
     // ゲームスタートまでの猶予
     if (this.has('musicstart') && this.elapsedTime > MUSIC_START_DELAY) {
@@ -622,7 +592,7 @@ phina.define('MainScene', {
 
   },
 
-  // 判定処理 以下そのままでOK
+  // 判定処理
   judge: function(unitIcon) {
     var time = this.gameTime;
 
@@ -679,18 +649,12 @@ phina.define('MainScene', {
   phina.main(function() {
     var app = GameApp({
       assets: ASSETS,
-      // width: 380, //スマホの縦
-      // height: 655, //スマホの横
-      // width: SCREEN_WIDTH, //デバッグ用
-      // height: SCREEN_HEIGHT, //デバッグ用
-      width: 1030, //デバッグ用
-      height: 1500, //デバッグ用
+      width: 1030,
+      height: 1500,
       startLabel: 'TitleScene',
       backgroundColor: 'navy',
       title: 'サンプル',
       fps: 60,
-      // query: '#mycanvas',
-      // fit: false,
 
       scenes: [
         {
