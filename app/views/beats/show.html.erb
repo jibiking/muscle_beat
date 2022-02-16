@@ -572,6 +572,18 @@ phina.define('MainScene', {
     this.elapsedTime += app.deltaTime;
     this.gameTime += app.deltaTime;
 
+    // デバッグ用ゲームタイマー
+    // Label({
+    //   text: this.elapsedTime,
+    //   textAlign: "center",
+    //   fill: "white",
+    //   backgroundColor: "rgba(0, 0, 0, 0.5)",
+    //   strokeWidth: 2,
+    //   fontSize: 72,
+    // })
+    // .setPosition(400, 240)
+    // .addChildTo(this)
+
     // ゲームスタートまでの猶予
     if (this.has('musicstart') && this.elapsedTime > MUSIC_START_DELAY) {
       this.flare('musicstart');
