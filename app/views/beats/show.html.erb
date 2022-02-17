@@ -221,6 +221,7 @@ phina.define('TitleScene', {
       stroke: "#2F3CEC",
       strokeWidth: 6,
       fontFamily: 'Rowdies',
+      fontWeight: 'bold',
       fontSize: 84,
     })
     .setPosition(this.gridX.span(4), this.gridY.center())
@@ -499,7 +500,7 @@ phina.define('MainScene', {
       stroke: "magenta",
       fill: "white",
       strokeWidth: 4,
-      fontSize: 60,
+      fontSize: 65,
       fontFamily: 'Rowdies',
     })
     .setPosition(gx.span(13), gy.center())
@@ -512,12 +513,15 @@ phina.define('MainScene', {
 
     // 筋トレ説明文の表示
     this.descriptionLabel = Label({
-      text: ["〜スクワット〜 \nスマホを両手で握り\n地面と水平に持つ！\nノーツのタイミングで\n腰を落としてスクワット！"],
+      text: ["〜動作説明〜 \nスマホを両手で握り\n地面と水平に持つ！\nノーツのタイミングで\n見本のようにスクワット！"],
       textAlign: "center",
       fill: "white",
       backgroundColor: "rgba(0, 0, 0, 0.5)",
       strokeWidth: 2,
       fontSize: 42,
+      fontWeight: 'bold',
+      lineHeight: 1.5,
+      padding: 12,
     })
     .setPosition(gx.span(12), gy.center(4.5))
     .setRotation(90)
@@ -534,21 +538,8 @@ phina.define('MainScene', {
     var anim = FrameAnimation('sprite_ss').attachTo(sprite);
     // アニメーションを指定する
     anim.gotoAndPlay('squat');
-
-
-    // リセットボタン
-    // Button({
-    //   text: 'RESET',
-    //   fill: "#F539B9",
-    // })
-    // .setOrigin(1, 0)
-    // .setPosition(this.width, 0)
-    // .addChildTo(this)
-    // .on('push', function() {
-    //   SoundManager.stopMusic();
-    //   self.exit('main')
-    // });
   },
+
 
   update: function(app) {
     var self = this;
