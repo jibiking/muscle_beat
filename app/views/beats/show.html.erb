@@ -10,36 +10,27 @@
 
   phina.globalize();
 
-
-var SCREEN_WIDTH = 1024;
-var SCREEN_HEIGHT = 768;
 var MARKER_RADIUS = 80; //ノーツの大きさ
 var MARKER_STROKE_WIDTH = 8; //ノーツの幅
-
 var MARKER_APPEARANCE_DELTA = 4000; // ノーツ出現時間(ms): 大きくするほど低速
-var MUSIC_START_DELAY = 2000;
-
-// var TRACK_NUM = 9;
-// var ICON_INTERVAL_DEGREE = 180 / (TRACK_NUM - 1); // 22.5
-// var UNIT_ARRANGE_RADIUS = SCREEN_WIDTH * 0.41 | 0;
-
+var MUSIC_START_DELAY = 2000; // 開始〜秒後に音楽スタート
 
 var RATING_TABLE = {
   perfect: {
     score: 1000,
-    range: 34, //ms
+    range: 40, //ms
   },
   great: {
     score: 500,
-    range: 64, //ms
+    range: 80, //ms
   },
   good: {
     score: 100,
-    range: 90, //ms
+    range: 120, //ms
   },
   miss: {
     score: 0,
-    range: 134, //ms
+    range: 144, //ms
   },
 };
 
@@ -47,7 +38,7 @@ var RATING_TABLE = {
 var ASSETS = {
   sound: {
     music: "<%= asset_path("energy.mp3") %>",
-    ring: "<%= asset_path("kick052-2.mp3") %>",
+    ring: "<%= asset_path("kick052.mp3") %>",
   },
   json: {
     beatmap: "<%= asset_path("notes.json") %>"
@@ -94,6 +85,7 @@ phina.define('LoadingScene', {
     var label = Label({
       text: "NOW LOADING...",
       fill: "#fff",
+      fontFamily: 'Rowdies',
     })
     .addChildTo(baseLayer)
     .setPosition(this.width*0.7, this.height*0.5)
@@ -186,16 +178,12 @@ phina.define('LoadingScene', {
         .by({alpha: -1, x:70}, 300, 'easeInQuad')
         .wait(300)
         .call(function() {
-          // self.replaceScene(scene);
-          // self.app.popScene();
           self.flare('loaded');
         })
       })
       ;
     });
-
   },
-
 });
 
 
@@ -218,7 +206,10 @@ phina.define('TitleScene', {
       fill: "white",
       stroke: "#2F3CEC",
       strokeWidth: 6,
-      fontSize: 140,
+      fontFamily: 'Rowdies',
+      fontSize: 200,
+      shadow: "magenta",
+      shadowBlur: 50,
     })
     .setPosition(this.gridX.span(10), this.gridY.center())
     .setRotation(90)
@@ -229,6 +220,8 @@ phina.define('TitleScene', {
       fill: "white",
       stroke: "#2F3CEC",
       strokeWidth: 6,
+      fontFamily: 'Rowdies',
+      fontWeight: 'bold',
       fontSize: 84,
     })
     .setPosition(this.gridX.span(4), this.gridY.center())
@@ -264,9 +257,7 @@ phina.define('TitleScene', {
         this.exit();
       });
     });
-
   },
-
 });
 
 
@@ -282,16 +273,30 @@ phina.define('ScoreScene', {
     Sprite('bg').addChildTo(this)
             .setPosition(this.gridX.center(), this.gridY.center());
 
-
     // タイトルラベル
+    Label({
+      text: "Score",
+      fill: "white",
+      stroke: "#2F3CEC",
+      strokeWidth: 6,
+      fontSize: 84,
+      fontFamily: 'Rowdies',
+    })
+    .setPosition(this.gridX.span(11), this.gridY.center())
+    .setRotation(90)
+    .addChildTo(this)
+
     Label({
       text: params.score,
       fill: "white",
       stroke: "#2F3CEC",
       strokeWidth: 6,
       fontSize: 160,
+      fontFamily: 'Rowdies',
+      shadow: "magenta",
+      shadowBlur: 50,
     })
-    .setPosition(this.gridX.span(10), this.gridY.center())
+    .setPosition(this.gridX.center(), this.gridY.center())
     .setRotation(90)
     .addChildTo(this)
 
@@ -301,6 +306,8 @@ phina.define('ScoreScene', {
       stroke: "#2F3CEC",
       strokeWidth: 6,
       fontSize: 84,
+      fontFamily: 'Rowdies',
+      fontWeight: 'bold',
     })
     .setPosition(this.gridX.span(4), this.gridY.center())
     .setRotation(90)
@@ -315,12 +322,11 @@ phina.define('ScoreScene', {
 
     // シーン遷移（ビート一覧へ遷移）
     this.on('pointend', function() {
-      this.exit(); //デバッグ用
-      // window.location.href = '/beats';
+      // this.exit(); //デバッグ用
+      window.location.href = '/beats';
     });
   },
 });
-
 
 
 /*
@@ -408,9 +414,12 @@ phina.define('RateLabel', {
     this.superInit({
       text: textParam.text,
       fontSize: 90,
-      strokeWidth: 6,
+      strokeWidth: 7,
       fill: "magenta",
       stroke: "white",
+      fontFamily: 'Rowdies',
+      shadow: "white",
+      shadowBlur: 50,
     });
 
     this.tweener
@@ -461,33 +470,30 @@ phina.define('MainScene', {
     .addChildTo(this);
 
     // タップアイコンの配置（９個）→１個に変更
-    // for (var i = 0; i < 1; i++) {
-      // var label = INDEX_TO_KEY_MAP[i].toUpperCase(); // 対応キーを表示
-      // var rad = (i * ICON_INTERVAL_DEGREE).toRadian(); // 度数をラジアン変換
-      var icon = UnitIcon(0)
-      .setPosition(
-        gx.center(-8),
-        gy.span(-14.5),
-      )
-      .addChildTo(iconGroup);
+    var icon = UnitIcon(0)
+    .setPosition(
+      gx.center(-8),
+      gy.span(-14.5),
+    )
+    .addChildTo(iconGroup);
 
-      // 加速度センサーを利用した判定機能
-      window.addEventListener("devicemotion", function (event) {
-        // 加速度センサーの値を変数に格納
-        var x = Math.floor(event.accelerationIncludingGravity.x)
-        var y = Math.floor(event.accelerationIncludingGravity.y)
-        var z = Math.floor(event.accelerationIncludingGravity.z)
+    // 加速度センサーを利用した判定機能
+    window.addEventListener("devicemotion", function (event) {
+      // 加速度センサーの値を変数に格納
+      var x = Math.floor(event.accelerationIncludingGravity.x)
+      var y = Math.floor(event.accelerationIncludingGravity.y)
+      var z = Math.floor(event.accelerationIncludingGravity.z)
 
-        if (Math.abs(x) > 15 || Math.abs(y) > 15 || Math.abs(z) > 15) {
-          self.judge(icon);
-        }
-      })
+      if (Math.abs(x) > 15 || Math.abs(y) > 15 || Math.abs(z) > 15) {
+        self.judge(icon);
+      }
+    })
 
 
-      // タップ・クリック判定
-      icon.onpointstart = function() {
-        self.judge(this); // 自分を渡す
-      };
+    // タップ・クリック判定
+    icon.onpointstart = function() {
+      self.judge(this); // 自分を渡す
+    };
 
     // 画面をタップ・クリックで判定
     this.on('pointend', function() {
@@ -511,7 +517,8 @@ phina.define('MainScene', {
       stroke: "magenta",
       fill: "white",
       strokeWidth: 4,
-      fontSize: 60,
+      fontSize: 65,
+      fontFamily: 'Rowdies',
     })
     .setPosition(gx.span(13), gy.center())
     .setRotation(90)
@@ -523,12 +530,15 @@ phina.define('MainScene', {
 
     // 筋トレ説明文の表示
     this.descriptionLabel = Label({
-      text: ["〜スクワット〜 \nスマホを両手で握り\n地面と水平に持つ！\nノーツのタイミングで\n腰を落としてスクワット！"],
+      text: ["〜動作説明〜 \nスマホを両手で握り\n地面と水平に持つ！\nノーツのタイミングで\n見本のようにスクワット！"],
       textAlign: "center",
       fill: "white",
       backgroundColor: "rgba(0, 0, 0, 0.5)",
       strokeWidth: 2,
       fontSize: 42,
+      fontWeight: 'bold',
+      lineHeight: 1.5,
+      padding: 12,
     })
     .setPosition(gx.span(12), gy.center(4.5))
     .setRotation(90)
@@ -545,23 +555,8 @@ phina.define('MainScene', {
     var anim = FrameAnimation('sprite_ss').attachTo(sprite);
     // アニメーションを指定する
     anim.gotoAndPlay('squat');
-
-
-
-    // リセットボタン
-    // Button({
-    //   text: 'RESET',
-    //   fill: "#F539B9",
-    // })
-    // .setOrigin(1, 0)
-    // .setPosition(this.width, 0)
-    // .addChildTo(this)
-    // .on('push', function() {
-    //   SoundManager.stopMusic();
-    //   self.exit('main')
-    // });
-
   },
+
 
   update: function(app) {
     var self = this;
@@ -571,18 +566,6 @@ phina.define('MainScene', {
     // タイマー加算
     this.elapsedTime += app.deltaTime;
     this.gameTime += app.deltaTime;
-
-    // デバッグ用ゲームタイマー
-    // Label({
-    //   text: this.elapsedTime,
-    //   textAlign: "center",
-    //   fill: "white",
-    //   backgroundColor: "rgba(0, 0, 0, 0.5)",
-    //   strokeWidth: 2,
-    //   fontSize: 72,
-    // })
-    // .setPosition(400, 240)
-    // .addChildTo(this)
 
     // ゲームスタートまでの猶予
     if (this.has('musicstart') && this.elapsedTime > MUSIC_START_DELAY) {
@@ -626,7 +609,7 @@ phina.define('MainScene', {
 
   },
 
-  // 判定処理 以下そのままでOK
+  // 判定処理
   judge: function(unitIcon) {
     var time = this.gameTime;
 
@@ -683,18 +666,12 @@ phina.define('MainScene', {
   phina.main(function() {
     var app = GameApp({
       assets: ASSETS,
-      // width: 380, //スマホの縦
-      // height: 655, //スマホの横
-      // width: SCREEN_WIDTH, //デバッグ用
-      // height: SCREEN_HEIGHT, //デバッグ用
-      width: 1030, //デバッグ用
-      height: 1500, //デバッグ用
+      width: 1030,
+      height: 1500,
       startLabel: 'TitleScene',
       backgroundColor: 'navy',
       title: 'サンプル',
       fps: 60,
-      // query: '#mycanvas',
-      // fit: false,
 
       scenes: [
         {
