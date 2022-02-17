@@ -275,13 +275,28 @@ phina.define('ScoreScene', {
 
     // タイトルラベル
     Label({
+      text: "Score",
+      fill: "white",
+      stroke: "#2F3CEC",
+      strokeWidth: 6,
+      fontSize: 84,
+      fontFamily: 'Rowdies',
+    })
+    .setPosition(this.gridX.span(11), this.gridY.center())
+    .setRotation(90)
+    .addChildTo(this)
+
+    Label({
       text: params.score,
       fill: "white",
       stroke: "#2F3CEC",
       strokeWidth: 6,
       fontSize: 160,
+      fontFamily: 'Rowdies',
+      shadow: "magenta",
+      shadowBlur: 50,
     })
-    .setPosition(this.gridX.span(10), this.gridY.center())
+    .setPosition(this.gridX.center(), this.gridY.center())
     .setRotation(90)
     .addChildTo(this)
 
@@ -291,6 +306,8 @@ phina.define('ScoreScene', {
       stroke: "#2F3CEC",
       strokeWidth: 6,
       fontSize: 84,
+      fontFamily: 'Rowdies',
+      fontWeight: 'bold',
     })
     .setPosition(this.gridX.span(4), this.gridY.center())
     .setRotation(90)
