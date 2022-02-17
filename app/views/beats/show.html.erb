@@ -396,9 +396,12 @@ phina.define('RateLabel', {
     this.superInit({
       text: textParam.text,
       fontSize: 90,
-      strokeWidth: 6,
+      strokeWidth: 7,
       fill: "magenta",
       stroke: "white",
+      fontFamily: 'Rowdies',
+      shadow: "white",
+      shadowBlur: 50,
     });
 
     this.tweener
@@ -497,6 +500,7 @@ phina.define('MainScene', {
       fill: "white",
       strokeWidth: 4,
       fontSize: 60,
+      fontFamily: 'Rowdies',
     })
     .setPosition(gx.span(13), gy.center())
     .setRotation(90)
