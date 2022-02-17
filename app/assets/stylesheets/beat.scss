@@ -3,6 +3,16 @@
 // フォント
 @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap');
 
+// レイアウトのみ
+.mt-30 {
+  margin-top: 30px !important;
+}
+.mb-30 {
+  margin-bottom: 30px !important;
+}
+
+
+// 個別
 .beats {
   background-image: image-url('index.png');
   background-size: cover;
@@ -25,7 +35,7 @@ padding-top: 30px;
   margin-top: 30px !important;
 }
 .before-text {
-  margin-top: 15px;
+  margin-top: 20px;
 }
 .before-text-pink {
   color: #ff00de;
@@ -53,8 +63,17 @@ padding-top: 30px;
   width: 95%;
   margin: 0 auto;
 }
+.card-title {
+  font-size: 1.8rem;
+}
+.beat-ttl {
+  text-shadow: 0 0 1px #ff00de, 0 0 2px #ff00de, 0 0 3px #ff00de, 0 0 4px #ff00de, 0 0 7px #ff00de, 0 0 8px #ff00de, 0 0 10px #ff00de, 0 0 15px #ff00de;
+}
 .card-text {
   margin-bottom: 0;
+}
+.fz-rem {
+  font-size: 1.2rem;
 }
 
 .beat-link {
