@@ -132,7 +132,6 @@ phina.define('LoadingScene', {
 
       // 進行
       loader.onprogress = function(e) {
-        console.log(e)
         gauge.value = e.progress * 80;
       };
 
@@ -319,6 +318,35 @@ phina.define('ScoreScene', {
     .to({alpha: 0}, 700)
     .to({alpha: 1}, 700)
     ;
+
+
+// シェアボタン
+var shareButton = phina.ui.Button({
+  text: "シェアする",
+  fontSize: 30,
+  width: 256,
+  height: 54,
+})    .setPosition(this.gridX.span(5), this.gridY.center())
+.addChildTo(this);
+
+var params = {
+  score: params.score,
+  hashtags: [""]
+};
+
+// クリック動作
+shareButton.on('pointend', function(){
+  var text = 'ナイスビートッ！！！\nScore: {0}\n{1}\n#MuscleBeat #筋トレ\n'.format(params.score);
+  var message = params.message
+  var url = phina.social.Twitter.createURL({
+    text: text,
+    hashtags: params.hashtags,
+    url: 'http://muscle-beat.herokuapp.com',
+  });
+  // 新規タブで開く
+  var childWindow = window.open('about:blank');
+  childWindow.location.href = url;
+});
 
     // シーン遷移（ビート一覧へ遷移）
     this.on('pointend', function() {
