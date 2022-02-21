@@ -27,16 +27,15 @@ class BeatsController < ApplicationController
 
   def update
     if @beat.update(beat_params)
-      redirect_to beats_path, notice: "Beat was successfully updated."
+      redirect_to beats_path, notice: "ビートを更新しました！"
     else
-      render :edit, status: :unprocessable_entity
+      render :beats, status: :unprocessable_entity
     end
   end
 
   def destroy
     @beat.destroy
-
-    redirect_to beats_url, notice: "Beat was successfully destroyed."
+    redirect_to beats_path, notice: "ビートを削除しました！"
   end
 
   private

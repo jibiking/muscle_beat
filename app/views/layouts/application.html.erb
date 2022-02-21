@@ -20,23 +20,34 @@
 
   <body class="<%= controller.controller_name %>">
 
-  <%# <div id="nav" class="mt-5"> %>
-    <%# if current_user %>
-      <%# link_to "トップ", root_path %>
-      <%# link_to "ビート一覧", beats_path %>
-      <%# link_to "ユーザー一覧", users_path %>
-      <%# link_to "Edit Profile", edit_user_path(current_user.id) %>
-      <%# link_to "Logout", :logout, method: :post %>
-    <%# else %>
-      <%# link_to "トップ", root_path %>
-      <%# link_to "ビート一覧", beats_path %>
-      <%# link_to "Register", new_user_path | %>
-      <%# link_to "Login", :login %>
-    <%# end %>
-  <%# </div> %>
-  <%# <div> %>
-    <%# <p id="notice"><%= flash[:notice] %><%# </p>
-  </div>%>
+    <% if current_user && current_user.admin? %>
+      <div id="nav" class="mt-5">
+        <%= link_to "トップ", root_path %>
+        <%= link_to "ビート一覧", beats_path %>
+        <%= link_to "ユーザー一覧", users_path %>
+        <%= link_to "プロフ編集", edit_user_path(current_user.id) %>
+        <%= link_to "ログアウト", :logout, method: :post %>
+        <%# else %>
+        <%# link_to "トップ", root_path %>
+        <%# link_to "ビート一覧", beats_path %>
+        <%# link_to "Register", new_user_path | %>
+        <%# link_to "Login", :login %>
+      </div>
+    <% elsif current_user %>
+      <div id="nav" class="mt-5">
+        <%= link_to "トップ", root_path %>
+        <%= link_to "ビート一覧", beats_path %>
+        <%= link_to "ログアウト", :logout, method: :post %>
+        <%# else %>
+        <%# link_to "トップ", root_path %>
+        <%# link_to "ビート一覧", beats_path %>
+        <%# link_to "Register", new_user_path | %>
+        <%# link_to "Login", :login %>
+      </div>
+    <% end %>
+    <div>
+      <div id="notice"><%= flash[:notice] %></div>
+    </div>
 
     <%= yield %>
 
