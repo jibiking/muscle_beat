@@ -444,12 +444,12 @@ phina.define('EffectWave', {
 phina.define('RateLabel', {
   superClass: 'phina.display.Label',
 
-  init: function(textParam) {
+  init: function(textParam, fillParam) {
     this.superInit({
       text: textParam.text,
       fontSize: 90,
       strokeWidth: 7,
-      fill: "magenta",
+      fill: fillParam.fill,
       stroke: "white",
       fontFamily: 'Rowdies',
       shadow: "white",
@@ -686,10 +686,35 @@ phina.define('MainScene', {
     marker.isAwake = false;
     marker.visible = false;
 
-    RateLabel({text: rating.toUpperCase()})
-    .setPosition(this.gridX.center(), this.gridY.center())
-    .setRotation(90)
-    .addChildTo(this);
+    // RateLabel({text: rating.toUpperCase()},{fill: "magenta"})
+    // .setPosition(this.gridX.center(), this.gridY.center())
+    // .setRotation(90)
+    // .addChildTo(this);
+
+    if (rating == "perfect") {
+      RateLabel({text: rating.toUpperCase()},{fill: "magenta"})
+      .setPosition(this.gridX.center(), this.gridY.center())
+      .setRotation(90)
+      .addChildTo(this);
+    }
+    if (rating == "great") {
+      RateLabel({text: rating.toUpperCase()},{fill: "lime"})
+      .setPosition(this.gridX.center(), this.gridY.center())
+      .setRotation(90)
+      .addChildTo(this);
+    }
+    if (rating == "good") {
+      RateLabel({text: rating.toUpperCase()},{fill: "blue"})
+      .setPosition(this.gridX.center(), this.gridY.center())
+      .setRotation(90)
+      .addChildTo(this);
+    }
+    if (rating == "miss") {
+      RateLabel({text: rating.toUpperCase()},{fill: "dimgray"})
+      .setPosition(this.gridX.center(), this.gridY.center())
+      .setRotation(90)
+      .addChildTo(this);
+    }
 
     this.totalScore += RATING_TABLE[rating].score;
   },
