@@ -48,6 +48,6 @@ class BeatsController < ApplicationController
     end
 
     def beat_params
-      params.require(:beat).permit(:title, :url, :training_muscle, :level, :user_id, :thumbnail, :gif, :music, :notes)
+      params.require(:beat).permit(:title, :url, :training_muscle, :level, :user_id, :thumbnail, :training_description, :gif, :music, :notes)
     end
 end

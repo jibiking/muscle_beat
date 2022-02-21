@@ -1,37 +1,65 @@
-<%= form_with(model: beat) do |form| %>
-  <% if beat.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(beat.errors.count, "error") %> prohibited this beat from being saved:</h2>
+<div class="form_wrapper">
+  <%= form_with(model: beat) do |form| %>
+    <% if beat.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(beat.errors.count, "error") %> prohibited this beat from being saved:</h2>
 
-      <ul>
-        <% beat.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% beat.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= form.label :url %>
+      <%= form.text_field :url %>
+    </div>
+
+    <div class="field">
+      <%= form.label :training_muscle %>
+      <%= form.text_field :training_muscle %>
+    </div>
+
+    <div class="field">
+      <%= form.label :level %>
+      <%= form.select :level, [ ["nomal"], ["hard"]] %>
+    </div>
+
+    <div class="field">
+      <%= form.label :thumbnail %>
+      <%= form.file_field :thumbnail %>
+    </div>
+
+    <div class="field">
+      <%= form.label :training_description %>
+      <%= form.text_field :training_description %>
+    </div>
+
+    <div class="field">
+      <%= form.label :gif %>
+      <%= form.file_field :gif %>
+    </div>
+
+    <div class="field">
+      <%= form.label :music %>
+      <%= form.file_field :music %>
+    </div>
+
+    <div class="field">
+      <%= form.label :notes %>
+      <%= form.file_field :notes %>
+    </div>
+
+
+    <div class="actions">
+      <%= form.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url %>
-  </div>
-
-  <div class="field">
-    <%= form.label :training_muscle %>
-    <%= form.text_field :training_muscle %>
-  </div>
-
-  <div class="field">
-    <%= form.label :level %>
-    <%= form.select :level, [ ["nomal"], ["hard"]] %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
