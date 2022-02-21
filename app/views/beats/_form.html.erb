@@ -39,7 +39,7 @@
 
     <div class="field">
       <%= form.label :training_description %>
-      <%= form.text_field :training_description %>
+      <%= form.text_area :training_description, size: "40x10" %>
     </div>
 
     <div class="field">
@@ -59,7 +59,7 @@
 
 
     <div class="actions">
-      <%= form.submit %>
+      <%= form.submit class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>
