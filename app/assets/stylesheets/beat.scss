@@ -18,9 +18,11 @@
   background-size: cover;
 }
 
+#nav a, .lime, #notice {
+  color: lime;
+}
+
 .index-wrapper {
-  background-image: image-url('index.png');
-  background-size: cover;
   text-align: center;
 }
 

@@ -35,7 +35,10 @@
                 <h5 class="card-title"><span class="fz-rem">曲名：</span><span class="beat-ttl"><%= beat.title %></span></h5>
                 <p class="card-text">筋トレ部位：<span class="fz-rem"><%= beat.training_muscle %></span></p>
                 <p class="card-text">レベル：<span class="fz-rem"><%= beat.level %></span></p>
-                <%= link_to '編集', edit_beat_path(beat) %>
+                <% if current_user && current_user.admin? %>
+                  <%= link_to '編集', edit_beat_path(beat), class: "lime" %>
+                  <%= link_to '削除', beat_path(beat), method: :delete, data: {confirm: 'Beatを削除しますか？'}, class: "lime" %>
+                <% end %>
               </div>
             </div>
           </div>
@@ -43,6 +46,7 @@
       <% end %>
     <% end %>
   </div>
-
-  <%= link_to 'New Beat', new_beat_path %>
+  <% if current_user && current_user.admin? %>
+    <%= link_to 'New Beat', new_beat_path, class: "lime" %>
+  <% end %>
 </div>
