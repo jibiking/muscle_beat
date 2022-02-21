@@ -2,14 +2,19 @@
 #
 # Table name: beats
 #
-#  id              :bigint           not null, primary key
-#  level           :integer          not null
-#  title           :string           not null
-#  training_muscle :string           not null
-#  url             :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  user_id         :bigint           not null
+#  id                   :bigint           not null, primary key
+#  gif                  :string           not null
+#  level                :integer          not null
+#  music                :string           not null
+#  notes                :string           not null
+#  thumbnail            :string           not null
+#  title                :string           not null
+#  training_description :string           not null
+#  training_muscle      :string           not null
+#  url                  :string           not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  user_id              :bigint           not null
 #
 # Indexes
 #
