@@ -28,4 +28,9 @@ class Beat < ApplicationRecord
   belongs_to :user
 
   enum level: { nomal: 0, hard: 1 }
+
+  mount_uploader :thumbnail, ThumbnailUploader
+  mount_uploader :gif, GifUploader
+  mount_uploader :music, MusicUploader
+  mount_uploader :notes, NotesUploader
 end
