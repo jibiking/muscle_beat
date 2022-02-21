@@ -36,15 +36,15 @@ var RATING_TABLE = {
 
 var ASSETS = {
   sound: {
-    music: "<%= asset_path("energy.mp3") %>",
+    music: "<%= @beat.music.url %>",
     ring: "<%= asset_path("kick052.mp3") %>",
   },
   json: {
-    beatmap: "<%= asset_path("notes.json") %>"
+    beatmap: "<%= @beat.notes.url %>"
   },
   image: {
     'bg': "<%= asset_path("club.png") %>",
-    'sprite': "<%= asset_path("sample.png") %>",
+    'sprite': "<%= @beat.gif.url %>",
   },
     // スプライトシート
   spritesheet: {
@@ -564,7 +564,7 @@ phina.define('MainScene', {
 
     // 筋トレ説明文の表示
     this.descriptionLabel = Label({
-      text: ["〜動作説明〜 \nスマホを両手で握り\n地面と水平に持つ！\nノーツのタイミングで\n見本のようにスクワット！"],
+      text: ["<%= @beat.training_description %>"],
       textAlign: "center",
       fill: "white",
       backgroundColor: "rgba(0, 0, 0, 0.5)",
