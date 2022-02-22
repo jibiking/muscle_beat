@@ -40,7 +40,8 @@ var ASSETS = {
     ring: "<%= asset_path("kick052.mp3") %>",
   },
   json: {
-    beatmap: "<%= @beat.notes.url %>"
+    beatmap: "<%= asset_path("notes.json") %>" //デバッグ用
+    // beatmap: "<%= @beat.notes.url %>" //本番用
   },
   image: {
     'bg': "<%= asset_path("club.png") %>",
@@ -393,11 +394,11 @@ phina.define('UnitIcon', {
 phina.define('TargetMarker', {
   superClass: 'phina.display.CircleShape',
 
-  init: function(targetTime, trackId, type) {
+  init: function(targetTime, trackId, stroke) {
     this.superInit({
       radius: MARKER_RADIUS,
       strokeWidth: MARKER_STROKE_WIDTH,
-      stroke: "magenta",
+      stroke: stroke,
       fill: false,
     });
 
@@ -540,7 +541,7 @@ phina.define('MainScene', {
     .setPosition(iconGroup.x, iconGroup.y)
     .addChildTo(this);
     beatmap.notes.forEach(function(note) {
-      TargetMarker(note.targetTime, note.track)
+      TargetMarker(note.targetTime, note.track, note.stroke)
       .addChildTo(self.markerGroup)
     })
 
