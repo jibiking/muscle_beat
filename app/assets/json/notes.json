@@ -2,247 +2,194 @@
   "offset": 0,
   "notes": [
   {
-    "track": 0,
-    "targetTime": 0,
+    "targetTime": 3500,
     "stroke": "magenta"
   },
   {
-    "track": 0,
-    "targetTime": 15000,
-    "stroke": "magenta"
-  },
-  {
-    "track": 0,
-    "targetTime": 17000,
-    "stroke": "magenta"
-  },
-  {
-    "track": 0,
-    "targetTime": 18750,
-    "stroke": "magenta"
-  },
-  {
-    "track": 0,
-    "targetTime": 20750,
-    "stroke": "magenta"
-  },
-  {
-    "track": 0,
-    "targetTime": 22500,
-    "stroke": "magenta"
-  },
-  {
-    "track": 0,
-    "targetTime": 24500,
-    "stroke": "magenta"
-  },
-  {
-    "track": 0,
-    "targetTime": 26250,
-    "stroke": "magenta"
-  },
-  {
-    "track": 0,
-    "targetTime": 28250,
-    "stroke": "magenta"
-  },
-  {
-    "track": 0,
-    "targetTime": 30000,
+    "targetTime": 5250,
     "stroke": "lime"
   },
   {
-    "track": 0,
-    "targetTime": 31000,
+    "targetTime": 7000,
     "stroke": "lime"
   },
   {
-    "track": 0,
-    "targetTime": 32000,
+    "targetTime": 9000,
     "stroke": "lime"
   },
   {
-    "track": 0,
-    "targetTime": 33750,
+    "targetTime": 11000,
     "stroke": "lime"
   },
   {
-    "track": 0,
-    "targetTime": 34750,
+    "targetTime": 12750,
     "stroke": "lime"
   },
   {
-    "track": 0,
-    "targetTime": 35750,
+    "targetTime": 14750,
     "stroke": "lime"
   },
   {
-    "track": 0,
-    "targetTime": 37500,
+    "targetTime": 16500,
     "stroke": "lime"
   },
   {
-    "track": 0,
-    "targetTime": 38500,
+    "targetTime": 18500,
     "stroke": "lime"
   },
   {
-    "track": 0,
-    "targetTime": 39500,
+    "targetTime": 20250,
     "stroke": "lime"
   },
   {
-    "track": 0,
-    "targetTime": 41250,
+    "targetTime": 22250,
     "stroke": "lime"
   },
   {
-    "track": 0,
-    "targetTime": 42250,
+    "targetTime": 24000,
     "stroke": "lime"
   },
   {
-    "track": 0,
-    "targetTime": 43250,
+    "targetTime": 26000,
     "stroke": "lime"
   },
   {
-    "track": 0,
-    "targetTime": 45000,
+    "targetTime": 27750,
+    "stroke": "lime"
+  },
+  {
+    "targetTime": 29750,
+    "stroke": "lime"
+  },
+  {
+    "targetTime": 31500,
+    "stroke": "lime"
+  },
+  {
+    "targetTime": 33500,
     "stroke": "magenta"
   },
   {
-    "track": 0,
-    "targetTime": 48750,
+    "targetTime": 37250,
     "stroke": "magenta"
   },
   {
-    "track": 0,
-    "targetTime": 52500,
+    "targetTime": 41000,
     "stroke": "magenta"
   },
   {
-    "track": 0,
-    "targetTime": 54500,
+    "targetTime": 44750,
     "stroke": "magenta"
   },
   {
-    "track": 0,
+    "targetTime": 48500,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 50250,
+    "stroke": "lime"
+  },
+  {
+    "targetTime": 52250,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 54000,
+    "stroke": "lime"
+  },
+  {
     "targetTime": 56250,
     "stroke": "magenta"
   },
   {
-    "track": 0,
     "targetTime": 60000,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 61000,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 62000,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 63750,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 64750,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 65750,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 67500,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 68500,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 69500,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 71250,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 72250,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 73250,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 75500,
     "stroke": "magenta"
   },
   {
-    "track": 0,
     "targetTime": 77500,
     "stroke": "magenta"
   },
   {
-    "track": 0,
     "targetTime": 79250,
     "stroke": "magenta"
   },
   {
-    "track": 0,
     "targetTime": 81250,
     "stroke": "magenta"
   },
   {
-    "track": 0,
     "targetTime": 83000,
     "stroke": "magenta"
   },
   {
-    "track": 0,
     "targetTime": 84850,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 85850,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 86850,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 87750,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 88750,
     "stroke": "lime"
   },
   {
-    "track": 0,
     "targetTime": 89750,
     "stroke": "magenta"
   }
