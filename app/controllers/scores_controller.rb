@@ -1,4 +1,5 @@
 class ScoresController < ApplicationController
+  protect_from_forgery
   before_action :set_score, only: %i[ show edit update destroy ]
 
   # GET /scores or /scores.json
@@ -65,6 +66,6 @@ class ScoresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def score_params
-      params.require(:score).permit(:score, :user_id, :beat_id)
+      params.permit(:score, :user_id, :beat_id)
     end
 end
