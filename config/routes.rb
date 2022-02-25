@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :scores
   root :to => 'starts#index'
   resources :starts, only: %i[index]
   resources :users
