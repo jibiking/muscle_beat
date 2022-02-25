@@ -7,17 +7,9 @@ class ScoresController < ApplicationController
     @scores = Score.all
   end
 
-  # GET /scores/1 or /scores/1.json
-  def show
-  end
-
   # GET /scores/new
   def new
     @score = Score.new
-  end
-
-  # GET /scores/1/edit
-  def edit
   end
 
   # POST /scores or /scores.json
@@ -30,19 +22,6 @@ class ScoresController < ApplicationController
         format.json { render :show, status: :created, location: @score }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @score.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /scores/1 or /scores/1.json
-  def update
-    respond_to do |format|
-      if @score.update(score_params)
-        format.html { redirect_to score_url(@score), notice: "Score was successfully updated." }
-        format.json { render :show, status: :ok, location: @score }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @score.errors, status: :unprocessable_entity }
       end
     end

@@ -321,16 +321,10 @@ phina.define('ScoreScene', {
     // シーン遷移（ビート一覧へ遷移）
     homeButton.onclick = function(){
       // this.exit(); //デバッグ用
-      // window.location.href = '/beats';
+      window.location.href = '/beats';
       // スコアをRailsへ受け渡し
       const data = { score: gameScore, user_id: "<%= current_user.id %>", beat_id: "<%= @beat.id %>" }
-      axios.post('/scores', data)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      axios.post('/scores', data);
     };
 
 
@@ -364,13 +358,11 @@ phina.define('ScoreScene', {
         url: 'http://muscle-beat.herokuapp.com',
       });
       window.open(url, 'share window', 'width=480, height=320');
+      // 画面遷移＋スコアをRailsへ受け渡し
+      window.location.href = '/beats';
+      const data = { score: gameScore, user_id: "<%= current_user.id %>", beat_id: "<%= @beat.id %>" }
+      axios.post('/scores', data);
     };
-
-    // シーン遷移（ビート一覧へ遷移）
-    this.on('pointend', function() {
-      // this.exit(); //デバッグ用
-      // window.location.href = '/beats';
-    });
   },
 });
 
