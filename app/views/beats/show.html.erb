@@ -323,7 +323,7 @@ phina.define('ScoreScene', {
       // this.exit(); //デバッグ用
       window.location.href = '/beats';
       // スコアをRailsへ受け渡し
-      const data = { score: gameScore, user_id: "<%= current_user.id %>", beat_id: "<%= @beat.id %>" }
+      const data = { score: gameScore, user_id: "<%= current_user.id if logged_in? %>", beat_id: "<%= @beat.id %>" }
       axios.post('/scores', data);
     };
 
@@ -360,7 +360,7 @@ phina.define('ScoreScene', {
       window.open(url, 'share window', 'width=480, height=320');
       // 画面遷移＋スコアをRailsへ受け渡し
       window.location.href = '/beats';
-      const data = { score: gameScore, user_id: "<%= current_user.id %>", beat_id: "<%= @beat.id %>" }
+      const data = { score: gameScore, user_id: "<%= current_user.id if logged_in? %>", beat_id: "<%= @beat.id %>" }
       axios.post('/scores', data);
     };
   },
