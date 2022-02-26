@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :starts, only: %i[index]
   resources :users
   resources :beats
+  resources :scores, only: %i[index create destroy]
 
   get 'login' => 'user_sessions#new', :as => :login
   post 'login' => 'user_sessions#create'
