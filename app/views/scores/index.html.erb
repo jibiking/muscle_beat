@@ -18,14 +18,8 @@
         <td><%= score.score %></td>
         <td><%= score.user_id %></td>
         <td><%= score.beat_id %></td>
-        <td><%= link_to 'Show', score %></td>
-        <td><%= link_to 'Edit', edit_score_path(score) %></td>
         <td><%= link_to 'Destroy', score, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Score', new_score_path %>
