@@ -1,0 +1,30 @@
+<div class="mypage-wrapper">
+  <h1 class="ttl">MyPage</h1>
+
+  <h3 class="name"><%= current_user.user_name %></h3>
+
+  <table class="mypage-table">
+    <thead>
+      <tr>
+        <th>日時</th>
+        <th>スコア</th>
+        <th>曲名</th>
+        <th>部位</th>
+        <th>レベル</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @scores.each do |score| %>
+        <tr>
+          <td><%= l score.created_at %></td>
+          <td><%= score.score %></td>
+          <td><%= score.beat.title %></td>
+          <td><%= score.beat.training_muscle %></td>
+          <td><%= score.beat.level %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

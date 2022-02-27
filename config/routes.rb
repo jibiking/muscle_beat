@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users
   resources :beats
   resources :scores, only: %i[index create destroy]
+  resources :mypage, only: %i[index]
 
   get 'login' => 'user_sessions#new', :as => :login
   post 'login' => 'user_sessions#create'
