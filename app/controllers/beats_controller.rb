@@ -41,10 +41,10 @@ class BeatsController < ApplicationController
   private
 
   def set_beat
-      @beat = Beat.find(params[:id])
-    end
+    @beat = Beat.find(params[:id])
+  end
 
-    def beat_params
-      params.require(:beat).permit(:title, :url, :training_muscle, :level, :user_id, :thumbnail, :training_description, :gif, :music, :notes)
-    end
+  def beat_params
+    params.require(:beat).permit(:title, :url, :training_muscle, :level, :user_id, :thumbnail, :training_description, :gif, :music, :notes)
+  end
 end
