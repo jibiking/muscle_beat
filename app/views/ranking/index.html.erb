@@ -1,0 +1,14 @@
+<div class="mypage-wrapper">
+  <h1 class="ttl">Ranking</h1>
+
+  <table class="mypage-table">
+    <tbody>
+      <% @rankings.each do |ranking| %>
+        <tr>
+          <td><%= ranking.score %></td>
+          <td><%= ranking.user.user_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
