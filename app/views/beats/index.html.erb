@@ -1,5 +1,5 @@
 <div class="index-wrapper">
-  <h1 class="ttl">All Beats</h1>
+  <h1 class="ttl beats-ttl">All Beats</h1>
 
   <div class="beats-wrapper slider">
     <% @beats.each do |beat| %>
@@ -14,7 +14,6 @@
               <div class="card-body">
                 <h5 class="card-title"><span class="fz-rem">曲名：</span><span class="beat-ttl"><%= beat.title %></span></h5>
                 <p class="card-text">筋トレ部位：<span class="fz-rem"><%= beat.training_muscle %></span></p>
-                <p class="card-text">レベル：<span class="fz-rem"><%= beat.level %></span></p>
                 <p class="card-text"><%= link_to 'ランキング', ranking_index_path(beat), class: 'ranking-link' %></p>
                 <% if current_user && current_user.admin? %>
                   <%= link_to '編集', edit_beat_path(beat), class: "lime" %>
@@ -34,15 +33,15 @@
 
 <script>
 	$('.slider').slick({
-		// autoplay: true,//自動的に動き出すか。初期値はfalse。
+		autoplay: true,//自動的に動き出すか。初期値はfalse。
 		infinite: true,//スライドをループさせるかどうか。初期値はtrue。
-		speed: 500,//スライドのスピード。初期値は300。
+		speed: 300,//スライドのスピード。初期値は300。
 		slidesToShow: 3,//スライドを画面に3枚見せる
 		slidesToScroll: 1,//1回のスクロールで1枚の写真を移動して見せる
 		prevArrow: '<div class="slick-prev"></div>',//矢印部分PreviewのHTMLを変更
 		nextArrow: '<div class="slick-next"></div>',//矢印部分NextのHTMLを変更
 		centerMode: true,//要素を中央ぞろえにする
 		variableWidth: true,//幅の違う画像の高さを揃えて表示
-		dots: true,//下部ドットナビゲーションの表示
+    verticalSwiping: true,//垂直スワイプ
 	});
 </script>
