@@ -18,12 +18,16 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%# axiosの導入 %>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <%# slick導入 %>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
 
   <body class="<%= controller.controller_name %>">
 
     <% if current_user && current_user.admin? %>
-      <div id="nav" class="mt-5">
+      <div id="nav">
         <%= link_to "トップ", root_path %>
         <%= link_to "ビート一覧", beats_path %>
         <%= link_to "ユーザー一覧", users_path %>
@@ -37,7 +41,7 @@
         <%# link_to "Login", :login %>
       </div>
     <% elsif current_user %>
-      <div id="nav" class="mt-5">
+      <div id="nav">
         <%= link_to "トップ", root_path %>
         <%= link_to "ビート一覧", beats_path %>
         <%= link_to "マイページ", mypage_index_path %>
