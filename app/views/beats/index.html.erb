@@ -1,6 +1,23 @@
 <div class="index-wrapper">
   <h1 class="ttl beats-ttl">All Beats</h1>
 
+<%# ハンバーガーメニュー %>
+  <div class="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+  </div>
+
+  <nav class="globalMenuSp">
+      <ul>
+          <li><a href="#">Menu1</a></li>
+          <li><a href="#">Menu2</a></li>
+          <li><a href="#">Menu3</a></li>
+          <li><a href="#">Menu4</a></li>
+          <li><a href="#">Menu5</a></li>
+      </ul>
+  </nav>
+
   <div class="beats-wrapper slider">
     <% @beats.each do |beat| %>
       <%# ↓turbolinkを無効にして画面遷移時にJSを読み込ませる↓ %>
@@ -44,4 +61,16 @@
 		variableWidth: true,//幅の違う画像の高さを揃えて表示
     verticalSwiping: true,//垂直スワイプ
 	});
+
+  $(function() {
+    $('.hamburger').click(function() {
+        $(this).toggleClass('active');
+
+        if ($(this).hasClass('active')) {
+            $('.globalMenuSp').fadeToggle(300);
+        } else {
+            $('.globalMenuSp').fadeToggle(300);
+        }
+    });
+});
 </script>
