@@ -1,31 +1,11 @@
 <div class="index-wrapper">
   <h1 class="ttl">All Beats</h1>
 
-  <div class="card mb-3 before-wrapper" style="max-width: 540px;">
-    <div class="row g-0">
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title mb-30">始める前に…</h5>
-          <p class="card-text before-text">1. <span class="before-text-pink">イヤホン</span>を着けてプレイしてください！</p>
-          <p class="card-text before-text">2. 画面の自動回転を<span class="before-text-pink">オフ</span>にしてください！</p>
-          <p class="card-text before-text">3. 下ボタンをクリックして<span class="before-text-pink">「動作と方向へのアクセス」</span>を許可してください！</p>
-          <div class="btn btn-index" onClick="deviceMotionRequest()">クリック</div>
-          <p class="card-text before-text mt-30">4. <span class="before-text-pink">プレイ画面</span>の説明は下画像の通りです！</p>
-          <div class="col-md-4">
-            <%= image_tag 'explain.png', class: 'img-fluid rounded-start' %>
-          </div>
-          <p class="card-text before-text mt-30">5. 1~4の確認ができたら、下の曲カードをクリックして<span class="before-text-pink">GAME START!!!</span></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="beats-wrapper">
+  <div class="beats-wrapper slider">
     <% @beats.each do |beat| %>
       <%# ↓turbolinkを無効にして画面遷移時にJSを読み込ませる↓ %>
-      <%= link_to beat, class: 'beat-link', data: {"turbolinks" => false} do %>
-        <div class="card mb-3" style="max-width: 540px;">
+      <div class="card mb-3" style="max-width: 540px;">
+        <%= link_to beat, class: 'beat-link', data: {"turbolinks" => false} do %>
           <div class="row g-0">
             <div class="col-md-4">
               <%= image_tag beat.thumbnail.url, class: 'img-fluid rounded-start' %>
@@ -43,11 +23,26 @@
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     <% end %>
   </div>
   <% if current_user && current_user.admin? %>
     <%= link_to 'New Beat', new_beat_path, class: "lime" %>
   <% end %>
 </div>
+
+<script>
+	$('.slider').slick({
+		// autoplay: true,//自動的に動き出すか。初期値はfalse。
+		infinite: true,//スライドをループさせるかどうか。初期値はtrue。
+		speed: 500,//スライドのスピード。初期値は300。
+		slidesToShow: 3,//スライドを画面に3枚見せる
+		slidesToScroll: 1,//1回のスクロールで1枚の写真を移動して見せる
+		prevArrow: '<div class="slick-prev"></div>',//矢印部分PreviewのHTMLを変更
+		nextArrow: '<div class="slick-next"></div>',//矢印部分NextのHTMLを変更
+		centerMode: true,//要素を中央ぞろえにする
+		variableWidth: true,//幅の違う画像の高さを揃えて表示
+		dots: true,//下部ドットナビゲーションの表示
+	});
+</script>
