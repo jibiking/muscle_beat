@@ -3,7 +3,9 @@ class BeatsController < ApplicationController
   before_action :set_beat, only: %i[ show edit update destroy ]
 
   def index
-    @beats = Beat.all
+    @beats_hard = Beat.where(level: 'hard')
+    @beats_nomal = Beat.where(level: 'nomal')
+    # @beats = Beat.all
   end
 
   def show; end
