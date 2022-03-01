@@ -194,6 +194,7 @@ nav.globalMenuSp {
 nav.globalMenuSp ul {
   margin: 0 auto;
   padding: 0;
+  padding-top: 10px;
   width: 100%;
 }
 
@@ -203,16 +204,17 @@ nav.globalMenuSp ul li {
   width: 100%;
   transition: .4s all;
 }
+nav.globalMenuSp ul li:first-child{
+  font-size: 2rem;
+}
 nav.globalMenuSp ul li:last-child {
   padding-bottom: 0;
-}
-nav.globalMenuSp ul li:hover{
-  background :#ddd;
 }
 
 nav.globalMenuSp ul li a {
   display: block;
   color: #fff;
+  text-shadow: 0 0 1px #ff00de, 0 0 2px #ff00de, 0 0 3px #ff00de, 0 0 4px #ff00de, 0 0 7px #ff00de, 0 0 8px #ff00de, 0 0 10px #ff00de, 0 0 15px #ff00de;
   padding: 1em 0;
   text-decoration :none;
 }
