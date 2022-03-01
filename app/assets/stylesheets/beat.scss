@@ -220,6 +220,22 @@ nav.globalMenuSp ul li a {
 }
 
 
+// レベル切り替えボタン
+.level-wrapper {
+  position: absolute;
+  top   : 12px;
+  left: 10px;
+  padding: 5px;
+  color: #fff;
+  background-color: rgba(0,0,0,0.3);
+}
+#levelbutton {
+  color: #fff;
+  background-color: #ff00de;
+  box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 2px #ff00de, 0 0 5px #ff00de, 0 0 6px #ff00de, 0 0 8px #ff00de, 0 0 15px #ff00de;
+}
+
+
 
 // beats#_form
 .form_wrapper {

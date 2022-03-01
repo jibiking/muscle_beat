@@ -36,7 +36,10 @@
     <% end %>
   </nav>
 
-  <input id="levelbutton" type="button" value="Hard" onclick="clickBtn1()" />
+  <div class="level-wrapper">
+    <p>Now Level</p>
+    <input id="levelbutton" class="btn" type="button" value="Hard" onclick="clickBtn1()" />
+  </div>
 
   <div class="beats-wrapper slider" id="hard">
     <% @beats_hard.each do |beat| %>
@@ -98,7 +101,7 @@
 <script>
 // スライダー
 	$('.slider').slick({
-		autoplay: true,//自動的に動き出すか。初期値はfalse。
+		// autoplay: true,//自動的に動き出すか。初期値はfalse。
 		infinite: true,//スライドをループさせるかどうか。初期値はtrue。
 		speed: 300,//スライドのスピード。初期値は300。
 		slidesToShow: 3,//スライドを画面に3枚見せる
