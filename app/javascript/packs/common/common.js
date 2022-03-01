@@ -27,7 +27,7 @@ window.deviceMotionRequest = function(){
 
 
 // ハンバーガーメニュー
-$(function() {
+$(document).on('turbolinks:load', function () {
   $('.hamburger').click(function() {
       $(this).toggleClass('active');
 
