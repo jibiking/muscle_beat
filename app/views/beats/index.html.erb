@@ -36,9 +36,9 @@
     <% end %>
   </nav>
 
-  <input type="button" value="ボタン1" onclick="clickBtn1()" />
+  <input id="levelbutton" type="button" value="Hard" onclick="clickBtn1()" />
 
-  <div class="beats-wrapper slider" id="p1">
+  <div class="beats-wrapper slider" id="hard">
     <% @beats_hard.each do |beat| %>
       <div class="card mb-3" style="max-width: 540px;">
         <%# ↓turbolinkを無効にして画面遷移時にJSを読み込ませる↓ %>
@@ -64,7 +64,7 @@
     <% end %>
   </div>
 
-  <div class="beats-wrapper slider" id="p2">
+  <div class="beats-wrapper slider" id="nomal">
     <% @beats_nomal.each do |beat| %>
       <div class="card mb-3" style="max-width: 540px;">
         <%# ↓turbolinkを無効にして画面遷移時にJSを読み込ませる↓ %>
@@ -126,21 +126,24 @@
 
 
 //レベル切り替えボタン
-document.getElementById("p1").style.display ="block";
-document.getElementById("p2").style.display ="none";
+document.getElementById("hard").style.display ="block";
+document.getElementById("nomal").style.display ="none";
 
 function clickBtn1(){
-	const p1 = document.getElementById("p1");
-  const p2 = document.getElementById("p2");
+	const hard = document.getElementById("hard");
+  const nomal = document.getElementById("nomal");
+  const level = document.getElementById("levelbutton");
 
-	if(p1.style.display=="block"){
+	if(hard.style.display=="block"){
 		// noneで非表示
-		p1.style.display ="none";
-		p2.style.display ="block";
+		hard.style.display ="none";
+		nomal.style.display ="block";
+    levelbutton.value = "Nomal"
 	}else{
 		// blockで表示
-		p1.style.display ="block";
-		p2.style.display ="none";
+		hard.style.display ="block";
+		nomal.style.display ="none";
+    levelbutton.value = "Hard"
 	}
 }
 </script>
