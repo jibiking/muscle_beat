@@ -220,6 +220,49 @@ nav.globalMenuSp ul li a {
 }
 
 
+// ランキング
+.ranking-pop {
+  position: fixed;
+  z-index : 2;
+  top  : 0;
+  left : 0;
+  color: #fff;
+  background: rgba(0,0,0,0.7);
+  text-align: center;
+  width: 172%;
+  height: 100%;
+  display: none;
+}
+
+.ranking-pop ul {
+  margin: 0 auto;
+  padding: 0;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.ranking-pop ul li {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  transition: .4s all;
+}
+.ranking-pop ul li:first-child{
+  font-size: 2rem;
+}
+.ranking-pop ul li:last-child {
+  padding-bottom: 0;
+}
+
+.ranking-pop ul li a {
+  display: block;
+  color: #fff;
+  text-shadow: 0 0 1px #ff00de, 0 0 2px #ff00de, 0 0 3px #ff00de, 0 0 4px #ff00de, 0 0 7px #ff00de, 0 0 8px #ff00de, 0 0 10px #ff00de, 0 0 15px #ff00de;
+  padding: 1em 0;
+  text-decoration :none;
+}
+
+
 // レベル切り替えボタン
 .level-wrapper {
   position: absolute;

@@ -5,7 +5,6 @@ class BeatsController < ApplicationController
   def index
     @beats_hard = Beat.where(level: 'hard')
     @beats_nomal = Beat.where(level: 'nomal')
-    # @beats = Beat.all
   end
 
   def show; end
