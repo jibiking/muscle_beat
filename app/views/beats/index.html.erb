@@ -123,16 +123,31 @@
                 <p class="card-text">筋トレ部位：<span class="fz-rem"><%= beat.training_muscle %></span></p>
 
                 <%# 動的ランキング機能 %>
-                <p class="card-text ranking-btn-<%= beat.id %>"><a>ランキング</a></p>
-                  <div class="ranking-pop ranking-pop-<%= beat.id %>">
-                    <ul>
-                      <li><%= beat.title %></li>
-                      <% Score.where(beat_id: beat.id).order(score: :desc).each do |rank| %>
-                        <li><%= rank.score %></li>
+                <p class="card-text ranking-btn-<%= beat.id %>"><a class="ranking-btn">ランキング</a></p>
+                  <table class="ranking-pop ranking-pop-<%= beat.id %>">
+                    <thead>
+                      <tr>
+                        <th>Rank</th>
+                        <th>Score</th>
+                        <th>Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% Score.includes(:user).where(beat_id: beat.id).limit(5).order(score: :desc).each_with_index do |rank, i| %>
+                      <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= rank.score %></td>
+                        <td><%= rank.user.user_name %></td>
+                      </tr>
                       <% end %>
-                      <li class="ranking-btn-<%= beat.id %>">閉じる</li>
-                    </ul>
-                  </div>
+                      <tr>
+                        <td></td>
+                        <td><div class="ranking-btn-<%= beat.id %> ranking-btn">閉じる</div></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
                   <script>
                     $(document).on('turbolinks:load', function () {
                       $('.ranking-btn-<%= beat.id %>').click(function() {
