@@ -61,21 +61,26 @@
                   <div class="ranking-pop ranking-pop-<%= beat.id %>">
                     <ul>
                       <li><%= beat.title %></li>
-                      <% Score.where(beat_id: beat.id).order(score: :desc).each do |rank| %>
-                        <li><%= rank.score %></li>
+                      <% Score.includes(:user).where(beat_id: beat.id).order(score: :desc).each do |rank| %>
+                        <li>
+                          <span>1</span>
+                          <span><%= rank.user.user_name %></span>
+                          <%= rank.score %>
+                        </li>
                       <% end %>
                       <li class="ranking-btn-<%= beat.id %>">閉じる</li>
                     </ul>
                   </div>
+
                   <script>
                     $(document).on('turbolinks:load', function () {
                       $('.ranking-btn-<%= beat.id %>').click(function() {
                         $(this).toggleClass('active');
 
                         if ($(this).hasClass('active')) {
-                          $('.ranking-pop-<%= beat.id %>').fadeToggle(300);
+                          $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
                         } else {
-                          $('.ranking-pop-<%= beat.id %>').fadeToggle(300);
+                          $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
                         }
                       });
                     });
@@ -124,9 +129,9 @@
                         $(this).toggleClass('active');
 
                         if ($(this).hasClass('active')) {
-                          $('.ranking-pop-<%= beat.id %>').fadeToggle(300);
+                          $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
                         } else {
-                          $('.ranking-pop-<%= beat.id %>').fadeToggle(300);
+                          $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
                         }
                       });
                     });
