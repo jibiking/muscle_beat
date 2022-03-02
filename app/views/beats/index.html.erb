@@ -41,6 +41,7 @@
     <input id="levelbutton" class="btn" type="button" value="Hard" onclick="clickBtn1()" />
   </div>
 
+
   <div class="beats-wrapper slider" id="hard">
     <% @beats_hard.each do |beat| %>
       <div class="card mb-3" style="max-width: 540px;">
@@ -54,7 +55,47 @@
               <div class="card-body">
                 <h5 class="card-title"><span class="fz-rem">曲名：</span><span class="beat-ttl"><%= beat.title %></span></h5>
                 <p class="card-text">筋トレ部位：<span class="fz-rem"><%= beat.training_muscle %></span></p>
-                <p class="card-text"><%= link_to 'ランキング', ranking_index_path(beat), class: 'ranking-link' %></p>
+
+                <%# 動的ランキング機能 %>
+                <p class="card-text ranking-btn-<%= beat.id %>"><a class="ranking-btn">ランキング</a></p>
+                  <table class="ranking-pop ranking-pop-<%= beat.id %>">
+                    <thead>
+                      <tr>
+                        <th>Rank</th>
+                        <th>Score</th>
+                        <th>Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% Score.includes(:user).where(beat_id: beat.id).limit(5).order(score: :desc).each_with_index do |rank, i| %>
+                      <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= rank.score %></td>
+                        <td><%= rank.user.user_name %></td>
+                      </tr>
+                      <% end %>
+                      <tr>
+                        <td></td>
+                        <td><div class="ranking-btn-<%= beat.id %> ranking-btn">閉じる</div></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <script>
+                    $(document).on('turbolinks:load', function () {
+                      $('.ranking-btn-<%= beat.id %>').click(function() {
+                        $(this).toggleClass('active');
+
+                        if ($(this).hasClass('active')) {
+                          $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
+                        } else {
+                          $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
+                        }
+                      });
+                    });
+                  </script>
+
                 <% if current_user && current_user.admin? %>
                   <%= link_to '編集', edit_beat_path(beat), class: "lime" %>
                   <%= link_to '削除', beat_path(beat), method: :delete, data: {confirm: 'Beatを削除しますか？'}, class: "lime" %>
@@ -80,7 +121,47 @@
               <div class="card-body">
                 <h5 class="card-title"><span class="fz-rem">曲名：</span><span class="beat-ttl"><%= beat.title %></span></h5>
                 <p class="card-text">筋トレ部位：<span class="fz-rem"><%= beat.training_muscle %></span></p>
-                <p class="card-text"><%= link_to 'ランキング', ranking_index_path(beat), class: 'ranking-link' %></p>
+
+                <%# 動的ランキング機能 %>
+                <p class="card-text ranking-btn-<%= beat.id %>"><a class="ranking-btn">ランキング</a></p>
+                  <table class="ranking-pop ranking-pop-<%= beat.id %>">
+                    <thead>
+                      <tr>
+                        <th>Rank</th>
+                        <th>Score</th>
+                        <th>Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% Score.includes(:user).where(beat_id: beat.id).limit(5).order(score: :desc).each_with_index do |rank, i| %>
+                      <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= rank.score %></td>
+                        <td><%= rank.user.user_name %></td>
+                      </tr>
+                      <% end %>
+                      <tr>
+                        <td></td>
+                        <td><div class="ranking-btn-<%= beat.id %> ranking-btn">閉じる</div></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <script>
+                    $(document).on('turbolinks:load', function () {
+                      $('.ranking-btn-<%= beat.id %>').click(function() {
+                        $(this).toggleClass('active');
+
+                        if ($(this).hasClass('active')) {
+                          $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
+                        } else {
+                          $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
+                        }
+                      });
+                    });
+                  </script>
+
                 <% if current_user && current_user.admin? %>
                   <%= link_to '編集', edit_beat_path(beat), class: "lime" %>
                   <%= link_to '削除', beat_path(beat), method: :delete, data: {confirm: 'Beatを削除しますか？'}, class: "lime" %>

@@ -27,15 +27,15 @@ window.deviceMotionRequest = function(){
 
 
 // ハンバーガーメニュー
-$(function() {
+$(document).on('turbolinks:load', function () {
   $('.hamburger').click(function() {
-      $(this).toggleClass('active');
+    $(this).toggleClass('active');
 
-      if ($(this).hasClass('active')) {
-          $('.globalMenuSp').fadeToggle(300);
-      } else {
-          $('.globalMenuSp').fadeToggle(300);
-      }
+    if ($(this).hasClass('active')) {
+      $('.globalMenuSp').fadeToggle(300);
+    } else {
+      $('.globalMenuSp').fadeToggle(300);
+    }
   });
 });
 
