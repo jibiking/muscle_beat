@@ -58,19 +58,29 @@
 
                 <%# 動的ランキング機能 %>
                 <p class="card-text ranking-btn-<%= beat.id %>"><a>ランキング</a></p>
-                  <div class="ranking-pop ranking-pop-<%= beat.id %>">
-                    <ul>
-                      <li><%= beat.title %></li>
-                      <% Score.includes(:user).where(beat_id: beat.id).order(score: :desc).each do |rank| %>
-                        <li>
-                          <span>1</span>
-                          <span><%= rank.user.user_name %></span>
-                          <%= rank.score %>
-                        </li>
+                  <table class="ranking-pop ranking-pop-<%= beat.id %>">
+                    <thead>
+                      <tr>
+                        <th>Rank</th>
+                        <th>Score</th>
+                        <th>Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% Score.includes(:user).where(beat_id: beat.id).order(score: :desc).each_with_index do |rank, i| %>
+                      <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= rank.score %></td>
+                        <td><%= rank.user.user_name %></td>
+                      </tr>
                       <% end %>
-                      <li class="ranking-btn-<%= beat.id %>">閉じる</li>
-                    </ul>
-                  </div>
+                      <tr>
+                        <td></td>
+                        <td><div class="ranking-btn-<%= beat.id %>">閉じる</div></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
 
                   <script>
                     $(document).on('turbolinks:load', function () {
