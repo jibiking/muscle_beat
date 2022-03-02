@@ -14,7 +14,9 @@
  *= require_tree .
  */
 
+// フォント
 @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
 
 $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
@@ -24,5 +26,5 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/v4-shims';
 
 body {
-  font-family: 'Rowdies', cursive !important;
+  font-family: 'Rowdies', 'RocknRoll One', sans-serif !important;
 }
