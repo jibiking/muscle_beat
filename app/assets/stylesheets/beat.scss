@@ -82,21 +82,16 @@
 .fz-rem {
   font-size: 1.2rem;
 }
-.ranking-link {
-  color:#ff00de;
-}
-.ranking-link:hover {
-  color:#ff0080;
-}
 
 .beat-link {
   color: #fff;
   text-decoration: none;
 }
 .beat-link:hover {
-  color: #ff0080;
+  color: #fff;
   text-decoration: none;
 }
+
 
 // slick
 .slider {/*横幅94%で左右に余白を持たせて中央寄せ*/
@@ -227,13 +222,14 @@ nav.globalMenuSp ul li a {
   top  : 0;
   left : 0;
   color: #fff;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.8);
   text-align: center;
   width: 100%;
   height: 100%;
   max-height: 270px;
   display: none;
   table-layout: fixed;
+  overflow: scroll;
 }
 
 .ranking-pop tbody {
@@ -250,6 +246,11 @@ nav.globalMenuSp ul li a {
   height: 5px;
   transition: .4s all;
 }
+.ranking-pop tbody tr:first-child {
+  font-size: 1.3rem;
+  color: #fff;
+  text-shadow: 0 0 1px #ff00de, 0 0 2px #ff00de, 0 0 3px #ff00de, 0 0 4px #ff00de, 0 0 7px #ff00de, 0 0 8px #ff00de, 0 0 10px #ff00de, 0 0 15px #ff00de;
+}
 .ranking-pop tbody tr td {
   max-height: 50px;
 }
@@ -257,32 +258,13 @@ nav.globalMenuSp ul li a {
   padding-bottom: 0;
 }
 
-// .ranking-pop ul {
-//   margin: 0 auto;
-//   padding: 0;
-//   padding-top: 10px;
-//   width: 100%;
-// }
-
-// .ranking-pop ul li {
-//   list-style-type: none;
-//   padding: 0;
-//   width: 100%;
-//   transition: .4s all;
-// }
-// .ranking-pop ul li:first-child{
-//   font-size: 2rem;
-// }
-// .ranking-pop ul li:last-child {
-//   padding-bottom: 0;
-// }
-
-.ranking-pop ul li a {
-  display: block;
-  color: #fff;
-  text-shadow: 0 0 1px #ff00de, 0 0 2px #ff00de, 0 0 3px #ff00de, 0 0 4px #ff00de, 0 0 7px #ff00de, 0 0 8px #ff00de, 0 0 10px #ff00de, 0 0 15px #ff00de;
-  padding: 1em 0;
-  text-decoration :none;
+.ranking-btn {
+  color: #ff00de;
+  text-decoration: underline;
+  text-decoration-color: #ff00de;
+}
+.ranking-btn:hover {
+  color: #ff0080;
 }
 
 

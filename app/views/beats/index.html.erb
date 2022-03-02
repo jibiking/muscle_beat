@@ -57,7 +57,7 @@
                 <p class="card-text">筋トレ部位：<span class="fz-rem"><%= beat.training_muscle %></span></p>
 
                 <%# 動的ランキング機能 %>
-                <p class="card-text ranking-btn-<%= beat.id %>"><a>ランキング</a></p>
+                <p class="card-text ranking-btn-<%= beat.id %>"><a class="ranking-btn">ランキング</a></p>
                   <table class="ranking-pop ranking-pop-<%= beat.id %>">
                     <thead>
                       <tr>
@@ -67,7 +67,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <% Score.includes(:user).where(beat_id: beat.id).order(score: :desc).each_with_index do |rank, i| %>
+                      <% Score.includes(:user).where(beat_id: beat.id).limit(5).order(score: :desc).each_with_index do |rank, i| %>
                       <tr>
                         <td><%= i + 1 %></td>
                         <td><%= rank.score %></td>
@@ -76,7 +76,7 @@
                       <% end %>
                       <tr>
                         <td></td>
-                        <td><div class="ranking-btn-<%= beat.id %>">閉じる</div></td>
+                        <td><div class="ranking-btn-<%= beat.id %> ranking-btn">閉じる</div></td>
                         <td></td>
                       </tr>
                     </tbody>
