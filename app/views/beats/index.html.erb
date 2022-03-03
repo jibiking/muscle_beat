@@ -58,41 +58,31 @@
 
                 <%# 動的ランキング機能 %>
                 <p class="card-text ranking-btn-<%= beat.id %>"><a class="ranking-btn">ランキング</a></p>
-                  <table class="ranking-pop ranking-pop-<%= beat.id %>">
-                    <thead>
-                      <tr>
-                        <th>Rank</th>
-                        <th>Score</th>
-                        <th>Name</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+                  <ul class="ranking-pop ranking-pop-<%= beat.id %>">
+                    <ul class="">
+                      <li class="ranking-ttl"><%= beat.title %></li>
+                    </ul>
+                    <ul>
                       <% Score.includes(:user).where(beat_id: beat.id).limit(5).order(score: :desc).each_with_index do |rank, i| %>
-                      <tr>
-                        <td><%= i + 1 %></td>
-                        <td><%= rank.score %></td>
-                        <td><%= rank.user.user_name %></td>
-                      </tr>
+                        <ul class="ranking-contents flex">
+                          <li class="ranking-rank"><%= i + 1 %></li>
+                          <li><%= rank.score %></li>
+                          <li><%= rank.user.user_name %></li>
+                        </ul>
                       <% end %>
-                      <tr>
-                        <td></td>
-                        <td><div class="ranking-btn-<%= beat.id %> ranking-btn">閉じる</div></td>
-                        <td></td>
-                      </tr>
-                    </tbody>
-                  </table>
+                      <div class="ranking-btn-<%= beat.id %> ranking-btn">閉じる</div>
+                    </ul>
+                  </ul>
 
                   <script>
-                    $(document).on('turbolinks:load', function () {
-                      $('.ranking-btn-<%= beat.id %>').click(function() {
-                        $(this).toggleClass('active');
+                    $('.ranking-btn-<%= beat.id %>').click(function() {
+                      $(this).toggleClass('active');
 
-                        if ($(this).hasClass('active')) {
-                          $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
-                        } else {
-                          $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
-                        }
-                      });
+                      if ($(this).hasClass('active')) {
+                        $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
+                      } else {
+                        $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
+                      }
                     });
                   </script>
 
@@ -124,41 +114,31 @@
 
                 <%# 動的ランキング機能 %>
                 <p class="card-text ranking-btn-<%= beat.id %>"><a class="ranking-btn">ランキング</a></p>
-                  <table class="ranking-pop ranking-pop-<%= beat.id %>">
-                    <thead>
-                      <tr>
-                        <th>Rank</th>
-                        <th>Score</th>
-                        <th>Name</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+                  <ul class="ranking-pop ranking-pop-<%= beat.id %>">
+                    <ul class="">
+                      <li class="ranking-ttl"><%= beat.title %></li>
+                    </ul>
+                    <ul>
                       <% Score.includes(:user).where(beat_id: beat.id).limit(5).order(score: :desc).each_with_index do |rank, i| %>
-                      <tr>
-                        <td><%= i + 1 %></td>
-                        <td><%= rank.score %></td>
-                        <td><%= rank.user.user_name %></td>
-                      </tr>
+                        <ul class="ranking-contents flex">
+                          <li class="ranking-rank"><%= i + 1 %></li>
+                          <li><%= rank.score %></li>
+                          <li><%= rank.user.user_name %></li>
+                        </ul>
                       <% end %>
-                      <tr>
-                        <td></td>
-                        <td><div class="ranking-btn-<%= beat.id %> ranking-btn">閉じる</div></td>
-                        <td></td>
-                      </tr>
-                    </tbody>
-                  </table>
+                      <div class="ranking-btn-<%= beat.id %> ranking-btn">閉じる</div>
+                    </ul>
+                  </ul>
 
                   <script>
-                    $(document).on('turbolinks:load', function () {
-                      $('.ranking-btn-<%= beat.id %>').click(function() {
-                        $(this).toggleClass('active');
+                    $('.ranking-btn-<%= beat.id %>').click(function() {
+                      $(this).toggleClass('active');
 
-                        if ($(this).hasClass('active')) {
-                          $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
-                        } else {
-                          $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
-                        }
-                      });
+                      if ($(this).hasClass('active')) {
+                        $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
+                      } else {
+                        $('.ranking-pop-<%= beat.id %>').fadeToggle(200);
+                      }
                     });
                   </script>
 
