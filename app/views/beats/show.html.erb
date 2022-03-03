@@ -46,6 +46,7 @@ var ASSETS = {
   },
   image: {
     'bg': "<%= asset_path("club.png") %>",
+    'bg2': "<%= asset_path("dj.png") %>",
     'sprite': "<%= @beat.gif.url %>",
   },
     // スプライトシート
@@ -320,10 +321,8 @@ phina.define('ScoreScene', {
 
     // シーン遷移（ビート一覧へ遷移）
     homeButton.onclick = function(){
-      // this.exit(); //デバッグ用
       window.location.href = '/beats';
     };
-
 
 
     // シェアボタン
@@ -358,6 +357,13 @@ phina.define('ScoreScene', {
       // 画面遷移
       window.location.href = '/beats';
     };
+
+    // デバッグ用
+    this.onpointstart = function() {
+      // ResultSceneへ
+      this.exit();
+    };
+
   },
 });
 
@@ -476,7 +482,7 @@ phina.define('MainScene', {
     this.superInit(options);
     this.backgroundColor = "navy";
     // 背景
-    Sprite('bg').addChildTo(this)
+    Sprite('bg2').addChildTo(this)
                 .setPosition(this.gridX.center(), this.gridY.center());
 
     var self = this;
