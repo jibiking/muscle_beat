@@ -1,5 +1,8 @@
-<h1>New User</h1>
+<div class="user-wrapper">
+  <h1 class="ttl">New User</h1>
 
-<%= render 'form', user: @user %>
+  <%= render 'form', user: @user %>
 
-<%= link_to 'Back', users_path %>
+  <br>
+  <%= link_to 'ログインページへ', login_path, class: 'user-link' %>
+</div>
