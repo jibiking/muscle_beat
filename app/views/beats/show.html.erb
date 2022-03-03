@@ -45,9 +45,11 @@ var ASSETS = {
     // beatmap: "<%= @beat.notes.url %>" //本番用
   },
   image: {
-    'bg': "<%= asset_path("club.png") %>",
-    'bg2': "<%= asset_path("dj.png") %>",
+    'bg1': "<%= asset_path("bg1.png") %>",
+    'bg2': "<%= asset_path("bg2.png") %>",
+    'bg3': "<%= asset_path("bg3.png") %>",
     'sprite': "<%= @beat.gif.url %>",
+    'thumbnail': "<%= @beat.thumbnail.url %>",
   },
     // スプライトシート
   spritesheet: {
@@ -197,7 +199,7 @@ phina.define('TitleScene', {
   init: function(params) {
     this.superInit(params);
     this.backgroundColor = params.backgroundColor;
-    Sprite('bg').addChildTo(this)
+    Sprite('bg1').addChildTo(this)
             .setPosition(this.gridX.center(), this.gridY.center());
 
 
@@ -271,11 +273,11 @@ phina.define('ScoreScene', {
   init: function(params) {
     this.superInit(params);
     this.backgroundColor = params.backgroundColor;
-    Sprite('bg').addChildTo(this)
+    Sprite('bg3').addChildTo(this)
             .setPosition(this.gridX.center(), this.gridY.center());
     var gameScore = params.score
 
-    // タイトルラベル
+    // スコアラベル
     Label({
       text: "Score",
       fill: "white",
@@ -303,19 +305,36 @@ phina.define('ScoreScene', {
     .addChildTo(this)
 
 
+    Label({
+      text: '曲名：　<%= @beat.title %>　　部位：　<%= @beat.training_muscle %>　　レベル：　<%= @beat.level %>',
+      fill: "white",
+      stroke: "magenta",
+      strokeWidth: 2,
+      fontSize: 57,
+      fontFamily: 'Rowdies',
+      fontWeight:"bold",
+      shadow: "magenta",
+      shadowBlur: 50,
+    })
+    .setPosition(this.gridX.span(15.4), this.gridY.center())
+    .setRotation(90)
+    .addChildTo(this)
+
+
     // ホームボタン
     var homeButton = phina.ui.Button({
       text: 'Home',
       fontSize: 74,
       fontFamily: 'Rowdies',
       fontWeight: 'bold',
-      width: 300,
+      width: 240,
       height: 100,
       shadow: "white",
       shadowBlur: 10,
-      fill: 'magenta',
+      fill: 'rgba(127, 255, 255, 0)',
+      stroke: 'magenta'
     })
-    .setPosition(this.gridX.span(2.5), this.gridY.center())
+    .setPosition(this.gridX.span(1.1), this.gridY.center(6.5))
     .setRotation(90)
     .addChildTo(this);
 
@@ -325,18 +344,43 @@ phina.define('ScoreScene', {
     };
 
 
-    // シェアボタン
-    var shareButton = phina.ui.Button({
-      text: 'Twitter Share🕊',
+    // リトライボタン
+    var homeButton = phina.ui.Button({
+      text: 'Retry',
       fontSize: 74,
       fontFamily: 'Rowdies',
       fontWeight: 'bold',
-      width: 660,
+      width: 240,
       height: 100,
       shadow: "white",
-      shadowBlur: 3,
+      shadowBlur: 10,
+      fill: 'rgba(127, 255, 255, 0)',
+      stroke: 'magenta'
     })
-    .setPosition(this.gridX.span(4.5), this.gridY.center())
+    .setPosition(this.gridX.span(1.1), this.gridY.center(-6.5))
+    .setRotation(90)
+    .addChildTo(this);
+
+    // シーン遷移（ビート一覧へ遷移）
+    homeButton.onclick = function(){
+      window.location.href = '/beats/<%= @beat.id %>';
+    };
+
+
+    // シェアボタン
+    var shareButton = phina.ui.Button({
+      text: 'Twitter Share',
+      fontSize: 74,
+      fontFamily: 'Rowdies',
+      fontWeight: 'bold',
+      width: 580,
+      height: 100,
+      shadow: "white",
+      shadowBlur: 10,
+      fill: 'rgba(0, 255, 255, 0)',
+      stroke: 'rgba(29, 155, 240, 1)'
+    })
+    .setPosition(this.gridX.span(1.1), this.gridY.center())
     .setRotation(90)
     .addChildTo(this);
 
@@ -357,13 +401,6 @@ phina.define('ScoreScene', {
       // 画面遷移
       window.location.href = '/beats';
     };
-
-    // デバッグ用
-    this.onpointstart = function() {
-      // ResultSceneへ
-      this.exit();
-    };
-
   },
 });
 
