@@ -2,9 +2,8 @@
 
 .starts {
   background-image: image-url('index.png');
-  background-size: cover;
+  background-size: contain;
   text-align: center;
-  // padding-top: 50px;
 }
 
 .top-wrapper {
@@ -62,3 +61,7 @@
 
 
 // terms&privacyページ
+
+.terms-card-body {
+  padding: 1rem 0 !important;
+}
