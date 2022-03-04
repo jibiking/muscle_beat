@@ -2,3 +2,16 @@ ja:
   time:
     formats:
       default: "%m/%d %H:%M"
+  activerecord:
+    models:
+      user: ユーザー
+    # model毎に定義したいattributesを記述
+    attributes:
+      user:
+        user_name: ユーザーネーム
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+  # 全てのmodelで共通して使用するattributesを定義
+  attributes:
+    created_at: 作成日
+    updated_at: 更新日

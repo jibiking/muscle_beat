@@ -1,5 +1,12 @@
-<h1>New User</h1>
+<div class="user-wrapper">
+  <div class="flash">
+    <div id="notice"><%= flash[:notice] %></div>
+  </div>
 
-<%= render 'form', user: @user %>
+  <h1 class="ttl">New User</h1>
 
-<%= link_to 'Back', users_path %>
+  <%= render 'form', user: @user %>
+
+  <br>
+  <%= link_to 'ログインページへ', login_path, class: 'user-link' %>
+</div>

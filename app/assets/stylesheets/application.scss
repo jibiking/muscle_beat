@@ -28,3 +28,27 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 body {
   font-family: 'Rowdies', 'RocknRoll One', sans-serif !important;
 }
+
+// フラッシュメッセージ
+#notice {
+  text-shadow: 0 0 1px lime, 0 0 2px lime, 0 0 3px lime, 0 0 4px lime, 0 0 7px lime, 0 0 8px lime, 0 0 10px lime, 0 0 15px lime;
+  color: #fff !important;
+}
+
+.user_sessions .flash {
+  font-size: 1.4rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  z-index: 9999;
+  width: 100%;
+}
+
+.beats .flash {
+  font-size: 1.4rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  z-index: 9999;
+  top: 30%;
+  left: 37%;
+  width: 100%;
+}
