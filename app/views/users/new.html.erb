@@ -1,4 +1,8 @@
 <div class="user-wrapper">
+  <div class="flash">
+    <div id="notice"><%= flash[:notice] %></div>
+  </div>
+
   <h1 class="ttl">New User</h1>
 
   <%= render 'form', user: @user %>

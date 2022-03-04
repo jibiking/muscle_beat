@@ -58,3 +58,11 @@ $(document).on('turbolinks:load', function () {
     verticalSwiping: true,//垂直スワイプ
 	});
 });
+
+
+// フラッシュメッセージ
+$(document).on('turbolinks:load', function () {
+  $(function(){
+    $('.flash').fadeOut(4000);  //４秒かけて消えていく
+  });
+});
