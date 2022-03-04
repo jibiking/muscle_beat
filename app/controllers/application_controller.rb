@@ -5,10 +5,10 @@ class ApplicationController < ActionController::Base
   private
 
   def not_authenticated
-    redirect_to login_path, alert: "ログインが必要です！"
+    redirect_to login_path, notice: "ログインが必要です！"
   end
 
   def check_admin
-    redirect_to beats_path, warning: '権限がありません' unless current_user.admin?
+    redirect_to beats_path, notice: '権限がありません' unless current_user.admin?
   end
 end

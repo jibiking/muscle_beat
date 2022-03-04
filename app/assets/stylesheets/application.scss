@@ -30,8 +30,11 @@ body {
 }
 
 // レイアウトのみ
-.mt-30 {
-  margin-top: 30px !important;
+.mt-20 {
+  margin-top: 20px !important;
+}
+.mt-45 {
+  margin-top: 45px !important;
 }
 .mb-30 {
   margin-bottom: 30px !important;
@@ -39,6 +42,10 @@ body {
 
 .flex {
   display: flex;
+}
+
+.fz-rem {
+  font-size: 1.2rem;
 }
 
 

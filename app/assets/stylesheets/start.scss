@@ -1,9 +1,10 @@
 // topページ
 
 .starts {
-  background-image: image-url('top.png');
+  background-image: image-url('index.png');
   background-size: cover;
-  padding-top: 50px;
+  text-align: center;
+  // padding-top: 50px;
 }
 
 .top-wrapper {
@@ -26,4 +27,35 @@
 }
 .start-btn:hover {
   background-color: #ff0080 !important;
+}
+
+
+// explainページ
+
+.explain-wrapper {
+  margin-top: 30px !important;
+}
+.explain-text {
+  margin-top: 20px;
+}
+.explain-text-pink {
+  color: #ff00de;
+}
+.btn-index {
+  color: #fff !important;
+  background-color: #ff00de !important;
+  box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 2px #ff00de, 0 0 5px #ff00de, 0 0 6px #ff00de, 0 0 8px #ff00de, 0 0 15px #ff00de;
+  margin-top: 10px;
+}
+.btn-index:hover {
+  background-color: #ff0080 !important;
+}
+.btn-index2 {
+  color: #fff !important;
+  background-color: lime !important;
+  box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 2px lime, 0 0 5px lime, 0 0 6px lime, 0 0 8px lime, 0 0 15px lime;
+  margin-top: 10px;
+}
+.btn-index2:hover {
+  background-color: limegreen !important;
 }
