@@ -3,6 +3,8 @@
     <div id="notice"><%= flash[:notice] %></div>
   </div>
 
+  <%= render 'shared/humberger' %>
+
   <h1 class="ttl">New User</h1>
 
   <%= render 'form', user: @user %>
