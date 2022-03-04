@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :mypage, only: %i[index]
 
   get 'explain', to: 'starts#explain'
+  get 'terms', to: 'starts#terms'
+  get 'privacy', to: 'starts#privacy'
 
   get 'login', to: 'user_sessions#new', :as => :login
   post 'login', to: 'user_sessions#create'
