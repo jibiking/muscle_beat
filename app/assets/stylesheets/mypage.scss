@@ -17,5 +17,18 @@
 }
 
 .mypage-table {
-  margin: 0 auto;
+  margin: 25px auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+tr {
+  border-bottom: solid 1px rgba(255, 0, 255, 0.1) !important;
+}
+td {
+  padding: 8px 6px;
+}
+
+.mypage-pink {
+  color: #fff;
+  text-shadow: 0 0 1px #ff00de, 0 0 2px #ff00de, 0 0 3px #ff00de, 0 0 4px #ff00de, 0 0 7px #ff00de, 0 0 8px #ff00de, 0 0 10px #ff00de, 0 0 15px #ff00de;
+  font-size: 1.2rem;
 }
