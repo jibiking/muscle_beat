@@ -1,6 +1,7 @@
 class ScoresController < ApplicationController
   protect_from_forgery
   before_action :set_score, only: %i[ destroy ]
+  skip_before_action :check_admin, only: [:create]
 
   def index
     @scores = Score.all

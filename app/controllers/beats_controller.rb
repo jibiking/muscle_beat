@@ -1,5 +1,6 @@
 class BeatsController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
+  skip_before_action :check_admin, only: %i[index show]
   before_action :set_beat, only: %i[ show edit update destroy ]
 
   def index
