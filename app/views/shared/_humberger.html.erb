@@ -1,0 +1,34 @@
+<%# ハンバーガーメニュー %>
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav class="globalMenuSp">
+    <% if current_user && current_user.admin? %>
+      <ul>
+        <li><%= link_to "Muscle Beat", root_path %></li>
+        <li><%= link_to "使い方", beats_path %></li>
+        <li><%= link_to "ビート一覧", beats_path %></li>
+        <li><%= link_to "マイページ", mypage_index_path %></li>
+        <li><%= link_to "ログアウト", :logout, method: :post %></li>
+        <li><%= link_to "ユーザー一覧", users_path %></li>
+      </ul>
+    <% elsif current_user %>
+      <ul>
+        <li><%= link_to "Muscle Beat", root_path %></li>
+        <li><%= link_to "使い方", beats_path %></li>
+        <li><%= link_to "ビート一覧", beats_path %></li>
+        <li><%= link_to "マイページ", mypage_index_path %></li>
+        <li><%= link_to "ログアウト", :logout, method: :post %></li>
+      </ul>
+    <% else %>
+      <ul>
+        <li><%= link_to "Muscle Beat", root_path %></li>
+        <li><%= link_to "使い方", beats_path %></li>
+        <li><%= link_to "ビート一覧", beats_path %></li>
+        <li><%= link_to "ログイン", :login %></li>
+        <li><%= link_to "新規登録", new_user_path %></li>
+      </ul>
+    <% end %>
+  </nav>
