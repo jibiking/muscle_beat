@@ -20,7 +20,7 @@
 
     <tbody>
       <% @scores.each do |score| %>
-        <tr class="mb-10">
+        <tr>
           <td><%= l score.created_at %></td>
           <td class="mypage-pink"><%= score.score %></td>
           <td><%= score.beat.title %></td>

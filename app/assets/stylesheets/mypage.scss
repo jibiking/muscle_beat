@@ -1,9 +1,5 @@
 // mypage#index
 
-.mb-10 {
-  margin-bottom: 10px;
-}
-
 .mypage {
   background-image: image-url('index.png');
   background-size: cover;
@@ -23,6 +19,12 @@
 .mypage-table {
   margin: 25px auto;
   background-color: rgba(0, 0, 0, 0.5);
+}
+tr {
+  border-bottom: solid 1px rgba(255, 0, 255, 0.1) !important;
+}
+td {
+  padding: 8px 6px;
 }
 
 .mypage-pink {
