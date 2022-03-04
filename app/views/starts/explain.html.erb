@@ -1,24 +1,33 @@
+<%= render 'shared/humberger' %>
+
 <h1 class="ttl">Explain</h1>
 
 <div class="card mb-3 explain-wrapper" style="max-width: 540px;">
-    <div class="row g-0">
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title mb-30">始める前に…</h5>
-          <p class="card-text explain-text">1. マナーモードを<span class="explain-text-pink">オフ</span>にしてください！！</p>
-          <p class="card-text explain-text">2. 画面の自動回転を<span class="explain-text-pink">オフ</span>にしてください！</p>
-          <p class="card-text explain-text">3. 下ボタンをクリックして<span class="explain-text-pink">「動作と方向へのアクセス」</span>を許可してください！</p>
-          <div class="btn btn-index" onClick="deviceMotionRequest()">クリック</div>
-          <p class="card-text explain-text mt-30">4. <span class="explain-text-pink">プレイ画面</span>の説明は下画像の通りです！</p>
-          <div class="col-md-4">
-            <%= image_tag 'explain1.png', class: 'img-fluid rounded-start' %>
-          </div>
-          <p class="card-text explain-text mt-30">5. <span class="explain-text-pink">曲選択画面</span>の説明は下画像の通りです！</p>
-          <div class="col-md-4">
-            <%= image_tag 'explain2.png', class: 'img-fluid rounded-start' %>
-          </div>
-          <p class="card-text explain-text mt-30">5. 1~5の確認ができたら、下の曲カードをクリックして<span class="explain-text-pink">GAME START!!!</span></p>
+  <div class="row g-0">
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title mb-30">始める前に…</h5>
+        <p class="card-text explain-text">1. マナーモードを<span class="explain-text-pink">オフ</span>にしてください！！</p>
+        <p class="card-text explain-text">2. 画面の自動回転を<span class="explain-text-pink">オフ</span>にしてください！</p>
+        <p class="card-text explain-text">3. 下ボタンをクリックして<span class="explain-text-pink">「動作と方向へのアクセス」</span>を許可してください！</p>
+        <div class="btn btn-index" onClick="deviceMotionRequest()">クリック</div>
+        <p class="card-text explain-text mt-45">4. <span class="explain-text-pink">プレイ画面</span>の説明は下画像の通りです！</p>
+        <div class="col-md-4">
+          <%= image_tag 'explain1.png', class: 'img-fluid rounded-start' %>
         </div>
+        <p class="card-text explain-text mt-45">5. <span class="explain-text-pink">曲選択画面</span>の説明は下画像の通りです！</p>
+        <div class="col-md-4">
+          <%= image_tag 'explain2.png', class: 'img-fluid rounded-start' %>
+        </div>
+        <p class="card-text explain-text mt-45">6. 1~5の確認ができたら、下の曲カードをクリックして<span class="explain-text-pink fz-rem">GAME START!!!</span></p>
+
+        <%= link_to beat_path(8), data: {"turbolinks" => false} do %>
+          <div class="btn btn-index mt-45 fz-rem">GAME START</div><br>
+        <% end %>
+        <%= link_to beats_path do %>
+          <div class="btn btn-index2 fz-rem mt-20">曲を選択する!!</div>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
