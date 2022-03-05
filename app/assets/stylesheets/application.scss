@@ -186,15 +186,15 @@ footer {
   padding: 5px;
   text-align: center;
 }
-.footer-absolute {
-  position: absolute;
+.footer-fixed {
+  position: fixed;
   bottom: 0;
   right: 0;
   left: 0;
 }
 footer ul {
   padding: 0;
-  margin-bottom: 3px;
+  margin-bottom: 0;
   justify-content: center;
 }
 footer li {
@@ -202,7 +202,7 @@ footer li {
 }
 footer li a {
   color: #fff;
-  text-shadow: 0 0 1px lime, 0 0 2px lime, 0 0 3px lime, 0 0 4px lime, 0 0 7px lime, 0 0 8px lime, 0 0 10px lime, 0 0 15px lime;
+  text-shadow: lime 0.5px 0 10px;
   text-decoration: none;
 }
 footer li:nth-of-type(2) {
