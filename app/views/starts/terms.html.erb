@@ -1,6 +1,6 @@
 <%= render 'shared/humberger' %>
 
-<h1 class="ttl">利用規約</h1>
+<h1 class="ttl">Terms of Service</h1>
 
 
 <div class="card mb-3 explain-wrapper" style="max-width: 540px;">
@@ -9,7 +9,9 @@
       <div class="card-body">
 
         <div class="container  px-lg-5">
-
+          <div class='mt-4'>
+            <h1>利用規約</h1>
+          </div>
           <p class="mb-5">　この利用規約（以下、「本規約」といいます。）は、このウェブサイト上で提供するサービス（以下、「本サービス」といいます。）の利用条件を定めるものです。本サービスのご利用ユーザーの皆さま（以下、「ユーザー」といいます。）には、本規約に従って本サービスをご利用いただきます。</p>
           <div class="row gx-4 gx-lg-5">
             <div class="col-md-10 col-lg-10 mx-auto mb-5">
@@ -86,12 +88,4 @@
   </div>
 </div>
 
-<footer>
-  <ul class="flex">
-    <li><%= link_to '利用規約', terms_path %></li>
-    <li><%= link_to 'プライバシーポリシー', privacy_path %></li>
-    <li><%= link_to 'お問合せ', contact_path %></li>
-  </ul>
-  <div class="copyright">&copy; 2022 Muscle Beat</div>
-
-</footer>
+<%= render 'shared/footer' %>
