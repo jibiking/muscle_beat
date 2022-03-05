@@ -77,7 +77,7 @@ body {
 /*　ハンバーガーボタン　*/
 .hamburger {
   display : block;
-  position: absolute;
+  position: fixed;
   z-index : 3;
   right : 10px;
   top   : 12px;
