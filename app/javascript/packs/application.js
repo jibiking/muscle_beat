@@ -16,7 +16,7 @@ import "bootstrap";
 import "../stylesheets/application.scss";
 
 // JavaScript追加
-import "../packs/common/common";
+import "./common";
 
 // fontawesome追加
 import '@fortawesome/fontawesome-free/js/all';

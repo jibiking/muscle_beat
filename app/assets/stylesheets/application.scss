@@ -77,7 +77,7 @@ body {
 /*　ハンバーガーボタン　*/
 .hamburger {
   display : block;
-  position: absolute;
+  position: fixed;
   z-index : 3;
   right : 10px;
   top   : 12px;
@@ -172,7 +172,7 @@ nav.globalMenuSp ul li a {
 /*　beats/indexハンバーガーボタン　*/
 // 変更点のみ記載
 .beats .hamburger {
-  right : -260px;
+  right : -250px;
 }
 .beats nav.globalMenuSp {
   width: 172%;

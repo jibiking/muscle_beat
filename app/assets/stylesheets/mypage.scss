@@ -2,7 +2,7 @@
 
 .mypage {
   background-image: image-url('index.png');
-  background-size: cover;
+  background-size: contain;
   color: #fff;
 }
 .mypage-wrapper {
@@ -19,6 +19,7 @@
 .mypage-table {
   margin: 25px auto;
   background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 1px #ff00de, 0 0 2px #ff00de, 0 0 3px #ff00de, 0 0 4px #ff00de, 0 0 3px #ff00de;
 }
 tr {
   border-bottom: solid 1px rgba(255, 0, 255, 0.1) !important;
