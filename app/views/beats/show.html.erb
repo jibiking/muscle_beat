@@ -36,13 +36,11 @@ var RATING_TABLE = {
 
 var ASSETS = {
   sound: {
-    music: "<%= asset_path("lightItUp.mp3") %>", //デバッグ用
-    // music: "<%= @beat.music.url %>", //本番用
+    music: "<%= @beat.music.url %>", //本番用
     ring: "<%= asset_path("kick052.mp3") %>",
   },
   json: {
-    beatmap: "<%= asset_path("notes.json") %>" //デバッグ用
-    // beatmap: "<%= @beat.notes.url %>" //本番用
+    beatmap: "<%= @beat.notes.url %>" //本番用
   },
   image: {
     'bg1': "<%= asset_path("bg1.png") %>",
