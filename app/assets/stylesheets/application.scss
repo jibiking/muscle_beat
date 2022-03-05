@@ -177,3 +177,31 @@ nav.globalMenuSp ul li a {
 .beats nav.globalMenuSp {
   width: 172%;
 }
+
+
+// footer
+footer {
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-top: 30px;
+  padding: 5px;
+}
+footer ul {
+  padding: 0;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+footer li {
+  list-style: none;
+}
+footer li a {
+  color: #fff;
+  text-shadow: 0 0 1px lime, 0 0 2px lime, 0 0 3px lime, 0 0 4px lime, 0 0 7px lime, 0 0 8px lime, 0 0 10px lime, 0 0 15px lime;
+}
+footer li:nth-of-type(2) {
+  margin: 0 30px;
+}
+
+.copyright {
+  color: #fff;
+  text-shadow: 0 0 1px #ff00de, 0 0 2px #ff00de, 0 0 3px #ff00de, 0 0 4px #ff00de, 0 0 7px #ff00de, 0 0 8px #ff00de, 0 0 10px #ff00de, 0 0 15px #ff00de;
+}
