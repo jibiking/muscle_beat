@@ -61,7 +61,18 @@
 
 
 // terms&privacyページ
+.container {
+  text-align: left;
+}
 
 .terms-card-body {
   padding: 1rem 0 !important;
+}
+
+.btn-twitter {
+  color: #fff !important;
+  background-color: #55acee !important;
+}
+.fa-twitter {
+  margin-right: 10px;
 }
