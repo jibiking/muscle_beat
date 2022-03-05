@@ -2,9 +2,8 @@
 
 .starts {
   background-image: image-url('index.png');
-  background-size: cover;
+  background-size: contain;
   text-align: center;
-  // padding-top: 50px;
 }
 
 .top-wrapper {
@@ -58,4 +57,26 @@
 }
 .btn-index2:hover {
   background-color: limegreen !important;
+}
+
+
+// terms&privacyページ
+.container {
+  text-align: left;
+}
+
+.terms-card-body {
+  padding: 1rem 0 !important;
+}
+
+.twitter-link {
+  text-align: center;
+}
+.btn-twitter {
+  color: #fff !important;
+  background-color: #55acee !important;
+  box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 2px #55acee, 0 0 5px #55acee, 0 0 6px #55acee, 0 0 8px #55acee, 0 0 15px #55acee;
+}
+.fa-twitter {
+  margin-right: 10px;
 }
