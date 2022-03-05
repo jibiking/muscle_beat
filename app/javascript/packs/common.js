@@ -46,8 +46,9 @@ document.addEventListener("turbolinks:before-cache", function(){
 });
 $(document).on('turbolinks:load', function () {
 	$('.slider').slick({
-		// autoplay: true,//自動的に動き出すか。初期値はfalse。
+		autoplay: true,//自動的に動き出すか。初期値はfalse。
 		infinite: true,//スライドをループさせるかどうか。初期値はtrue。
+    autoplaySpeed: 2000,//スライド切り替えのスピード
 		speed: 300,//スライドのスピード。初期値は300。
 		slidesToShow: 3,//スライドを画面に3枚見せる
 		slidesToScroll: 1,//1回のスクロールで1枚の写真を移動して見せる
