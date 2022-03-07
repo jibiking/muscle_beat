@@ -40,6 +40,9 @@
   height: 100%;
   margin: 0 auto;
 }
+.card-body {
+  padding: 1rem 0.3rem !important;
+}
 .card-title {
   font-size: 1.8rem;
 }
@@ -51,6 +54,9 @@
 }
 .fz-rem {
   font-size: 1.2rem;
+}
+.training-muscle {
+  text-shadow: lime 0.5px 0 10px;
 }
 
 .beat-link {
