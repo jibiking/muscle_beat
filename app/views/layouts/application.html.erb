@@ -7,6 +7,16 @@
     <%= csp_meta_tag %>
     <%# favicon %>
     <%= favicon_link_tag('favicon.ico') %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173084008-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-173084008-2');
+    </script>
+
     <%# Twitterカード設定 %>
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@ji_bi__" />
