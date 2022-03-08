@@ -1,7 +1,7 @@
 class BeatsController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
   skip_before_action :check_admin, only: %i[index show]
-  before_action :set_beat, only: %i[ show edit update destroy ]
+  before_action :set_beat, only: %i[show edit update destroy]
 
   def index
     @beats_hard = Beat.where(level: 'hard')
@@ -29,7 +29,7 @@ class BeatsController < ApplicationController
 
   def update
     if @beat.update(beat_params)
-      redirect_to beats_path, notice: "ビートを更新しました！"
+      redirect_to beats_path, notice: 'ビートを更新しました！'
     else
       render :beats, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class BeatsController < ApplicationController
 
   def destroy
     @beat.destroy
-    redirect_to beats_path, notice: "ビートを削除しました！"
+    redirect_to beats_path, notice: 'ビートを削除しました！'
   end
 
   private
@@ -47,6 +47,7 @@ class BeatsController < ApplicationController
   end
 
   def beat_params
-    params.require(:beat).permit(:title, :url, :training_muscle, :level, :user_id, :thumbnail, :training_description, :gif, :music, :notes)
+    params.require(:beat).permit(:title, :url, :training_muscle, :level, :user_id, :thumbnail,
+                                 :training_description, :gif, :music, :notes)
   end
 end
