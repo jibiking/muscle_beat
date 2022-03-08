@@ -27,6 +27,16 @@
 class Beat < ApplicationRecord
   belongs_to :user
 
+  validates :title, presence: true
+  validates :url, presence: true
+  validates :training_muscle, presence: true
+  validates :level, presence: true
+  validates :thumbnail, presence: true
+  validates :training_description, presence: true
+  validates :gif, presence: true
+  validates :music, presence: true
+  validates :notes, presence: true
+
   enum level: { nomal: 0, hard: 1 }
 
   mount_uploader :thumbnail, ThumbnailUploader

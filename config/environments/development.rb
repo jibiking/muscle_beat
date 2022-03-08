@@ -1,4 +1,4 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -84,5 +84,5 @@ Rails.application.configure do
   end
 
   # ホワイトリストに許可したいhostを追加
-  config.hosts << "d1d3-240b-11-c1a3-ee00-30a6-bb99-5054-8383.ngrok.io"
+  config.hosts << 'd1d3-240b-11-c1a3-ee00-30a6-bb99-5054-8383.ngrok.io'
 end

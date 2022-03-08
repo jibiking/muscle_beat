@@ -22,4 +22,6 @@
 class Score < ApplicationRecord
   belongs_to :user
   belongs_to :beat
+
+  validates :score, presence: true
 end
