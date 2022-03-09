@@ -389,11 +389,11 @@ phina.define('ScoreScene', {
 
     // クリック動作
     shareButton.onclick = function(){
-      var text = 'ナイスビートッ！！！\nScore: {0}\n{1}\n'.format(params.score);
+      var text = '#MuscleBeat をプレイしました💪\n\n曲名: <%= @beat.title %>\n筋トレ部位: <%= @beat.training_muscle %>\nスコア: {0}\n{1}\n'.format(params.score);
       var url = phina.social.Twitter.createURL({
         text: text,
-        hashtags: 'MuscleBeat',
-        url: 'http://muscle-beat.herokuapp.com',
+        hashtags: '',
+        url: 'https://www.muscle-beat.com',
       });
       window.open(url, 'share window', 'width=480, height=320');
       // 画面遷移
