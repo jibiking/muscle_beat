@@ -43,6 +43,10 @@ gem 'aws-sdk-s3', require: false
 gem 'dotenv-rails'
 gem 'fog-aws'
 
+# sitemap設置用
+gem 'sitemap_generator'
+gem 'aws-sdk'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

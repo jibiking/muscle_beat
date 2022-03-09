@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'terms', to: 'starts#terms'
   get 'privacy', to: 'starts#privacy'
   get 'contact', to: 'starts#contact'
+  get '/sitemap', to: redirect("https://s3-ap-northeast-1.amazonaws.com/muscle-beat/sitemaps/sitemap.xml.gz")
 
   get 'login', to: 'user_sessions#new', as: :login
   post 'login', to: 'user_sessions#create'
