@@ -44,8 +44,8 @@ gem 'dotenv-rails'
 gem 'fog-aws'
 
 # sitemap設置用
-gem 'sitemap_generator'
 gem 'aws-sdk'
+gem 'sitemap_generator'
 
 # metaタグ
 gem 'meta-tags'
