@@ -384,7 +384,7 @@ phina.define('ScoreScene', {
 
     var params = {
       score: params.score,
-      // hashtags: [""]
+      hashtags: ["筋トレ", "ダイエット"]
     };
 
     // クリック動作
@@ -392,7 +392,7 @@ phina.define('ScoreScene', {
       var text = '#MuscleBeat をプレイしました💪\n\n曲名: <%= @beat.title %>\n筋トレ部位: <%= @beat.training_muscle %>\nスコア: {0}\n{1}\n'.format(params.score);
       var url = phina.social.Twitter.createURL({
         text: text,
-        hashtags: '',
+        hashtags: params.hashtags,
         url: 'https://www.muscle-beat.com',
       });
       window.open(url, 'share window', 'width=480, height=320');
