@@ -17,13 +17,8 @@
       gtag('config', 'UA-173084008-2');
     </script>
 
-    <%# Twitterカード設定 %>
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@ji_bi__" />
-    <meta property="og:url" content="https://www.muscle-beat.com" />
-    <meta property="og:title" content="MuscleBeat" />
-    <meta property="og:description" content="１分間でシェイプアップ！筋トレ×音ゲー×EDMの新感覚トレーニングアプリ" />
-    <meta property="og:image" content="https://www.muscle-beat.com/assets/ogp.png" />
+    <%# metaタグ %>
+    <%= display_meta_tags(default_meta_tags) %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
