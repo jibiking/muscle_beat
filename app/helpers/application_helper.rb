@@ -17,7 +17,7 @@ module ApplicationHelper
       og: {
         site_name: 'MuscleBeat - 筋トレ×音ゲー×EDMの新感覚トレーニングアプリ',
         title: 'MuscleBeat - 筋トレ×音ゲー×EDMの新感覚トレーニングアプリ',
-        description: '１分間でシェイプアップ！ノリノリ筋トレで高得点を目指せ！！！',
+        description: '１分間でシェイプアップ！ノリノリ筋トレで高得点を目指せ！',
         type: 'website',
         url: request.original_url,
         image: image_url('ogp.png'),
