@@ -18,9 +18,9 @@ RSpec.describe User, type: :model do
       end
 
       it '名前が４文字以上のユーザーは作成されないこと' do
-        null_user_name = User.new(user_name: 'user5', password: 'password', password_confirmation: 'password')
-        expect(null_user_name.valid?).to be false
-        expect(null_user_name.errors.messages[:user_name]).to eq ["は4文字以内で入力してください"]
+        over_user_name = User.new(user_name: 'user5', password: 'password', password_confirmation: 'password')
+        expect(over_user_name.valid?).to be false
+        expect(over_user_name.errors.messages[:user_name]).to eq ["は4文字以内で入力してください"]
       end
     end
   end
