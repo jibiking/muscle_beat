@@ -25,7 +25,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: lambda {
                                                           new_record? || changes[:crypted_password]
                                                         }
-  validates :user_name, uniqueness: true, length: { maximum: 4 }
+  validates :user_name, uniqueness: true, length: { maximum: 4 }, presence: true
 
   enum role: { general: 0, admin: 1 }
 end
