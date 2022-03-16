@@ -78,10 +78,6 @@
     "stroke": "magenta"
   },
   {
-    "targetTime": 47000,
-    "stroke": "lime"
-  },
-  {
     "targetTime": 48250,
     "stroke": "lime"
   },
@@ -92,10 +88,6 @@
   {
     "targetTime": 50500,
     "stroke": "magenta"
-  },
-  {
-    "targetTime": 51500,
-    "stroke": "lime"
   },
   {
     "targetTime": 52750,
@@ -110,10 +102,6 @@
     "stroke": "magenta"
   },
   {
-    "targetTime": 56000,
-    "stroke": "lime"
-  },
-  {
     "targetTime": 57250,
     "stroke": "lime"
   },
@@ -124,10 +112,6 @@
   {
     "targetTime": 59500,
     "stroke": "magenta"
-  },
-  {
-    "targetTime": 60750,
-    "stroke": "lime"
   },
   {
     "targetTime": 62000,
@@ -142,51 +126,103 @@
     "stroke": "magenta"
   },
   {
-    "targetTime": 65250,
-    "stroke": "lime"
-  },
-  {
     "targetTime": 66500,
     "stroke": "magenta"
-  },
-  {
-    "targetTime": 67500,
-    "stroke": "lime"
   },
   {
     "targetTime": 68750,
     "stroke": "magenta"
   },
   {
-    "targetTime": 69750,
-    "stroke": "lime"
-  },
-  {
     "targetTime": 71000,
     "stroke": "magenta"
-  },
-  {
-    "targetTime": 72000,
-    "stroke": "lime"
   },
   {
     "targetTime": 73250,
     "stroke": "magenta"
   },
   {
-    "targetTime": 74250,
-    "stroke": "lime"
-  },
-  {
     "targetTime": 75500,
     "stroke": "magenta"
   },
   {
-    "targetTime": 76500,
+    "targetTime": 77750,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 79000,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 80250,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 81250,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 82500,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 87000,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 91500,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 96250,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 100750,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 103000,
     "stroke": "lime"
   },
   {
-    "targetTime": 511500,
+    "targetTime": 104250,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 105500,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 107750,
+    "stroke": "lime"
+  },
+  {
+    "targetTime": 108750,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 110000,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 112250,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 114500,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 115500,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 116750,
+    "stroke": "magenta"
+  },
+  {
+    "targetTime": 117750,
     "stroke": "magenta"
   }
   ]
