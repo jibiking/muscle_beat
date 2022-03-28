@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   skip_before_action :check_admin, only: %i[new create]
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(10)
   end
 
   def show; end

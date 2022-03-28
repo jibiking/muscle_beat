@@ -38,6 +38,9 @@ gem 'sorcery'
 # 画像等の保存に
 gem 'carrierwave', '~> 2.0'
 
+# ページネーション
+gem 'kaminari'
+
 # S3導入用
 gem 'aws-sdk-s3', require: false
 gem 'dotenv-rails'

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :starts, only: %i[index]
   resources :users
   resources :beats
-  resources :scores, only: %i[index create destroy]
+  resources :scores, only: %i[create destroy]
   resources :mypage, only: %i[index]
 
   get 'explain', to: 'starts#explain'
