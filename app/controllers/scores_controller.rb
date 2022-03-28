@@ -3,10 +3,6 @@ class ScoresController < ApplicationController
   before_action :set_score, only: %i[destroy]
   skip_before_action :check_admin, only: [:create]
 
-  def index
-    @scores = Score.all
-  end
-
   def create
     @score = Score.new(score_params)
 
