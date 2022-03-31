@@ -1,6 +1,6 @@
 class UserSessionsController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
-  skip_before_action :check_admin, only: %i[new create destroy]
+  # skip_before_action :check_admin, only: %i[new create destroy]
 
   def create
     @user = login(params[:user_name], params[:password])
