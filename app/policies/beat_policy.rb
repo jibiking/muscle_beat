@@ -8,7 +8,6 @@ class BeatPolicy < ApplicationPolicy
   end
 
   def create?
-    false
     user.admin?
   end
 
@@ -17,7 +16,6 @@ class BeatPolicy < ApplicationPolicy
   end
 
   def update?
-    false
     user.admin?
   end
 
@@ -26,7 +24,6 @@ class BeatPolicy < ApplicationPolicy
   end
 
   def destroy?
-    false
     user.admin?
   end
 
