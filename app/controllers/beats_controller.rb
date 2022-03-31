@@ -1,7 +1,7 @@
 class BeatsController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
-  skip_before_action :check_admin, only: %i[index show]
   before_action :set_beat, only: %i[show edit update destroy]
+  before_action :authorize_beat, only: %i[index new create]
 
   def index
     @beats_hard = Beat.hard
@@ -44,6 +44,11 @@ class BeatsController < ApplicationController
 
   def set_beat
     @beat = Beat.find(params[:id])
+    authorize @beat
+  end
+
+  def authorize_beat
+    authorize Beat
   end
 
   def beat_params

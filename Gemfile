@@ -41,6 +41,9 @@ gem 'carrierwave', '~> 2.0'
 # ページネーション
 gem 'kaminari'
 
+# 認可
+gem 'pundit'
+
 # S3導入用
 gem 'aws-sdk-s3', require: false
 gem 'dotenv-rails'
