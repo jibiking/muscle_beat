@@ -650,7 +650,7 @@ phina.define('MainScene', {
 
       // データ受け渡し
       const data = { score: this.totalScore, user_id: "<%= current_user.id if logged_in? %>", beat_id: "<%= @beat.id %>" }
-      axios.post('/scores', data);
+      axios.post("<%= scores_path %>", data);
 
       self.exit({score: this.totalScore,});
     };
