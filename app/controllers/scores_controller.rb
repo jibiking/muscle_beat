@@ -1,28 +1,12 @@
 class ScoresController < ApplicationController
   protect_from_forgery
-  before_action :set_score, only: %i[destroy]
 
   def create
     @score = Score.new(score_params)
-
-    if @score.save
-      redirect_to scores_path, notice: 'Score was successfully created.'
-    else
-      render :new
-    end
-  end
-
-  def destroy
-    @score.destroy
-
-    redirect_to scores_url, notice: 'Score was successfully destroyed.'
+    @score.save!
   end
 
   private
-
-  def set_score
-    @score = Score.find(params[:id])
-  end
 
   def score_params
     params.permit(:score, :user_id, :beat_id)
